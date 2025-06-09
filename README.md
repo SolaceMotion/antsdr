@@ -11,6 +11,10 @@ https://github.com/MicroPhase/antsdr_doc_en/blob/master/source/device_and_usage_
 ### Acoustic Warfare
 https://github.com/acoustic-warfare
 
+### RF trancievers
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD9363.pdf
+https://www.mouser.se/c/ds/?marcom=129589647
+
 ### Firmware
 https://github.com/MicroPhase/antsdr_uhd/releases/tag/v1.0
 
