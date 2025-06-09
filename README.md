@@ -1,9 +1,9 @@
 # antsdr
 
-## Hardware
-
 ## Projektet
 ANTSDR_E200_SOMMARJOBB.pdf
+
+## Hardware
 
 ### E200 Getting started Guide
 https://github.com/MicroPhase/antsdr_doc_en/blob/master/source/device_and_usage_manual/E200_Getting_Started_Guide.md
@@ -19,8 +19,6 @@ https://wiki.analog.com/resources/tools-software/linux-software/libiio/cmd_line
 
 ### Datablad E200
 ANT-E200_Public.pdf
-
-
 
 ## Web interface
 
