@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: iio
+Version: 29
+Summary: Python wrapper to iio
+Home-page: https://github.com/mnhrdt/iio
+Author: Jérémy Anger, Gabriele Facciolo, Enric Meinhardt-Llopis
+Author-email: enric.meinhardt@fastmail.com
+Classifier: Operating System :: OS Independent
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: summary
