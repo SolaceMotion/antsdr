@@ -1,5 +1,10 @@
 # antsdr
 
+## Activate the environment
+```
+source env/bin/activate
+```
+
 ## Projektet
 ANTSDR_E200_SOMMARJOBB.pdf
 

@@ -1,0 +1,1 @@
+/usr/bin/cc  -fvisibility=hidden -rdynamic CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.o -o FMComms5SyncTest  -Wl,-rpath,/home/dator1/Documents/antsdr/libad9361-iio/build -liio ../libad9361.so.0.2 -lm 

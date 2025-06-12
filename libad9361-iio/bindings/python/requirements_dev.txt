@@ -1,0 +1,2 @@
+pytest
+pytest-libiio==0.0.13

@@ -1,15 +1,17 @@
-#!../../env/bin/python3
+import socket
+import json
 
-import asyncio
-from websockets.asyncio.client import connect
 
-async def client():
-    async with connect("ws://localhost:8765") as websocket:
-        await websocket.send("WATTT")
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    sock.connect(("localhost", 8765))
+    sock.send(b"testt")
 
-        message = await websocket.recv()
-        print(f"Server responded with ({message})")
+    while True:
+        raw = sock.recv(1024)
+        if not raw:
+            break
+        
+        data = json.loads(raw.decode())
 
-if __name__ == "__main__":
-    asyncio.run(client())
+        print(f"Server replied: {data["status"]}")
 

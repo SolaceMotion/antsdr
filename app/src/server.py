@@ -1,41 +1,103 @@
-#!./../../env/bin/python3
+import os
+import threading
+import socket
+import iio
 
-import asyncio
-from websockets.asyncio.server import serve
+import json
+from dotenv import load_dotenv
 
-from websockets import exceptions
+# iio api command examples
+# ctx = iio.Context("ip:192.168.1.10")
+# rtx = ctx.find_devices("cf-ad9361-lpc")
+# rtx.find_channel("voltage0_i")
+# rtx.find_channel("voltage0_q")
 
-connections = {}
-client_id = 0
 
-async def handler(socket):
-    global client_id
+load_dotenv()
+host = os.getenv("IP")
+port = os.getenv("PORT")
 
-    client_id += 1
-    connections[client_id] = socket
+if not host or not port:
+    print("Environment variables did not load correctly.")
 
-    print(f"{client_id} connected.")
-    await echo(socket)
+try:
+    port = int(port)
+except ValueError:
+    print("PORT is not numeric.")
 
-async def echo(socket):
-    #name = await socket.recv()
+
+class SocketConnections:
+    """
+    Store socket objects
+    """
+    def __init__(self):
+        self.connections = {}
+
+    def add_connection(self, addr, socket):
+        """
+        Store connection objects in a dict
+        """
+        self.connections[addr] = socket
+
+    def remove_connection(self):
+        del self.connections[addr]
+    
+    def get_sockets(self):
+        """
+        Get all socket objects as a set
+        """
+        return set(self.connections.values())
+
+
+sockets = SocketConnections()
+
+lock = threading.Lock()
+
+def handler(sock, addr):
+    global sockets
+    global lock
+    
+    print(f"{addr} connected.")
+
+    with lock:
+        sockets.add_connection(addr, sock)
 
     try:
-        async for message in socket:
-            print(f"{client_id} sent: {message}")
-            await socket.send(f"{client_id}: {message}")
-
-    except exceptions.ConnectionClosed:
-        print(f"{client_id} disconnected.")
-
+        while True:
+            data = sock.recv(1024)
+            # Not received
+            if not data:
+                break
+            
+            print(f"Received: {data.decode()}")
+            
+            broadcast(
+                json.dumps({"status": "connected"}).encode(), 
+                sockets.get_sockets()
+            )
     finally:
-        del connections[client_id]
+        with lock:
+            sockets.remove_connection()
+        sock.close()
+        print(f"{addr} disconnected.")
 
-async def main():
-    async with serve(handler, "localhost", 8765) as server:
-        print("Socket endpoint running at ws://localhost:8765")
-        await server.serve_forever()
+def broadcast(msg, socks, sender=None):
+    print(socks)
+    with lock:
+        for sock in socks:
+            if sock != sender:
+                sock.sendall(msg)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # TCP Server
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
+        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        server.bind((host, port))
+        server.listen()
+        print(f"Running on {host}:{port}")
+        # Persistent connection
+        while True:
+            sock, addr = server.accept()
+            thread = threading.Thread(target=handler, args=(sock, addr), daemon=True)
+            thread.start()
 

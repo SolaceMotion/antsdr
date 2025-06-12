@@ -1,0 +1,48 @@
+#!/bin/sh -e
+
+if [ "x${COVERITY_SCAN_PROJECT_NAME}" != "x" ] ; then exit 0; fi
+
+. CI/travis/lib.sh
+
+handle_default() {
+	mkdir -p build
+	cd build
+	sudo cmake -DPYTHON_BINDINGS=ON -DENABLE_PACKAGING=ON -DDEB_DETECT_DEPENDENCIES=ON ..
+	sudo make && make package && make test
+	sudo make install
+	ldconfig
+	cd ..
+	cd bindings/python
+	sudo pip3 install -r requirements_dev.txt
+	sudo python3 -m pytest -vs --skip-scan
+}
+
+handle_centos() {
+	mkdir -p build
+	cd build
+	sudo cmake -DPYTHON_BINDINGS=ON -DENABLE_PACKAGING=ON ..
+	sudo make && make package && make test
+	sudo make install
+	ldconfig
+	cd ..
+	cd bindings/python
+	sudo pip3 install -r requirements_dev.txt
+	export LD_LIBRARY_PATH=/usr/local/lib/
+	sudo python3 -m pytest -vs --skip-scan
+}
+
+handle_ubuntu() {
+	handle_default
+}
+
+handle_debian() {
+	handle_default
+}
+
+handle_generic_docker() {
+	run_docker_script inside_docker.sh
+}
+
+setup_build_type_env_vars
+
+handle_${BUILD_TYPE}
