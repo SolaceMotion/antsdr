@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="app" location="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.sdk/app" platform="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.sdk/system_top/export/system_top/system_top.xpfm" platformUID="xilinx:::0.0(custom)" systemProject="app_system" sysConfig="system_top" runtime="cpp" cpu="standalone_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="45f231d92f5284e00bdbf7dea1bb3815">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.1440425911">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.109506520" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="empty_application"/>
+</sdkproject:SdkProject>

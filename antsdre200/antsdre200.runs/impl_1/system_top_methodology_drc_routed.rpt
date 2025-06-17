@@ -1,0 +1,436 @@
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2021.1 (lin64) Build 3247384 Thu Jun 10 19:36:07 MDT 2021
+| Date         : Fri Jun 13 14:14:41 2025
+| Host         : dator2-Latitude-5430 running 64-bit Ubuntu 24.04.2 LTS
+| Command      : report_methodology -file system_top_methodology_drc_routed.rpt -pb system_top_methodology_drc_routed.pb -rpx system_top_methodology_drc_routed.rpx
+| Design       : system_top
+| Device       : xc7z020clg400-2
+| Speed File   : -2
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: checkpoint_system_top
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 75
++-----------+------------------+-------------------------------------------------------------------+------------+
+| Rule      | Severity         | Description                                                       | Violations |
++-----------+------------------+-------------------------------------------------------------------+------------+
+| TIMING-54 | Critical Warning | Scoped false path or clock group constraint between clocks        | 8          |
+| CKBF-1    | Warning          | connects_I_driver_BUFR                                            | 3          |
+| LUTAR-1   | Warning          | LUT drives async reset alert                                      | 2          |
+| PDRC-190  | Warning          | Suboptimally placed synchronized register chain                   | 5          |
+| TIMING-9  | Warning          | Unknown CDC Logic                                                 | 1          |
+| TIMING-10 | Warning          | Missing property on synchronizer                                  | 1          |
+| TIMING-18 | Warning          | Missing input or output delay                                     | 40         |
+| TIMING-47 | Warning          | False path or asynchronous clock group between synchronous clocks | 8          |
+| XDCB-5    | Warning          | Runtime inefficient way to find pin objects                       | 5          |
+| XDCH-1    | Warning          | Hold option missing in multicycle path constraint                 | 2          |
++-----------+------------------+-------------------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-54#1 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 54 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#2 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 55 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#3 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 56 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#4 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 57 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#5 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_tx_clk and gmii_clk_125m_out (see constraint position 61 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#6 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_tx_clk and gmii_clk_125m_out (see constraint position 62 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#7 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_tx_clk and gmii_clk_125m_out (see constraint position 63 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+TIMING-54#8 Critical Warning
+Scoped false path or clock group constraint between clocks  
+A scoped False Path timing constraint is set between clocks system_sys_rgmii_0_rgmii_tx_clk and gmii_clk_125m_out (see constraint position 64 in the Timing Constraint window in Vivado IDE). It is not recommended to define such scoped constraints between clocks as the constraint impacts timing paths outside of the scope. 
+Related violations: <none>
+
+CKBF-1#1 Warning
+connects_I_driver_BUFR  
+The BUFGCTRL cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/i_bufgmux_gmii_clk_25m_2_5m I0 pin is driven by a BUFR cell i_system_wrapper/system_i/sys_rgmii/U0/i_system_sys_rgmii_0_clocking/clk10_div_buf. For 7-Series devices, this is not a recommended clock topology. Please analyze your clock network and remove the BUFR to BUFGCTRL cascade.
+Related violations: <none>
+
+CKBF-1#2 Warning
+connects_I_driver_BUFR  
+The BUFGCTRL cell i_system_wrapper/system_i/util_ad9361_divclk/inst/i_div_clk_gbuf I0 pin is driven by a BUFR cell i_system_wrapper/system_i/util_ad9361_divclk/inst/clk_divide_sel_0. For 7-Series devices, this is not a recommended clock topology. Please analyze your clock network and remove the BUFR to BUFGCTRL cascade.
+Related violations: <none>
+
+CKBF-1#3 Warning
+connects_I_driver_BUFR  
+The BUFGCTRL cell i_system_wrapper/system_i/util_ad9361_divclk/inst/i_div_clk_gbuf I1 pin is driven by a BUFR cell i_system_wrapper/system_i/util_ad9361_divclk/inst/clk_divide_sel_1. For 7-Series devices, this is not a recommended clock topology. Please analyze your clock network and remove the BUFR to BUFGCTRL cascade.
+Related violations: <none>
+
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync1/PRE,
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync2/PRE,
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync3/PRE,
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync4/PRE
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync5/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell i_system_wrapper/system_i/sys_rgmii/U0/i_system_sys_rgmii_0_clocking/system_sys_rgmii_0_core_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync1/PRE,
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync2/PRE,
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync3/PRE,
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync4/PRE
+i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync5/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+PDRC-190#1 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync5 in site SLICE_X104Y126 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync6 is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#2 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync5 in site SLICE_X105Y126 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_mgmt_reset/reset_sync6 is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#3 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_rx_reset/reset_sync5 in site SLICE_X109Y125 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_rx_reset/reset_sync6 is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#4 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync5 in site SLICE_X106Y125 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_gmii_to_rgmii_block/system_sys_rgmii_0_core/i_gmii_to_rgmii/i_reset_sync_tx_reset/reset_sync6 is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#5 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_system_sys_rgmii_0_resets/idelayctrl_reset_gen/reset_sync5 in site SLICE_X112Y121 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell i_system_wrapper/system_i/sys_rgmii/U0/i_system_sys_rgmii_0_resets/idelayctrl_reset_gen/reset_sync6 is not placed in the same (SLICE) site.
+Related violations: <none>
+
+TIMING-9#1 Warning
+Unknown CDC Logic  
+One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
+Related violations: <none>
+
+TIMING-10#1 Warning
+Missing property on synchronizer  
+One or more logic synchronizer has been detected between 2 clock domains but the synchronizer does not have the property ASYNC_REG defined on one or both registers. It is recommended to run report_cdc for a complete and detailed CDC coverage
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on MDIO_PHY_mdio_io relative to clock(s) clk_fpga_2
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on iic_scl relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on iic_sda relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_n[0] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_n[1] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_n[2] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_n[3] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_n[4] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#9 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_n[5] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#10 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_p[0] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#11 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_p[1] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_p[2] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_p[3] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_p[4] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#15 Warning
+Missing input or output delay  
+An input delay is missing on rx_data_in_p[5] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#16 Warning
+Missing input or output delay  
+An input delay is missing on rx_frame_in_n relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#17 Warning
+Missing input or output delay  
+An input delay is missing on rx_frame_in_p relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#18 Warning
+Missing input or output delay  
+An output delay is missing on RGMII_td[0] relative to clock(s) system_sys_rgmii_0_rgmii_tx_clk
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on RGMII_td[1] relative to clock(s) system_sys_rgmii_0_rgmii_tx_clk
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on RGMII_td[2] relative to clock(s) system_sys_rgmii_0_rgmii_tx_clk
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
+An output delay is missing on RGMII_td[3] relative to clock(s) system_sys_rgmii_0_rgmii_tx_clk
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on RGMII_tx_ctl relative to clock(s) system_sys_rgmii_0_rgmii_tx_clk
+Related violations: <none>
+
+TIMING-18#23 Warning
+Missing input or output delay  
+An output delay is missing on enable relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#24 Warning
+Missing input or output delay  
+An output delay is missing on tx_clk_out_n relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#25 Warning
+Missing input or output delay  
+An output delay is missing on tx_clk_out_p relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#26 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_n[0] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#27 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_n[1] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#28 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_n[2] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#29 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_n[3] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#30 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_n[4] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#31 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_n[5] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#32 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_p[0] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#33 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_p[1] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#34 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_p[2] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#35 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_p[3] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#36 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_p[4] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#37 Warning
+Missing input or output delay  
+An output delay is missing on tx_data_out_p[5] relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#38 Warning
+Missing input or output delay  
+An output delay is missing on tx_frame_out_n relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#39 Warning
+Missing input or output delay  
+An output delay is missing on tx_frame_out_p relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-18#40 Warning
+Missing input or output delay  
+An output delay is missing on txnrx relative to clock(s) rx_clk
+Related violations: <none>
+
+TIMING-47#1 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks gmii_clk_125m_out and system_sys_rgmii_0_rgmii_tx_clk (see constraint position 61 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#2 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks gmii_clk_125m_out and system_sys_rgmii_0_rgmii_tx_clk (see constraint position 62 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#3 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks gmii_clk_125m_out and system_sys_rgmii_0_rgmii_tx_clk (see constraint position 63 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#4 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks gmii_clk_125m_out and system_sys_rgmii_0_rgmii_tx_clk (see constraint position 64 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#5 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 54 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#6 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 55 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#7 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 56 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#8 Warning
+False path or asynchronous clock group between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks system_sys_rgmii_0_rgmii_rx_clk and RGMII_rxc (see constraint position 57 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via set_false_path or set_clock_groups may result in failure in hardware.
+Related violations: <none>
+
+XDCB-5#1 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -filter {NAME =~ */sync_mode_d1_reg/D}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '20' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc (Line: 5)
+Related violations: <none>
+
+XDCB-5#2 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -quiet -hier *reset_sync_in_reg*/PRE -filter {NAME =~ *i_reset_manager*}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '114' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_dac_dma_0/system_axi_ad9361_dac_dma_0_constr.xdc (Line: 123)
+Related violations: <none>
+
+XDCB-5#3 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -quiet -hier *reset_sync_in_reg*/PRE -filter {NAME =~ *i_reset_manager*}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '115' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_dac_dma_0/system_axi_ad9361_dac_dma_0_constr.xdc (Line: 129)
+Related violations: <none>
+
+XDCB-5#4 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -quiet -hier *reset_sync_in_reg*/PRE -filter {NAME =~ *i_reset_manager*}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '92' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_adc_dma_0/system_axi_ad9361_adc_dma_0_constr.xdc (Line: 159)
+Related violations: <none>
+
+XDCB-5#5 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -quiet -hier *reset_sync_in_reg*/PRE -filter {NAME =~ *i_reset_manager*}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '93' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_adc_dma_0/system_axi_ad9361_adc_dma_0_constr.xdc (Line: 165)
+Related violations: <none>
+
+XDCH-1#1 Warning
+Hold option missing in multicycle path constraint  
+A multicycle constraint has been set to override the setup relationship, but no multicycle constraint has been defined to change the hold relationship. As a result, the default hold for those paths is derived from the setup and may not be evaluated as expected.
+set_multicycle_path -setup -end -fall_from [get_clocks -include_generated_clocks -of_objects [get_pins -of [get_cells -hier -filter {name =~ *i_bufgmux_gmii_clk}] -filter {name =~ *O}]] -fall_to [get_clocks system_sys_rgmii_0_rgmii_tx_clk] 0
+/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_sys_rgmii_0/synth/system_sys_rgmii_0_clocks.xdc (Line: 41)
+Related violations: <none>
+
+XDCH-1#2 Warning
+Hold option missing in multicycle path constraint  
+A multicycle constraint has been set to override the setup relationship, but no multicycle constraint has been defined to change the hold relationship. As a result, the default hold for those paths is derived from the setup and may not be evaluated as expected.
+set_multicycle_path -setup -end -rise_from [get_clocks -include_generated_clocks -of_objects [get_pins -of [get_cells -hier -filter {name =~ *i_bufgmux_gmii_clk}] -filter {name =~ *O}]] -rise_to [get_clocks system_sys_rgmii_0_rgmii_tx_clk] 0
+/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_sys_rgmii_0/synth/system_sys_rgmii_0_clocks.xdc (Line: 40)
+Related violations: <none>
+
+

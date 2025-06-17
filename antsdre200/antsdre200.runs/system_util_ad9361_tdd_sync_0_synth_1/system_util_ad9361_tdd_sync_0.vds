@@ -1,0 +1,235 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Jun 13 14:07:03 2025
+# Process ID: 21578
+# Current directory: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1
+# Command line: vivado -log system_util_ad9361_tdd_sync_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_util_ad9361_tdd_sync_0.tcl
+# Log file: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/system_util_ad9361_tdd_sync_0.vds
+# Journal file: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source system_util_ad9361_tdd_sync_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/dator2/Documents/antsdr_standalone/hdl/library'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/dator2/Documents/antsdr_standalone/ghdl/library'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.1/data/ip'.
+Command: synth_design -top system_util_ad9361_tdd_sync_0 -part xc7z020clg400-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 21944
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2515.887 ; gain = 0.000 ; free physical = 2818 ; free virtual = 9648
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'system_util_ad9361_tdd_sync_0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/synth/system_util_ad9361_tdd_sync_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'util_tdd_sync' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/ed17/util_tdd_sync.v:44]
+INFO: [Synth 8-6157] synthesizing module 'util_pulse_gen' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/util_pulse_gen.v:37]
+INFO: [Synth 8-6155] done synthesizing module 'util_pulse_gen' (1#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/util_pulse_gen.v:37]
+WARNING: [Synth 8-7071] port 'pulse_counter' of module 'util_pulse_gen' is unconnected for instance 'i_tdd_sync' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/ed17/util_tdd_sync.v:67]
+WARNING: [Synth 8-7023] instance 'i_tdd_sync' of module 'util_pulse_gen' has 7 connections declared, but only 6 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/ed17/util_tdd_sync.v:67]
+INFO: [Synth 8-6155] done synthesizing module 'util_tdd_sync' (2#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/ed17/util_tdd_sync.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'system_util_ad9361_tdd_sync_0' (3#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/synth/system_util_ad9361_tdd_sync_0.v:57]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2515.887 ; gain = 0.000 ; free physical = 3081 ; free virtual = 9911
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2515.887 ; gain = 0.000 ; free physical = 3039 ; free virtual = 9869
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2515.887 ; gain = 0.000 ; free physical = 3040 ; free virtual = 9870
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2515.887 ; gain = 0.000 ; free physical = 3182 ; free virtual = 10012
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc] for cell 'inst'
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2579.832 ; gain = 0.000 ; free physical = 3419 ; free virtual = 10251
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2579.832 ; gain = 0.000 ; free physical = 3418 ; free virtual = 10250
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2567 ; free virtual = 9400
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2565 ; free virtual = 9398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property ASYNC_REG = true for inst/sync_mode_d1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/sync_mode_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/sync_mode_d2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/sync_mode_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_util_ad9361_tdd_sync_0/util_tdd_sync_constr.xdc, line 2).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2565 ; free virtual = 9397
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2544 ; free virtual = 9377
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 5     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 3145 ; free virtual = 9981
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2050 ; free virtual = 8893
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2050 ; free virtual = 8893
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2019 ; free virtual = 8863
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    11|
+|2     |LUT1   |    32|
+|3     |LUT2   |     3|
+|4     |LUT3   |    20|
+|5     |LUT4   |     3|
+|6     |LUT5   |     1|
+|7     |LUT6   |     5|
+|8     |FDRE   |    28|
+|9     |FDSE   |    10|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9656
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2579.832 ; gain = 0.000 ; free physical = 2838 ; free virtual = 9682
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2579.832 ; gain = 63.945 ; free physical = 2838 ; free virtual = 9682
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2579.832 ; gain = 0.000 ; free physical = 2823 ; free virtual = 9666
+INFO: [Netlist 29-17] Analyzing 11 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2579.832 ; gain = 0.000 ; free physical = 2774 ; free virtual = 9618
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 1e1be5a4
+INFO: [Common 17-83] Releasing license: Synthesis
+23 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 2579.832 ; gain = 64.031 ; free physical = 2847 ; free virtual = 9690
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/system_util_ad9361_tdd_sync_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP system_util_ad9361_tdd_sync_0, cache-ID = f3ee9a3bfe3ecde6
+INFO: [Coretcl 2-1174] Renamed 2 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1/system_util_ad9361_tdd_sync_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_util_ad9361_tdd_sync_0_utilization_synth.rpt -pb system_util_ad9361_tdd_sync_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Jun 13 14:07:42 2025...

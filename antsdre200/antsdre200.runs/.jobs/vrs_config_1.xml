@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="system_sys_ps7_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_sys_ps7_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_iic_main_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_iic_main_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_sys_rstgen_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_sys_rstgen_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_sys_logic_inv_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_sys_logic_inv_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_sys_rgmii_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_sys_rgmii_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_sysid_0_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_sysid_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_rom_sys_0_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_rom_sys_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_xbar_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_tdd_sync_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_tdd_sync_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_divclk_sel_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_divclk_sel_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_divclk_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_divclk_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_divclk_reset_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_divclk_reset_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_adc_fifo_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_adc_fifo_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_adc_pack_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_adc_pack_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_adc_dma_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_adc_dma_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_dac_fifo_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_dac_fifo_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_util_ad9361_dac_upack_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_util_ad9361_dac_upack_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_dac_dma_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_dac_dma_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_hp1_interconnect_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_hp1_interconnect_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_hp2_interconnect_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_hp2_interconnect_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_gpreg_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_gpreg_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_pc_0_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_auto_pc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="gen_clks_synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/gen_clks_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="system_sys_ps7_0_synth_1"/>
+		<Parent Id="system_axi_iic_main_0_synth_1"/>
+		<Parent Id="system_sys_rstgen_0_synth_1"/>
+		<Parent Id="system_sys_logic_inv_0_synth_1"/>
+		<Parent Id="system_sys_rgmii_0_synth_1"/>
+		<Parent Id="system_axi_sysid_0_0_synth_1"/>
+		<Parent Id="system_rom_sys_0_0_synth_1"/>
+		<Parent Id="system_xbar_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_0_synth_1"/>
+		<Parent Id="system_util_ad9361_tdd_sync_0_synth_1"/>
+		<Parent Id="system_util_ad9361_divclk_sel_0_synth_1"/>
+		<Parent Id="system_util_ad9361_divclk_0_synth_1"/>
+		<Parent Id="system_util_ad9361_divclk_reset_0_synth_1"/>
+		<Parent Id="system_util_ad9361_adc_fifo_0_synth_1"/>
+		<Parent Id="system_util_ad9361_adc_pack_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_adc_dma_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_dac_fifo_0_synth_1"/>
+		<Parent Id="system_util_ad9361_dac_upack_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_dac_dma_0_synth_1"/>
+		<Parent Id="system_axi_hp1_interconnect_0_synth_1"/>
+		<Parent Id="system_axi_hp2_interconnect_0_synth_1"/>
+		<Parent Id="system_axi_gpreg_0_synth_1"/>
+		<Parent Id="system_auto_pc_0_synth_1"/>
+		<Parent Id="gen_clks_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+
