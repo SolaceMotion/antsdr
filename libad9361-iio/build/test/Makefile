@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dator1/Documents/antsdr/libad9361-iio
+CMAKE_SOURCE_DIR = /home/dator1/realantsdr/libad9361-iio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dator1/Documents/antsdr/libad9361-iio/build
+CMAKE_BINARY_DIR = /home/dator1/realantsdr/libad9361-iio/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/dator1/Documents/antsdr/libad9361-iio/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/dator1/realantsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/dator1/Documents/antsdr/libad9361-iio/build/CPackSourceConfig.cmake
+	cd /home/dator1/realantsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/dator1/realantsdr/libad9361-iio/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -162,14 +162,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/Documents/antsdr/libad9361-iio/build/CMakeFiles /home/dator1/Documents/antsdr/libad9361-iio/build/test//CMakeFiles/progress.marks
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/Documents/antsdr/libad9361-iio/build/CMakeFiles 0
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/realantsdr/libad9361-iio/build/CMakeFiles /home/dator1/realantsdr/libad9361-iio/build/test//CMakeFiles/progress.marks
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/realantsdr/libad9361-iio/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/clean
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/clean
 .PHONY : clean
 
 # The main clean target
@@ -178,22 +178,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/preinstall
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/preinstall
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 test/CMakeFiles/FilterDesignerTest.dir/rule:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/FilterDesignerTest.dir/rule
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/FilterDesignerTest.dir/rule
 .PHONY : test/CMakeFiles/FilterDesignerTest.dir/rule
 
 # Convenience name for target.
@@ -202,12 +202,12 @@ FilterDesignerTest: test/CMakeFiles/FilterDesignerTest.dir/rule
 
 # fast build rule for target.
 FilterDesignerTest/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/build
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/build
 .PHONY : FilterDesignerTest/fast
 
 # Convenience name for target.
 test/CMakeFiles/GenerateRatesTest.dir/rule:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/GenerateRatesTest.dir/rule
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/GenerateRatesTest.dir/rule
 .PHONY : test/CMakeFiles/GenerateRatesTest.dir/rule
 
 # Convenience name for target.
@@ -216,12 +216,12 @@ GenerateRatesTest: test/CMakeFiles/GenerateRatesTest.dir/rule
 
 # fast build rule for target.
 GenerateRatesTest/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/build
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/build
 .PHONY : GenerateRatesTest/fast
 
 # Convenience name for target.
 test/CMakeFiles/FilterDesignerHardwareTest.dir/rule:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/FilterDesignerHardwareTest.dir/rule
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/FilterDesignerHardwareTest.dir/rule
 .PHONY : test/CMakeFiles/FilterDesignerHardwareTest.dir/rule
 
 # Convenience name for target.
@@ -230,12 +230,12 @@ FilterDesignerHardwareTest: test/CMakeFiles/FilterDesignerHardwareTest.dir/rule
 
 # fast build rule for target.
 FilterDesignerHardwareTest/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/build
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/build
 .PHONY : FilterDesignerHardwareTest/fast
 
 # Convenience name for target.
 test/CMakeFiles/FMComms5SyncTest.dir/rule:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/FMComms5SyncTest.dir/rule
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/FMComms5SyncTest.dir/rule
 .PHONY : test/CMakeFiles/FMComms5SyncTest.dir/rule
 
 # Convenience name for target.
@@ -244,12 +244,12 @@ FMComms5SyncTest: test/CMakeFiles/FMComms5SyncTest.dir/rule
 
 # fast build rule for target.
 FMComms5SyncTest/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/build
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/build
 .PHONY : FMComms5SyncTest/fast
 
 # Convenience name for target.
 test/CMakeFiles/AutoRateTest.dir/rule:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/AutoRateTest.dir/rule
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/AutoRateTest.dir/rule
 .PHONY : test/CMakeFiles/AutoRateTest.dir/rule
 
 # Convenience name for target.
@@ -258,7 +258,7 @@ AutoRateTest: test/CMakeFiles/AutoRateTest.dir/rule
 
 # fast build rule for target.
 AutoRateTest/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/build
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/build
 .PHONY : AutoRateTest/fast
 
 auto_rate_test_hw.o: auto_rate_test_hw.c.o
@@ -266,7 +266,7 @@ auto_rate_test_hw.o: auto_rate_test_hw.c.o
 
 # target to build an object file
 auto_rate_test_hw.c.o:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.o
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.o
 .PHONY : auto_rate_test_hw.c.o
 
 auto_rate_test_hw.i: auto_rate_test_hw.c.i
@@ -274,7 +274,7 @@ auto_rate_test_hw.i: auto_rate_test_hw.c.i
 
 # target to preprocess a source file
 auto_rate_test_hw.c.i:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.i
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.i
 .PHONY : auto_rate_test_hw.c.i
 
 auto_rate_test_hw.s: auto_rate_test_hw.c.s
@@ -282,7 +282,7 @@ auto_rate_test_hw.s: auto_rate_test_hw.c.s
 
 # target to generate assembly for a file
 auto_rate_test_hw.c.s:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.s
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/AutoRateTest.dir/build.make test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.s
 .PHONY : auto_rate_test_hw.c.s
 
 filter_designer_hw.o: filter_designer_hw.c.o
@@ -290,7 +290,7 @@ filter_designer_hw.o: filter_designer_hw.c.o
 
 # target to build an object file
 filter_designer_hw.c.o:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/filter_designer_hw.c.o
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/filter_designer_hw.c.o
 .PHONY : filter_designer_hw.c.o
 
 filter_designer_hw.i: filter_designer_hw.c.i
@@ -298,7 +298,7 @@ filter_designer_hw.i: filter_designer_hw.c.i
 
 # target to preprocess a source file
 filter_designer_hw.c.i:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/filter_designer_hw.c.i
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/filter_designer_hw.c.i
 .PHONY : filter_designer_hw.c.i
 
 filter_designer_hw.s: filter_designer_hw.c.s
@@ -306,7 +306,7 @@ filter_designer_hw.s: filter_designer_hw.c.s
 
 # target to generate assembly for a file
 filter_designer_hw.c.s:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/filter_designer_hw.c.s
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerHardwareTest.dir/build.make test/CMakeFiles/FilterDesignerHardwareTest.dir/filter_designer_hw.c.s
 .PHONY : filter_designer_hw.c.s
 
 filter_designer_test.o: filter_designer_test.c.o
@@ -314,7 +314,7 @@ filter_designer_test.o: filter_designer_test.c.o
 
 # target to build an object file
 filter_designer_test.c.o:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.o
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.o
 .PHONY : filter_designer_test.c.o
 
 filter_designer_test.i: filter_designer_test.c.i
@@ -322,7 +322,7 @@ filter_designer_test.i: filter_designer_test.c.i
 
 # target to preprocess a source file
 filter_designer_test.c.i:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.i
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.i
 .PHONY : filter_designer_test.c.i
 
 filter_designer_test.s: filter_designer_test.c.s
@@ -330,7 +330,7 @@ filter_designer_test.s: filter_designer_test.c.s
 
 # target to generate assembly for a file
 filter_designer_test.c.s:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.s
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FilterDesignerTest.dir/build.make test/CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.s
 .PHONY : filter_designer_test.c.s
 
 fmcomms5_sync_test.o: fmcomms5_sync_test.c.o
@@ -338,7 +338,7 @@ fmcomms5_sync_test.o: fmcomms5_sync_test.c.o
 
 # target to build an object file
 fmcomms5_sync_test.c.o:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.o
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.o
 .PHONY : fmcomms5_sync_test.c.o
 
 fmcomms5_sync_test.i: fmcomms5_sync_test.c.i
@@ -346,7 +346,7 @@ fmcomms5_sync_test.i: fmcomms5_sync_test.c.i
 
 # target to preprocess a source file
 fmcomms5_sync_test.c.i:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.i
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.i
 .PHONY : fmcomms5_sync_test.c.i
 
 fmcomms5_sync_test.s: fmcomms5_sync_test.c.s
@@ -354,7 +354,7 @@ fmcomms5_sync_test.s: fmcomms5_sync_test.c.s
 
 # target to generate assembly for a file
 fmcomms5_sync_test.c.s:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.s
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/FMComms5SyncTest.dir/build.make test/CMakeFiles/FMComms5SyncTest.dir/fmcomms5_sync_test.c.s
 .PHONY : fmcomms5_sync_test.c.s
 
 gen_rates_test.o: gen_rates_test.c.o
@@ -362,7 +362,7 @@ gen_rates_test.o: gen_rates_test.c.o
 
 # target to build an object file
 gen_rates_test.c.o:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.o
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.o
 .PHONY : gen_rates_test.c.o
 
 gen_rates_test.i: gen_rates_test.c.i
@@ -370,7 +370,7 @@ gen_rates_test.i: gen_rates_test.c.i
 
 # target to preprocess a source file
 gen_rates_test.c.i:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.i
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.i
 .PHONY : gen_rates_test.c.i
 
 gen_rates_test.s: gen_rates_test.c.s
@@ -378,7 +378,7 @@ gen_rates_test.s: gen_rates_test.c.s
 
 # target to generate assembly for a file
 gen_rates_test.c.s:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.s
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/GenerateRatesTest.dir/build.make test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.s
 .PHONY : gen_rates_test.c.s
 
 # Help Target
@@ -427,6 +427,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

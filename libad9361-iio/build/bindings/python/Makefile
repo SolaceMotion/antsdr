@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dator1/Documents/antsdr/libad9361-iio
+CMAKE_SOURCE_DIR = /home/dator1/realantsdr/libad9361-iio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dator1/Documents/antsdr/libad9361-iio/build
+CMAKE_BINARY_DIR = /home/dator1/realantsdr/libad9361-iio/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/dator1/Documents/antsdr/libad9361-iio/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/dator1/realantsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/dator1/Documents/antsdr/libad9361-iio/build/CPackSourceConfig.cmake
+	cd /home/dator1/realantsdr/libad9361-iio/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/dator1/realantsdr/libad9361-iio/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -162,14 +162,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/Documents/antsdr/libad9361-iio/build/CMakeFiles /home/dator1/Documents/antsdr/libad9361-iio/build/bindings/python//CMakeFiles/progress.marks
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/Documents/antsdr/libad9361-iio/build/CMakeFiles 0
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/realantsdr/libad9361-iio/build/CMakeFiles /home/dator1/realantsdr/libad9361-iio/build/bindings/python//CMakeFiles/progress.marks
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dator1/realantsdr/libad9361-iio/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/clean
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/clean
 .PHONY : clean
 
 # The main clean target
@@ -178,22 +178,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/preinstall
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/preinstall
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 bindings/python/CMakeFiles/libad9361-py-py.dir/rule:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/CMakeFiles/libad9361-py-py.dir/rule
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bindings/python/CMakeFiles/libad9361-py-py.dir/rule
 .PHONY : bindings/python/CMakeFiles/libad9361-py-py.dir/rule
 
 # Convenience name for target.
@@ -202,7 +202,7 @@ libad9361-py-py: bindings/python/CMakeFiles/libad9361-py-py.dir/rule
 
 # fast build rule for target.
 libad9361-py-py/fast:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f bindings/python/CMakeFiles/libad9361-py-py.dir/build.make bindings/python/CMakeFiles/libad9361-py-py.dir/build
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(MAKE) $(MAKESILENT) -f bindings/python/CMakeFiles/libad9361-py-py.dir/build.make bindings/python/CMakeFiles/libad9361-py-py.dir/build
 .PHONY : libad9361-py-py/fast
 
 # Help Target
@@ -232,6 +232,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

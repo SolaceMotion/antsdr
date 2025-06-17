@@ -1,2 +1,36 @@
-WARNING: autodoc: failed to import module 'ad9361'; the following exception was raised:
-['Traceback (most recent call last):\n', '  File "/home/dator1/Documents/antsdr/env/lib/python3.12/site-packages/sphinx/ext/autodoc/importer.py", line 269, in import_object\n    module = import_module(modname, try_reload=True)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "/home/dator1/Documents/antsdr/env/lib/python3.12/site-packages/sphinx/ext/autodoc/importer.py", line 175, in import_module\n    module = importlib.import_module(modname)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import\n', '  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load\n', '  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked\n', '  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked\n', '  File "<frozen importlib._bootstrap_external>", line 995, in exec_module\n', '  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed\n', '  File "/home/dator1/Documents/antsdr/libad9361-iio/bindings/python/ad9361.py", line 10, in <module>\n    from iio import _ContextPtr, _DevicePtr\n', "ImportError: cannot import name '_ContextPtr' from 'iio' (/home/dator1/Documents/antsdr/env/lib/python3.12/site-packages/iio.py)\n"] [autodoc.import_object]
+
+Theme error!
+
+Versions
+========
+
+* Platform:         linux; (Linux-6.11.0-26-generic-x86_64-with-glibc2.39)
+* Python version:   3.12.3 (CPython)
+* Sphinx version:   8.2.3
+* Docutils version: 0.21.2
+* Jinja2 version:   3.1.2
+* Pygments version: 2.17.2
+
+Last Messages
+=============
+
+None.
+
+Loaded Extensions
+=================
+
+None.
+
+Traceback
+=========
+
+      File "/home/dator1/realantsdr/.venv/lib/python3.12/site-packages/sphinx/theming.py", line 228, in create
+        raise ThemeError(__('no theme named %r found (missing theme.toml?)') % name)
+    sphinx.errors.ThemeError: no theme named 'furo' found (missing theme.toml?)
+
+
+The full traceback has been saved in:
+/tmp/sphinx-err-9ihr3j43.log
+
+To report this error to the developers, please open an issue at <https://github.com/sphinx-doc/sphinx/issues/>. Thanks!
+Please also report this if it was a user error, so that a better error message can be provided next time.

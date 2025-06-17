@@ -1,4 +1,4 @@
-# Install script for directory: /home/dator1/Documents/antsdr/libad9361-iio/test
+# Install script for directory: /home/dator1/realantsdr/libad9361-iio/test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

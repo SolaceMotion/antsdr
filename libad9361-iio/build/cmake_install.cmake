@@ -1,4 +1,4 @@
-# Install script for directory: /home/dator1/Documents/antsdr/libad9361-iio
+# Install script for directory: /home/dator1/realantsdr/libad9361-iio
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -55,8 +55,8 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/dator1/Documents/antsdr/libad9361-iio/build/libad9361.so.0.2"
-    "/home/dator1/Documents/antsdr/libad9361-iio/build/libad9361.so.0"
+    "/home/dator1/realantsdr/libad9361-iio/build/libad9361.so.0.2"
+    "/home/dator1/realantsdr/libad9361-iio/build/libad9361.so.0"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libad9361.so.0.2"
@@ -72,25 +72,21 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/dator1/Documents/antsdr/libad9361-iio/build/libad9361.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/dator1/realantsdr/libad9361-iio/build/libad9361.so")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/dator1/Documents/antsdr/libad9361-iio/ad9361.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/dator1/realantsdr/libad9361-iio/ad9361.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/dator1/Documents/antsdr/libad9361-iio/build/libad9361.pc")
-endif()
-
-if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/ad93610-doc" TYPE DIRECTORY FILES "/home/dator1/Documents/antsdr/libad9361-iio/build/html")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/dator1/realantsdr/libad9361-iio/build/libad9361.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dator1/Documents/antsdr/libad9361-iio/build/test/cmake_install.cmake")
-  include("/home/dator1/Documents/antsdr/libad9361-iio/build/bindings/cmake_install.cmake")
+  include("/home/dator1/realantsdr/libad9361-iio/build/test/cmake_install.cmake")
+  include("/home/dator1/realantsdr/libad9361-iio/build/bindings/cmake_install.cmake")
 
 endif()
 
@@ -102,5 +98,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dator1/Documents/antsdr/libad9361-iio/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/dator1/realantsdr/libad9361-iio/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

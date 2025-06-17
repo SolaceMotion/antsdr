@@ -1,9 +1,8 @@
 CMakeFiles/ad9361.dir/ad9361_baseband_auto_rate.c.o: \
- /home/dator1/Documents/antsdr/libad9361-iio/ad9361_baseband_auto_rate.c \
+ /home/dator1/realantsdr/libad9361-iio/ad9361_baseband_auto_rate.c \
  /usr/include/stdc-predef.h \
- /home/dator1/Documents/antsdr/libad9361-iio/ad9361.h \
- /usr/include/errno.h /usr/include/features.h \
- /usr/include/features-time64.h \
+ /home/dator1/realantsdr/libad9361-iio/ad9361.h /usr/include/errno.h \
+ /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \

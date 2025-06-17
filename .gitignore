@@ -1,0 +1,5 @@
+cJSON/
+env/
+uhd/
+libiio/build/
+libad9361-iio/build/

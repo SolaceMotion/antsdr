@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DLIBAD9361_EXPORTS=1 -D_GNU_SOURCE=1 -D_POSIX_C_SOURCE=200809L -D__XSI_VISIBLE=500
 
-C_INCLUDES = -I/home/dator1/Documents/antsdr/libad9361-iio
+C_INCLUDES = -I/home/dator1/realantsdr/libad9361-iio
 
 C_FLAGS =  -fvisibility=hidden
 

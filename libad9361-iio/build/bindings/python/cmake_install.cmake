@@ -1,4 +1,4 @@
-# Install script for directory: /home/dator1/Documents/antsdr/libad9361-iio/bindings/python
+# Install script for directory: /home/dator1/realantsdr/libad9361-iio/bindings/python
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,6 +43,6 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(WORKING_DIRECTORY /home/dator1/Documents/antsdr/libad9361-iio/build/bindings/python COMMAND /home/dator1/Documents/antsdr/env/bin/python3 /home/dator1/Documents/antsdr/libad9361-iio/build/bindings/python/setup.py install --root=$ENV{DESTDIR}/ --prefix=/usr/local)
+  execute_process(WORKING_DIRECTORY /home/dator1/realantsdr/libad9361-iio/build/bindings/python COMMAND /home/dator1/realantsdr/.venv/bin/python3 /home/dator1/realantsdr/libad9361-iio/build/bindings/python/setup.py install --root=$ENV{DESTDIR}/ --prefix=/usr/local)
 endif()
 

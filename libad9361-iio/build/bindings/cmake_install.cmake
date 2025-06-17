@@ -1,4 +1,4 @@
-# Install script for directory: /home/dator1/Documents/antsdr/libad9361-iio/bindings
+# Install script for directory: /home/dator1/realantsdr/libad9361-iio/bindings
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dator1/Documents/antsdr/libad9361-iio/build/bindings/python/cmake_install.cmake")
+  include("/home/dator1/realantsdr/libad9361-iio/build/bindings/python/cmake_install.cmake")
 
 endif()
 

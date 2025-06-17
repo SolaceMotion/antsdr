@@ -1,7 +1,7 @@
 test/CMakeFiles/GenerateRatesTest.dir/gen_rates_test.c.o: \
- /home/dator1/Documents/antsdr/libad9361-iio/test/gen_rates_test.c \
+ /home/dator1/realantsdr/libad9361-iio/test/gen_rates_test.c \
  /usr/include/stdc-predef.h \
- /home/dator1/Documents/antsdr/libad9361-iio/ad9361.h \
+ /home/dator1/realantsdr/libad9361-iio/ad9361.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dator1/Documents/antsdr/libad9361-iio/test/auto_rate_test_hw.c" "test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.o" "gcc" "test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.o.d"
+  "/home/dator1/realantsdr/libad9361-iio/test/auto_rate_test_hw.c" "test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.o" "gcc" "test/CMakeFiles/AutoRateTest.dir/auto_rate_test_hw.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

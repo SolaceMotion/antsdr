@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dator1/Documents/antsdr/libad9361-iio
+CMAKE_SOURCE_DIR = /home/dator1/realantsdr/libad9361-iio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dator1/Documents/antsdr/libad9361-iio/build
+CMAKE_BINARY_DIR = /home/dator1/realantsdr/libad9361-iio/build
 
 # Utility rule file for uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/uninstall.dir/compiler_depend.make
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/usr/bin/cmake -P /home/dator1/Documents/antsdr/libad9361-iio/build/cmake_uninstall.cmake
+	/usr/bin/cmake -P /home/dator1/realantsdr/libad9361-iio/build/cmake_uninstall.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/dator1/Documents/antsdr/libad9361-iio/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dator1/Documents/antsdr/libad9361-iio /home/dator1/Documents/antsdr/libad9361-iio /home/dator1/Documents/antsdr/libad9361-iio/build /home/dator1/Documents/antsdr/libad9361-iio/build /home/dator1/Documents/antsdr/libad9361-iio/build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dator1/realantsdr/libad9361-iio/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dator1/realantsdr/libad9361-iio /home/dator1/realantsdr/libad9361-iio /home/dator1/realantsdr/libad9361-iio/build /home/dator1/realantsdr/libad9361-iio/build /home/dator1/realantsdr/libad9361-iio/build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 

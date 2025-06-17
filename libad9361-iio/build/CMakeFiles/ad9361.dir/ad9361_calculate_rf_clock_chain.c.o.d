@@ -1,7 +1,7 @@
 CMakeFiles/ad9361.dir/ad9361_calculate_rf_clock_chain.c.o: \
- /home/dator1/Documents/antsdr/libad9361-iio/ad9361_calculate_rf_clock_chain.c \
+ /home/dator1/realantsdr/libad9361-iio/ad9361_calculate_rf_clock_chain.c \
  /usr/include/stdc-predef.h \
- /home/dator1/Documents/antsdr/libad9361-iio/ad9361.h \
+ /home/dator1/realantsdr/libad9361-iio/ad9361.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

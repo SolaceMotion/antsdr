@@ -12,7 +12,7 @@ config = dict(long_description_content_type="text/markdown")
 description = "Device specific library for AD936X transceivers"
 
 try:
-    with open("/home/dator1/Documents/antsdr/libad9361-iio/bindings/python/README.md", "r") as fh:
+    with open("/home/dator1/realantsdr/libad9361-iio/bindings/python/README.md", "r") as fh:
         long_description = fh.read()
 except:
     long_description = description
@@ -58,7 +58,7 @@ class InstallWrapper(install):
 
             destdir = os.getenv("DESTDIR", "")
             if destdir:
-                destdir = os.path.join("/home/dator1/Documents/antsdr/libad9361-iio/build", destdir)
+                destdir = os.path.join("/home/dator1/realantsdr/libad9361-iio/build", destdir)
                 fulllibpath = find_recursive(destdir, "libad9361.so")
                 _lib = _cdll(fulllibpath, use_errno=True, use_last_error=True)
             else:
