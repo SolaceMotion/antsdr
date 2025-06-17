@@ -1,5 +1,6 @@
 cJSON/
 env/
+.venv/
 uhd/
 libiio/build/
 libad9361-iio/build/

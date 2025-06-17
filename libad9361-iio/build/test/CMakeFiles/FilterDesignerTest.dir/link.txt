@@ -1,1 +1,0 @@
-/usr/bin/cc  -fvisibility=hidden -rdynamic CMakeFiles/FilterDesignerTest.dir/filter_designer_test.c.o -o FilterDesignerTest  -Wl,-rpath,/home/dator1/realantsdr/libad9361-iio/build -liio ../libad9361.so.0.2 

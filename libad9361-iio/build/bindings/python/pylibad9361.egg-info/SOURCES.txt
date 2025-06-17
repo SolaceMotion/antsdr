@@ -1,7 +1,0 @@
-ad9361.py
-setup.py
-pylibad9361.egg-info/PKG-INFO
-pylibad9361.egg-info/SOURCES.txt
-pylibad9361.egg-info/dependency_links.txt
-pylibad9361.egg-info/requires.txt
-pylibad9361.egg-info/top_level.txt

@@ -1,5 +1,0 @@
-/usr/local/lib/libad9361.so.0.2
-/usr/local/lib/libad9361.so.0
-/usr/local/lib/libad9361.so
-/usr/local/include/ad9361.h
-/usr/local/lib/pkgconfig/libad9361.pc
