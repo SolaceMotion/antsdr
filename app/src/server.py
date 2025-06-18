@@ -74,10 +74,10 @@ def handler(sock, addr):
             
             print(f"Received: {data.decode()}")
             
-            broadcast(
-                json.dumps({"status": "connected"}).encode(), 
-                sockets.get_sockets()
-            )
+            # broadcast(
+            #     json.dumps({"status": "connected"}).encode(), 
+            #     sockets.get_sockets()
+            # )
     finally:
         with lock:
             sockets.remove_connection(addr)

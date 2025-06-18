@@ -1,0 +1,33 @@
+
+name: FreeBSD Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["13.4"]
+    name: Test FreeBSD
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install libiio dependencies of FreeBSD
+      id: test
+      uses: vmactions/freebsd-vm@v1
+      with:
+        release: ${{ matrix.os }}
+        usesh: true
+        prepare: |
+          pkg update
+          pkg install -y git cmake ninja libxml2 bison flex libserialport avahi doxygen graphviz
+        run: |
+         mkdir build
+         cd build
+         cmake .. -DWITH_SERIAL_BACKEND=ON
+         make
+
+
+
