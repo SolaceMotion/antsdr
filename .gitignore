@@ -4,3 +4,5 @@ env/
 uhd/
 libiio/build/
 libad9361-iio/build/
+c/build/
+c/build.bak/

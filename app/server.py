@@ -1,7 +1,6 @@
 import os
 import threading
 import socket
-import iio
 
 import json
 from dotenv import load_dotenv
@@ -10,15 +9,20 @@ import gi
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
+N_BYTES_READ = 1024
+
 # iio api command examples
 # ctx = iio.Context("ip:192.168.1.10")
 # rtx = ctx.find_devices("cf-ad9361-lpc")
 # rtx.find_channel("voltage0_i")
 # rtx.find_channel("voltage0_q")
 
+# Load local environment variables
 load_dotenv()
 host = os.getenv("IP")
 port = os.getenv("PORT")
+
+def load_env()
 
 if not host or not port:
     print("Environment variables did not load correctly.")
@@ -67,12 +71,16 @@ def handler(sock, addr):
 
     try:
         while True:
-            data = sock.recv(1024)
+            raw = sock.recv(1024)
             # Not received
-            if not data:
+            if not raw:
                 break
-            
-            print(f"Received: {data.decode()}")
+
+            # Decode I/Q
+            decoded_format = json.loads(raw.decode())
+        
+            # Update GUI / store in a db
+            print(decoded_format)
             
             # broadcast(
             #     json.dumps({"status": "connected"}).encode(), 

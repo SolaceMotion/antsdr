@@ -1,3 +1,0 @@
-/home/dator1/realantsdr/app/src/c/build/CMakeFiles/test.dir
-/home/dator1/realantsdr/app/src/c/build/CMakeFiles/edit_cache.dir
-/home/dator1/realantsdr/app/src/c/build/CMakeFiles/rebuild_cache.dir

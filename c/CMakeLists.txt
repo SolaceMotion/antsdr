@@ -1,22 +1,26 @@
 cmake_minimum_required(VERSION 3.10)
-project(iio_test C)
+project(SpectrumSDR C)
 
 if(DEFINED ENV{VIRTUAL_ENV})
-  set(ENV{PKG_CONFIG_PATH} "$ENV{VIRTUAL_ENV}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  set(ENV{PKG_CONFIG_PATH} 
+    "$ENV{VIRTUAL_ENV}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 endif()
 
-#find_package(PkgConfig REQUIRED)
+# Source files
+set(CLIENT "spectrum_client")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+find_package(PkgConfig REQUIRED)
 find_package(cJSON REQUIRED)
 
-
 # Let pkg-config find libiio
-#pkg_check_modules(LIBIIO REQUIRED libiio)
+pkg_check_modules(LIBIIO REQUIRED libiio)
 message(STATUS "libiio includes: ${LIBIIO_INCLUDE_DIRS}")
 message(STATUS "libiio libs:     ${LIBIIO_LIBRARIES}")
 
 # Locate cJSON
-#pkg_check_modules(CJSON REQUIRED cjson)
+pkg_check_modules(CJSON REQUIRED cjson)
 message(STATUS "cJSON includes: ${CJSON_INCLUDE_DIRS}")
 message(STATUS "cJSON libs:     ${CJSON_LIBRARIES}")
 
@@ -24,6 +28,7 @@ message(STATUS "cJSON libs:     ${CJSON_LIBRARIES}")
 include_directories(
 	${LIBIIO_INCLUDE_DIRS}
 	${CJSON_INCLUDE_DIRS}
+  ${CMAKE_SOURCE_DIR}/include
 )
 link_directories(
 	${LIBIIO_LIBRARY_DIRS}
@@ -31,9 +36,11 @@ link_directories(
 )
 
 # Build executable
-add_executable(test test.c)
+add_executable(${CLIENT} src/${CLIENT}.c)
 
-target_link_libraries(test 
+target_include_directories(${CLIENT} PRIVATE include)
+
+target_link_libraries(${CLIENT} PRIVATE
 	${LIBIIO_LIBRARIES}
 	${CJSON_LIBRARIES}
 )
