@@ -1,0 +1,880 @@
+
+*** Running vivado
+    with args -log system_axi_ad9361_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axi_ad9361_0.tcl
+
+
+****** Vivado v2021.1 (64-bit)
+  **** SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+  **** IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source system_axi_ad9361_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/dator2/Documents/antsdr_standalone/hdl/library'.
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/home/dator2/Documents/antsdr_standalone/ghdl/library'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.1/data/ip'.
+Command: synth_design -top system_axi_ad9361_0 -part xc7z020clg400-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 21878
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2523.797 ; gain = 0.000 ; free physical = 4412 ; free virtual = 11242
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'system_axi_ad9361_0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/synth/system_axi_ad9361_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_lvds_if' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/xilinx/axi_ad9361_lvds_if.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_data_in' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_in.v:38]
+INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:51672]
+INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:51672]
+INFO: [Synth 8-6157] synthesizing module 'IDELAYE2' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:53766]
+INFO: [Synth 8-6155] done synthesizing module 'IDELAYE2' (2#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:53766]
+INFO: [Synth 8-6157] synthesizing module 'IDDR' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:53631]
+INFO: [Synth 8-6155] done synthesizing module 'IDDR' (3#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:53631]
+INFO: [Synth 8-6155] done synthesizing module 'ad_data_in' (4#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_in.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_data_out' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_out.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ODDR' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:69805]
+INFO: [Synth 8-6155] done synthesizing module 'ODDR' (5#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:69805]
+INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:66312]
+INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (6#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:66312]
+INFO: [Synth 8-6155] done synthesizing module 'ad_data_out' (7#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_out.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_data_clk' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_clk.v:38]
+INFO: [Synth 8-6157] synthesizing module 'IBUFGDS' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:52155]
+INFO: [Synth 8-6155] done synthesizing module 'IBUFGDS' (8#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:52155]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (9#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'ad_data_clk' (10#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_clk.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_data_in__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_in.v:38]
+INFO: [Synth 8-6157] synthesizing module 'IDELAYCTRL' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:53753]
+INFO: [Synth 8-6155] done synthesizing module 'IDELAYCTRL' (11#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:53753]
+INFO: [Synth 8-6155] done synthesizing module 'ad_data_in__parameterized0' (11#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_in.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_data_out__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_out.v:38]
+INFO: [Synth 8-6157] synthesizing module 'OBUF' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:66298]
+INFO: [Synth 8-6155] done synthesizing module 'OBUF' (12#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:66298]
+INFO: [Synth 8-6155] done synthesizing module 'ad_data_out__parameterized0' (12#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_data_out.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_lvds_if' (13#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/xilinx/axi_ad9361_lvds_if.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tdd_if' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tdd_if.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tdd_if' (14#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tdd_if.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tdd' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tdd.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_tdd_cntrl' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_tdd_cntrl.v:37]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_cntrl' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_cntrl' (15#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_cntrl__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_cntrl__parameterized0' (15#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_status' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_status.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_status' (16#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_status.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_tdd_cntrl' (17#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_tdd_cntrl.v:37]
+INFO: [Synth 8-6157] synthesizing module 'ad_tdd_control' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_tdd_control.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_addsub' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_addsub.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'ad_addsub' (18#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_addsub.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'ad_tdd_control' (19#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_tdd_control.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tdd' (20#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tdd.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:39]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_pnmon' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ad_pnmon' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_pnmon.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'ad_pnmon' (21#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_pnmon.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_pnmon' (22#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ad_datafmt' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_datafmt.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'ad_datafmt' (23#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_datafmt.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ad_dcfilter' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_dcfilter.v:39]
+INFO: [Synth 8-6157] synthesizing module 'DSP48E1' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:26577]
+INFO: [Synth 8-6155] done synthesizing module 'DSP48E1' (24#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:26577]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dcfilter' (25#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_dcfilter.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ad_iqcor' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:43]
+INFO: [Synth 8-6157] synthesizing module 'ad_mul' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_mul.v:38]
+INFO: [Synth 8-6157] synthesizing module 'xil_internal_svlib_MULT_MACRO' [/tools/Xilinx/Vivado/2021.1/data/verilog/src/unimacro/MULT_MACRO.v:24]
+INFO: [Synth 8-6157] synthesizing module 'DSP48E' [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:26460]
+INFO: [Synth 8-6155] done synthesizing module 'DSP48E' (26#1) [/tools/Xilinx/Vivado/2021.1/scripts/rt/data/unisim_comp.v:26460]
+INFO: [Synth 8-6155] done synthesizing module 'xil_internal_svlib_MULT_MACRO' (27#1) [/tools/Xilinx/Vivado/2021.1/data/verilog/src/unimacro/MULT_MACRO.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'ad_mul' (28#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_mul.v:38]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:138]
+INFO: [Synth 8-6157] synthesizing module 'ad_mul__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_mul.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_mul__parameterized0' (28#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_mul.v:38]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:127]
+INFO: [Synth 8-6155] done synthesizing module 'ad_iqcor' (29#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:43]
+INFO: [Synth 8-6157] synthesizing module 'up_adc_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_cntrl__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_cntrl__parameterized1' (29#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_status__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_status.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_status__parameterized0' (29#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_status.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_adc_channel' (30#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_channel' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_channel__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_pnmon__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_pnmon__parameterized0' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ad_iqcor__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:43]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:138]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:127]
+INFO: [Synth 8-6155] done synthesizing module 'ad_iqcor__parameterized0' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_iqcor.v:43]
+INFO: [Synth 8-6157] synthesizing module 'up_adc_channel__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_adc_channel__parameterized0' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_channel__parameterized0' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_channel__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_pnmon__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_pnmon__parameterized1' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6157] synthesizing module 'up_adc_channel__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_adc_channel__parameterized1' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_channel__parameterized1' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_channel__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_rx_pnmon__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_pnmon__parameterized2' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_pnmon.v:39]
+INFO: [Synth 8-6157] synthesizing module 'up_adc_channel__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_adc_channel__parameterized2' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_channel.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx_channel__parameterized2' (31#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_common.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_rst' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_rst.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_rst' (32#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_rst.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_cntrl__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_cntrl__parameterized2' (32#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_clock_mon' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_clock_mon.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_clock_mon' (33#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_clock_mon.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_adc_common' (34#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_adc_common.v:38]
+WARNING: [Synth 8-7071] port 'adc_ext_sync_arm' of module 'up_adc_common' is unconnected for instance 'i_up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+WARNING: [Synth 8-7071] port 'adc_ext_sync_disarm' of module 'up_adc_common' is unconnected for instance 'i_up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+WARNING: [Synth 8-7071] port 'adc_ext_sync_manual_req' of module 'up_adc_common' is unconnected for instance 'i_up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+WARNING: [Synth 8-7071] port 'adc_custom_control' of module 'up_adc_common' is unconnected for instance 'i_up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+WARNING: [Synth 8-7071] port 'adc_symb_op' of module 'up_adc_common' is unconnected for instance 'i_up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+WARNING: [Synth 8-7071] port 'adc_symb_8_16b' of module 'up_adc_common' is unconnected for instance 'i_up_adc_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+WARNING: [Synth 8-7023] instance 'i_up_adc_common' of module 'up_adc_common' has 50 connections declared, but only 44 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:349]
+INFO: [Synth 8-6157] synthesizing module 'up_delay_cntrl' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_delay_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_delay_cntrl' (35#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_delay_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_rx' (36#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_rx.v:39]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tx' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tx_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds.v:39]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_2.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_1.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_sine_cordic' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_sine_cordic.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:77]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:78]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized0' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized1' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized2' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized3' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized3' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized4' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized4' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized5' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized5' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized6' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized6' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized7' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized7' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized8' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized8' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized9' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized9' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_dds_cordic_pipe__parameterized10' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_cordic_pipe__parameterized10' (37#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_cordic_pipe.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_sine_cordic' (38#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_sine_cordic.v:38]
+INFO: [Synth 8-6157] synthesizing module 'ad_mul__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_mul.v:38]
+INFO: [Synth 8-6157] synthesizing module 'xil_internal_svlib_MULT_MACRO__parameterized0' [/tools/Xilinx/Vivado/2021.1/data/verilog/src/unimacro/MULT_MACRO.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'xil_internal_svlib_MULT_MACRO__parameterized0' (38#1) [/tools/Xilinx/Vivado/2021.1/data/verilog/src/unimacro/MULT_MACRO.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'ad_mul__parameterized1' (38#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/xilinx/common/ad_mul.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_1' (39#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_1.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds_2' (40#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds_2.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'ad_dds' (41#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/ad_dds.v:39]
+INFO: [Synth 8-6157] synthesizing module 'up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_cntrl__parameterized3' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_cntrl__parameterized3' (41#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+WARNING: [Synth 8-689] width (176) of port connection 'd_data_cntrl' does not match port width (177) of module 'up_xfer_cntrl__parameterized3' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:426]
+INFO: [Synth 8-6155] done synthesizing module 'up_dac_channel' (42#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-7071] port 'dac_mask_enable' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7071] port 'dac_src_chan_sel' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7023] instance 'i_up_dac_channel' of module 'up_dac_channel' has 41 connections declared, but only 39 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tx_channel' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tx_channel__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_dac_channel__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-689] width (176) of port connection 'd_data_cntrl' does not match port width (177) of module 'up_xfer_cntrl__parameterized3' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:426]
+INFO: [Synth 8-6155] done synthesizing module 'up_dac_channel__parameterized0' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-7071] port 'dac_mask_enable' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7071] port 'dac_src_chan_sel' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7023] instance 'i_up_dac_channel' of module 'up_dac_channel' has 41 connections declared, but only 39 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tx_channel__parameterized0' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tx_channel__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_dac_channel__parameterized1' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-689] width (176) of port connection 'd_data_cntrl' does not match port width (177) of module 'up_xfer_cntrl__parameterized3' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:426]
+INFO: [Synth 8-6155] done synthesizing module 'up_dac_channel__parameterized1' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-7071] port 'dac_mask_enable' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7071] port 'dac_src_chan_sel' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7023] instance 'i_up_dac_channel' of module 'up_dac_channel' has 41 connections declared, but only 39 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tx_channel__parameterized1' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'axi_ad9361_tx_channel__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_dac_channel__parameterized2' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-689] width (176) of port connection 'd_data_cntrl' does not match port width (177) of module 'up_xfer_cntrl__parameterized3' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:426]
+INFO: [Synth 8-6155] done synthesizing module 'up_dac_channel__parameterized2' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_channel.v:38]
+WARNING: [Synth 8-7071] port 'dac_mask_enable' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7071] port 'dac_src_chan_sel' of module 'up_dac_channel' is unconnected for instance 'i_up_dac_channel' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+WARNING: [Synth 8-7023] instance 'i_up_dac_channel' of module 'up_dac_channel' has 41 connections declared, but only 39 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:352]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tx_channel__parameterized2' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx_channel.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_common.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_xfer_cntrl__parameterized4' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_xfer_cntrl__parameterized4' (43#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_xfer_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_dac_common' (44#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_dac_common.v:38]
+WARNING: [Synth 8-7071] port 'dac_symb_op' of module 'up_dac_common' is unconnected for instance 'i_up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+WARNING: [Synth 8-7071] port 'dac_symb_8_16b' of module 'up_dac_common' is unconnected for instance 'i_up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+WARNING: [Synth 8-7071] port 'dac_ext_sync_arm' of module 'up_dac_common' is unconnected for instance 'i_up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+WARNING: [Synth 8-7071] port 'dac_ext_sync_disarm' of module 'up_dac_common' is unconnected for instance 'i_up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+WARNING: [Synth 8-7071] port 'dac_ext_sync_manual_req' of module 'up_dac_common' is unconnected for instance 'i_up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+WARNING: [Synth 8-7071] port 'up_dac_r1_mode' of module 'up_dac_common' is unconnected for instance 'i_up_dac_common' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+WARNING: [Synth 8-7023] instance 'i_up_dac_common' of module 'up_dac_common' has 48 connections declared, but only 42 given [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:372]
+INFO: [Synth 8-6157] synthesizing module 'up_delay_cntrl__parameterized0' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_delay_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_delay_cntrl__parameterized0' (44#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_delay_cntrl.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361_tx' (45#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361_tx.v:38]
+INFO: [Synth 8-6157] synthesizing module 'up_axi' [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_axi.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'up_axi' (46#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/common/up_axi.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'axi_ad9361' (47#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ipshared/084d/axi_ad9361.v:38]
+INFO: [Synth 8-6155] done synthesizing module 'system_axi_ad9361_0' (48#1) [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/synth/system_axi_ad9361_0.v:57]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2523.797 ; gain = 0.000 ; free physical = 2959 ; free virtual = 9791
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2523.797 ; gain = 0.000 ; free physical = 3390 ; free virtual = 10222
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2523.797 ; gain = 0.000 ; free physical = 3390 ; free virtual = 10222
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.43 . Memory (MB): peak = 2523.797 ; gain = 0.000 ; free physical = 2553 ; free virtual = 9386
+INFO: [Netlist 29-17] Analyzing 68 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc] for cell 'inst'
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc] for cell 'inst'
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc] for cell 'inst'
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc] for cell 'inst'
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc] for cell 'inst'
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/system_axi_ad9361_0_pps_constr.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/system_axi_ad9361_0_pps_constr.xdc] for cell 'inst'
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2587.742 ; gain = 0.000 ; free physical = 2959 ; free virtual = 9796
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 33 instances were transformed.
+  DSP48E => DSP48E1: 24 instances
+  IBUFGDS => IBUFDS: 1 instance 
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 8 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.39 . Memory (MB): peak = 2587.742 ; gain = 0.000 ; free physical = 2983 ; free virtual = 9820
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2810 ; free virtual = 9651
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2810 ; free virtual = 9651
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/up_xfer_state_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/up_xfer_state_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/up_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/up_xfer_state_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/up_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/up_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_control/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_1/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_rx_2/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_1/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_counter_values_tx_2/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_0/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_1/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_2/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_tx_channel_3/i_up_dac_channel/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/d_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/d_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_cntrl/d_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_cntrl_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_delay_cntrl/i_delay_rst_reg/rst_async_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_delay_cntrl/i_delay_rst_reg/rst_async_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_core_rst_reg/rst_async_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_core_rst_reg/rst_async_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_mmcm_rst_reg/rst_async_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_mmcm_rst_reg/rst_async_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_core_rst_reg/rst_async_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_core_rst_reg/rst_async_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_mmcm_rst_reg/rst_async_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_mmcm_rst_reg/rst_async_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_delay_cntrl/i_delay_rst_reg/rst_sync_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 5).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_core_rst_reg/rst_sync_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 5).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_mmcm_rst_reg/rst_sync_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 5).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_core_rst_reg/rst_sync_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 5).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_mmcm_rst_reg/rst_sync_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/ad_rst_constr.xdc, line 5).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/d_xfer_state_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/d_xfer_state_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/d_xfer_state_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_0/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_1/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_2/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_rx_channel_3/i_up_adc_channel/i_xfer_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_xfer_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_up_tdd_cntrl/i_xfer_tdd_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/up_xfer_toggle_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/up_xfer_toggle_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/up_xfer_toggle_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/up_xfer_toggle_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/up_xfer_toggle_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_xfer_status/up_xfer_toggle_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_xfer_status_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_count_running_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_count_running_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_count_running_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_count_running_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_count_running_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_count_running_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_count_running_m1_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_count_running_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_count_running_m2_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_count_running_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_count_running_m3_i. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_count_running_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/d_count_run_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/d_count_run_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/d_count_run_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/d_count_run_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/d_count_run_m2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/d_count_run_m3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 3).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_rx/i_up_adc_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_tx/i_up_dac_common/i_clock_mon/up_d_count_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/xilinx/common/up_clock_mon_constr.xdc, line 4).
+Applied set_property ASYNC_REG = true for inst/i_dev_if/enable_up_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_dev_if/enable_up_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_dev_if/txnrx_up_m1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_dev_if/txnrx_up_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_tdd_control/tdd_sync_d1_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_tdd_control/tdd_sync_d2_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property ASYNC_REG = true for inst/i_tdd/i_tdd_control/tdd_sync_d3_reg. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.gen/sources_1/bd/system/ip/system_axi_ad9361_0/axi_ad9361_constr.xdc, line 2).
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:24 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2804 ; free virtual = 9645
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2913 ; free virtual = 9756
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   30 Bit       Adders := 8     
+	   2 Input   24 Bit       Adders := 22    
+	   2 Input   16 Bit       Adders := 28    
+	   3 Input   16 Bit       Adders := 4     
+	   3 Input   14 Bit       Adders := 192   
+	   2 Input   14 Bit       Adders := 8     
+	   3 Input   13 Bit       Adders := 96    
+	   2 Input    6 Bit       Adders := 24    
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 4     
+	   2 Input    2 Bit       Adders := 1     
++---XORs : 
+	   2 Input     14 Bit         XORs := 192   
+	   2 Input     13 Bit         XORs := 96    
+	   2 Input      1 Bit         XORs := 209   
+	   3 Input      1 Bit         XORs := 24    
+	   4 Input      1 Bit         XORs := 12    
+	   6 Input      1 Bit         XORs := 6     
+	   5 Input      1 Bit         XORs := 6     
+	   7 Input      1 Bit         XORs := 10    
++---XORs : 
+	               12 Bit    Wide XORs := 4     
+	                2 Bit    Wide XORs := 4     
++---Registers : 
+	              177 Bit    Registers := 8     
+	              144 Bit    Registers := 8     
+	               78 Bit    Registers := 8     
+	               65 Bit    Registers := 1     
+	               63 Bit    Registers := 2     
+	               57 Bit    Registers := 2     
+	               48 Bit    Registers := 11    
+	               35 Bit    Registers := 2     
+	               32 Bit    Registers := 26    
+	               30 Bit    Registers := 8     
+	               24 Bit    Registers := 167   
+	               17 Bit    Registers := 24    
+	               16 Bit    Registers := 221   
+	               14 Bit    Registers := 242   
+	               13 Bit    Registers := 105   
+	               12 Bit    Registers := 28    
+	                8 Bit    Registers := 35    
+	                6 Bit    Registers := 30    
+	                5 Bit    Registers := 4     
+	                4 Bit    Registers := 28    
+	                3 Bit    Registers := 18    
+	                2 Bit    Registers := 8     
+	                1 Bit    Registers := 610   
++---Muxes : 
+	   2 Input   65 Bit        Muxes := 5     
+	   4 Input   48 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 11    
+	  27 Input   32 Bit        Muxes := 1     
+	  28 Input   32 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 12    
+	   2 Input   20 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 44    
+	   2 Input   15 Bit        Muxes := 1     
+	   3 Input   14 Bit        Muxes := 8     
+	   3 Input   13 Bit        Muxes := 16    
+	   2 Input   12 Bit        Muxes := 8     
+	   5 Input   12 Bit        Muxes := 4     
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 17    
+	   3 Input    4 Bit        Muxes := 12    
+	   5 Input    3 Bit        Muxes := 4     
+	   2 Input    3 Bit        Muxes := 6     
+	   4 Input    1 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 88    
+	   7 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 17    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:00:59 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2109 ; free virtual = 8958
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:07 ; elapsed = 00:01:10 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2775 ; free virtual = 9634
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:11 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 1959 ; free virtual = 8818
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2693 ; free virtual = 9551
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:18 ; elapsed = 00:01:21 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2828 ; free virtual = 9682
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:18 ; elapsed = 00:01:21 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2828 ; free virtual = 9682
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:20 ; elapsed = 00:01:23 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2810 ; free virtual = 9664
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:20 ; elapsed = 00:01:23 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2809 ; free virtual = 9664
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:21 ; elapsed = 00:01:23 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9666
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:21 ; elapsed = 00:01:23 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9666
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------+------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name | RTL Name                                                   | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------+------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|axi_ad9361  | i_tx/i_tx_channel_0/i_dds/dac_dds_data_reg[10]             | 4      | 11    | NO           | YES                | YES               | 11     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_0/i_ad_iqcor/g_loop[0].p1_data_i_reg[15] | 4      | 12    | NO           | NO                 | YES               | 12     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_1/i_dds/dac_dds_data_reg[10]             | 4      | 11    | NO           | YES                | YES               | 11     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_1/i_ad_iqcor/g_loop[0].p1_data_q_reg[15] | 4      | 12    | NO           | NO                 | YES               | 12     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_2/i_dds/dac_dds_data_reg[10]             | 4      | 11    | NO           | YES                | YES               | 11     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_2/i_ad_iqcor/g_loop[0].p1_data_i_reg[15] | 4      | 13    | NO           | NO                 | YES               | 13     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_3/i_dds/dac_dds_data_reg[10]             | 4      | 11    | NO           | YES                | YES               | 11     | 0       | 
+|axi_ad9361  | i_tx/i_tx_channel_3/i_ad_iqcor/g_loop[0].p1_data_q_reg[15] | 4      | 12    | NO           | NO                 | YES               | 12     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_dp_on_2_comp/out_reg[23]          | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_dp_on_1_comp/out_reg[23]          | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_dp_off_1_comp/out_reg[23]         | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_dp_off_2_comp/out_reg[23]         | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_rx_on_2_comp/out_reg[23]         | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_rx_on_1_comp/out_reg[23]         | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_rx_off_1_comp/out_reg[23]        | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_rx_off_2_comp/out_reg[23]        | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_tx_on_2_comp/out_reg[23]         | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_tx_on_1_comp/out_reg[23]         | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_tx_off_1_comp/out_reg[23]        | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_vco_tx_off_2_comp/out_reg[23]        | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_rx_on_2_comp/out_reg[23]             | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_rx_on_1_comp/out_reg[23]             | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_rx_off_1_comp/out_reg[23]            | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_rx_off_2_comp/out_reg[23]            | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_on_2_comp/out_reg[23]             | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_on_1_comp/out_reg[23]             | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_off_1_comp/out_reg[23]            | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_tdd/i_tdd_control/i_tx_off_2_comp/out_reg[23]            | 4      | 24    | NO           | NO                 | YES               | 24     | 0       | 
+|axi_ad9361  | i_rx/i_rx_channel_0/i_ad_iqcor/g_loop[0].p1_data_i_reg[15] | 4      | 16    | NO           | NO                 | YES               | 16     | 0       | 
+|axi_ad9361  | i_rx/i_rx_channel_1/i_ad_iqcor/g_loop[0].p1_data_q_reg[15] | 4      | 16    | NO           | NO                 | YES               | 16     | 0       | 
+|axi_ad9361  | i_rx/i_rx_channel_2/i_ad_iqcor/g_loop[0].p1_data_i_reg[15] | 4      | 16    | NO           | NO                 | YES               | 16     | 0       | 
+|axi_ad9361  | i_rx/i_rx_channel_3/i_ad_iqcor/g_loop[0].p1_data_q_reg[15] | 4      | 16    | NO           | NO                 | YES               | 16     | 0       | 
+|axi_ad9361  | i_rx/i_rx_channel_0/i_ad_iqcor/g_loop[0].valid_int_reg     | 7      | 1     | NO           | NO                 | YES               | 1      | 0       | 
++------------+------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |DSP48E        |        24|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |DSP48E     |    24|
+|25    |BUFG       |     1|
+|26    |CARRY4     |  1527|
+|27    |DSP48E1    |     4|
+|28    |IDDR       |     7|
+|29    |IDELAYCTRL |     1|
+|30    |IDELAYE2   |     7|
+|31    |LUT1       |  1788|
+|32    |LUT2       |  1512|
+|33    |LUT3       |  4621|
+|34    |LUT4       |   410|
+|35    |LUT5       |   543|
+|36    |LUT6       |  1617|
+|37    |MUXF7      |    52|
+|38    |ODDR       |    10|
+|39    |SRL16E     |   638|
+|40    |FDCE       |  3829|
+|41    |FDPE       |    10|
+|42    |FDRE       | 10906|
+|43    |FDSE       |   125|
+|44    |IBUFDS     |     7|
+|45    |IBUFGDS    |     1|
+|46    |OBUF       |     2|
+|47    |OBUFDS     |     8|
++------+-----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:21 ; elapsed = 00:01:23 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2812 ; free virtual = 9666
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:13 ; elapsed = 00:01:17 . Memory (MB): peak = 2587.742 ; gain = 0.000 ; free physical = 2883 ; free virtual = 9738
+Synthesis Optimization Complete : Time (s): cpu = 00:01:21 ; elapsed = 00:01:24 . Memory (MB): peak = 2587.742 ; gain = 63.945 ; free physical = 2883 ; free virtual = 9738
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2587.742 ; gain = 0.000 ; free physical = 3201 ; free virtual = 10052
+INFO: [Netlist 29-17] Analyzing 1647 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2587.742 ; gain = 0.000 ; free physical = 3180 ; free virtual = 10031
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 33 instances were transformed.
+  DSP48E => DSP48E1: 24 instances
+  IBUFGDS => IBUFDS: 1 instance 
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 8 instances
+
+Synth Design complete, checksum: 52fd2105
+INFO: [Common 17-83] Releasing license: Synthesis
+193 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:36 ; elapsed = 00:01:31 . Memory (MB): peak = 2587.742 ; gain = 64.031 ; free physical = 3522 ; free virtual = 10372
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_0_synth_1/system_axi_ad9361_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP system_axi_ad9361_0, cache-ID = 0ad1b311a3fdfbd8
+INFO: [Coretcl 2-1174] Renamed 285 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/system_axi_ad9361_0_synth_1/system_axi_ad9361_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_axi_ad9361_0_utilization_synth.rpt -pb system_axi_ad9361_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Jun 13 14:08:55 2025...

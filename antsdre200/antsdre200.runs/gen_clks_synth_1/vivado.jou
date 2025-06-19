@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Jun 13 14:10:38 2025
+# Process ID: 26686
+# Current directory: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/gen_clks_synth_1
+# Command line: vivado -log gen_clks.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gen_clks.tcl
+# Log file: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/gen_clks_synth_1/gen_clks.vds
+# Journal file: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/antsdre200.runs/gen_clks_synth_1/vivado.jou
+#-----------------------------------------------------------
+source gen_clks.tcl -notrace

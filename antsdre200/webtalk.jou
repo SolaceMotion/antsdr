@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Fri Jun 13 14:16:39 2025
+# Process ID: 41197
+# Current directory: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200
+# Command line: wbtcv -mode batch -source /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/.Xil/Vivado-14999-dator2-Latitude-5430/webtalk/labtool_webtalk.tcl -notrace
+# Log file: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/webtalk.log
+# Journal file: /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/webtalk.jou
+#-----------------------------------------------------------
+source /home/dator2/Documents/antsdr_standalone/hdl/projects/antsdre200/.Xil/Vivado-14999-dator2-Latitude-5430/webtalk/labtool_webtalk.tcl -notrace
