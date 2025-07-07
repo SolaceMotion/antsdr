@@ -1,8 +1,13 @@
-cJSON/
-env/
-.venv/
+# Python
+**/__pycache__/
+*.py[cod]
+
+core/.cache/
+
 uhd/
 libiio/build/
+env/
+.venv/
 libad9361-iio/build/
-c/build/
-c/build.bak/
+core/build/
+core/build.bak/
