@@ -1,3 +1,6 @@
 [submodule "libad9361-iio"]
 	path = libad9361-iio
 	url = https://github.com/analogdevicesinc/libad9361-iio
+[submodule "libiio"]
+	path = libiio
+	url = https://github.com/analogdevicesinc/libiio.git
