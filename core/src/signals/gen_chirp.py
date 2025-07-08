@@ -11,3 +11,4 @@ chirp = np.exp(1j * 2 * np.pi * ((f1 - f0) / (2 * duration) * t**2 + f0 * t))
 iq = np.stack((chirp.real, chirp.imag), axis=1)
 iq_int16 = (iq * 32767).astype(np.int16)
 iq_int16.tofile("chirp.bin")
+

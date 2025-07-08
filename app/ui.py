@@ -15,7 +15,7 @@ from gi.repository import Gtk, GLib
 
 Gtk.init()
 
-fs_hz = 50.0e6
+fs_hz = 112.0e6
 sample_period = 1.0 / fs_hz
 
 # Time to capture data on a plot
@@ -26,11 +26,6 @@ i_buf = []
 q_buf = []
 t_buf = []
 phase_buf = []
-
-# i_buf = np.zeros(BUF_SAMPS, dtype=np.double)
-# q_buf = []
-# t_buf = []
-# phase_buf = []
 
 # Figure
 fig, ((ax_i, ax_q), (ax_iq, ax_phase)) = plt.subplots(2, 2, figsize=(14,10))
@@ -78,13 +73,12 @@ def update(frame, t_buf: list, i_buf: list, q_buf: list, phase_buf: list):
     V_i = np.array(pkt["V_i"], dtype=np.double)
     V_q = np.array(pkt["V_q"], dtype=np.double)
     t0 = pkt["t0"]
-  
     # Timestamps
     t = t0 + np.arange(len(V_i)) * sample_period
     t_buf.extend(t)
     i_buf.extend(V_i)
     q_buf.extend(V_q)
-    phase_buf.extend(np.arctan2(V_i, V_q))
+    phase_buf.extend(np.abs(np.arccos(V_i/np.max(V_i)) - np.arccos(V_q/np.max(V_q))))
     # Downsample for plotting
     
     t_buf = t_buf[-BUF_SAMPS:]
@@ -189,26 +183,17 @@ class App(Gtk.Application):
         canvas = FigureCanvasGTK4Agg(fig)
 
         # start background watcher
-        threading.Thread(
+        watcher_thread = threading.Thread(
             target=self._watch_for_connections, 
             args=(lbl_wait, canvas, container),
             daemon=True
-        ).start()
+        )
+        watcher_thread.start()
 
         box_wait.append(lbl_wait)
         plot_area.append(plot_stream_switch_btn)
         plot_area.append(box_wait)
         container.append(plot_area)
-
-    def _wait_for_client_and_update(self, lbl_wait, canvas, container):
-        # Client connects
-        sema.acquire()  
-        # Update UI
-        # pkt = json.loads(raw.decode())
-        #
-        # if pkt["type"] == "conn_id":
-        lbl_wait.set_text("Client connected")
-        container.append(canvas)
 
     def _watch_for_connections(self, lbl_wait, canvas, container):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -218,16 +203,17 @@ class App(Gtk.Application):
             # Block until any client connects
             sema.acquire()
             if first:
-                # the watcher client
+                # The watcher client
                 GLib.idle_add(lbl_wait.set_text, "Watcher client connected")
                 first = False
-                # … do any one‑time init you need here, too …
             else:
                 raw = s.recv(100)
-                print(raw.decode())
+                # Update UI
+                pkt = json.loads(raw.decode())
+                print(pkt)
+                #
+                # if pkt["type"] == "conn_id":
                 # a subsequent client has joined
-                #GLib.idle_add(self._on_additional_client)
-                #lbl_wait.set_text("Client connected")
                 GLib.idle_add(lbl_wait.set_text, "C client connected")
                 container.append(canvas)
 

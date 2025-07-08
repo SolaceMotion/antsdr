@@ -34,36 +34,7 @@ static struct ch_attrs attrs;
 static int client_fd = 0;
 static size_t bytes_per_sample = 1;
 
-static inline double now_seconds(void) {
-    struct timespec ts;
-    // Time since boot.
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return ts.tv_sec + ts.tv_nsec * 1e-9;
-}
-
-/* Connect to socket server */
-int connect_socket(int *client_fd, struct sockaddr_in *serv_addr) {
-    // Create client socket
-    if ((*client_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("socket creation");
-        return errno;
-    }
-    serv_addr->sin_family = AF_INET;
-    serv_addr->sin_port = htons(8765);
-    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr->sin_addr) <= 0) {
-        errno = EINVAL;
-        perror("inet_pton");
-        close(*client_fd);
-        return errno;
-    }
-    // Open connection
-    if (connect(*client_fd, (struct sockaddr *)serv_addr, sizeof(*serv_addr)) <
-        0) {
-        fprintf(stderr, "%s - is server running?\n", strerror(errno));
-        close(*client_fd);
-        return errno;
-    }
-
+static int send_curr_config() {
     // char conn_status[30];
     // read(*client_fd, conn_status, 30);
     // cJSON *status_msg = cJSON_Parse(conn_status);
@@ -110,8 +81,10 @@ int connect_socket(int *client_fd, struct sockaddr_in *serv_addr) {
     // cJSON_AddNumberToObject(curr_cfg_json, "lo", (double)curr_cfg.lo_hz);
     // char *json_str = cJSON_PrintUnformatted(curr_cfg_json);
     // // Send collected stream and a delimiter
+
     // send(*client_fd, json_str, strlen(json_str), 0);
     // send(*client_fd, "\n", 1, 0);
+    cJSON_Delete(curr_cfg_json);
 
     return 0;
 }
@@ -209,19 +182,9 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
     return 0;
 }
 
-int send_w_delim(int fd, char *data) {
-    if (send(fd, data, strlen(data), 0) < 0) {
-        return 1;
-    }
-    if (send(fd, "\n", 1, 0) < 0) {
-        return 1;
-    }
-    return 0;
-}
-
 /* Stream I/Q data from RX */
 int stream_rx(struct stream_cfg *rxcfg) {
-    double t0_base = now_seconds();
+    double t0_base = time_now();
     // Sample counter
     size_t sample_count_rx = 0;
     const double sample_period = 1.0 / rxcfg->fs_hz;
@@ -243,14 +206,14 @@ int stream_rx(struct stream_cfg *rxcfg) {
 
         ssize_t nbytes_rx;
 
-        double t0 = now_seconds() - t0_base;
+        double t0 = time_now() - t0_base;
         // Refill RXbuffer. Returns # bytes read into the buffer
         if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
             perror("refill rx");
             return errno;
         }
 
-        double t_now = now_seconds();
+        double t_now = time_now();
 
         char *p_end, *p_dat;
         ptrdiff_t p_inc;
@@ -285,7 +248,7 @@ int stream_rx(struct stream_cfg *rxcfg) {
         sample_count_rx += nbytes_rx / bytes_per_sample;
         // printf("\tRX %8.2f MSmp\n", sample_count_rx * (1.0e-6));
 
-        double tf = now_seconds() - t_now;
+        double tf = time_now() - t_now;
         cJSON_AddNumberToObject(root, "fs", rxcfg->fs_hz);
         cJSON_AddItemToObject(root, "V_i", i_arr);
         cJSON_AddItemToObject(root, "V_q", q_arr);
@@ -367,16 +330,18 @@ int main(int argc, char *argv[]) {
     }
 
     // Example config
+    //
+    // fs måste vara minst 2 gånger så stor som bandbredden
     rxcfg->bw_hz = MHZ(40.0);
-    rxcfg->fs_hz = MHZ(50.0);
-    rxcfg->lo_hz = MHZ(250.0);
+    rxcfg->fs_hz = MHZ(112.0);
+    rxcfg->lo_hz = MHZ(120.0);
     rxcfg->rfport = "A_BALANCED";
     rxcfg->gain_mode = "manual";
     rxcfg->gain_db = 70.00;
 
     txcfg->bw_hz = MHZ(40.0);
-    txcfg->fs_hz = MHZ(50.0);
-    txcfg->lo_hz = MHZ(250.0);
+    txcfg->fs_hz = MHZ(112.0);
+    txcfg->lo_hz = MHZ(120.0);
     txcfg->rfport = "A";
     txcfg->type = tx;
 

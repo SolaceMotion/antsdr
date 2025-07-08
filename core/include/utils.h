@@ -65,5 +65,7 @@ int config_streaming_ch(struct stream_cfg *rxcfg);
 int stream_rx(struct stream_cfg *rxcfg);
 void destroy(void);
 int connect_socket(int *client_fd, struct sockaddr_in *serv_addr);
+double time_now(void);
+int send_w_delim(int fd, char *data);
 
 #endif // !UTILS_H

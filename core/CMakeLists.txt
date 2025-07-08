@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.10)
-project(SpectrumSDR C)
+cmake_minimum_required(VERSION 3.12)
+project(SpectrumSDR VERSION 0.01 LANGUAGES C)
 
 if(DEFINED ENV{VIRTUAL_ENV})
   set(ENV{PKG_CONFIG_PATH} 
@@ -32,21 +32,41 @@ link_directories(
 	${LIBIIO_LIBRARY_DIRS}
 )
 
-# Build executable
-add_executable(${CLIENT} 
-  src/${CLIENT}.c
+set(COMMON_SRCS
+  src/utils.c
   src/cJSON.c
   src/cJSON_Utils.c
 )
 
+# Build "real" client executable
+add_executable(${CLIENT} 
+  src/${CLIENT}.c
+  ${COMMON_SRCS}
+) 
+# Build development client executable
+add_executable(dummy_client
+  src/dummy.c
+  ${COMMON_SRCS}
+)
+
 target_include_directories(${CLIENT} PRIVATE include)
+target_include_directories(dummy_client PRIVATE include)
+
 
 target_link_libraries(${CLIENT} PRIVATE
 	${LIBIIO_LIBRARIES}
 )
 # Compiler flags
-target_compile_definitions(${CLIENT} PRIVATE 
-  SET_RXCFG
-  STREAM_RX
-)
+# target_compile_definitions(${CLIENT} PRIVATE 
+#   SET_RXCFG
+#   STREAM_RX
+# )
+
+if(SET_RXCFG)
+  target_compile_definitions(${CLIENT} PRIVATE SET_RXCFG)
+endif()
+if(STREAM_RX)
+  target_compile_definitions(${CLIENT} PRIVATE STREAM_RX)
+endif()
+
 
