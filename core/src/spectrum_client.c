@@ -13,34 +13,26 @@
 #include <string.h>
 #include <sys/cdefs.h>
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
 
-/* helper macros */
-#define MHZ(x) ((long long)(x * 1000000.0 + .5))
-#define GHZ(x) ((long long)(x * 1000000000.0 + .5))
+// Number of i,q pair samples
+#define BUF_SAMPS 4096
 
-#define BUF_SAMPS 1024
-
-/* IIO structs required for streaming */
+/* IIO structs for streaming */
 static struct iio_context *ctx = NULL;
 static struct iio_buffer *buf_rx = NULL;
 static struct iio_buffer *buf_tx = NULL;
 
 static struct channels ch;
 static struct devices dev;
-static struct ch_attrs attrs;
+static struct ch_attrs *attrs = NULL;
 
 static int client_fd = 0;
-static size_t bytes_per_sample = 1;
 
-static int send_curr_config() {
-    // char conn_status[30];
-    // read(*client_fd, conn_status, 30);
-    // cJSON *status_msg = cJSON_Parse(conn_status);
-    // printf("%s\n", cJSON_Print(cJSON_GetObjectItem(status_msg, "id")));
-
-    // Send the current cfg
+/* Send the current RF config on the SDR */
+int send_curr_config(int *client_fd) {
     cJSON *curr_cfg_json = cJSON_CreateObject();
 
     struct iio_channel *ch_in0;
@@ -56,37 +48,79 @@ static int send_curr_config() {
         printf("LO ERROR\n");
         return -1;
     }
-    printf("%d\n", BUF_SAMPS);
     iio_channel_enable(ch_in0);
 
-    // Read current cfg and send to server
-    struct stream_cfg curr_cfg;
-
+    // Read current rx and tx cfg and send to server
     if (iio_channel_attr_read_longlong(ch_in0, "rf_bandwidth",
-                                       &curr_cfg.bw_hz) < 0) {
+                                       &(attrs->rx_curr->bw_hz)) < 0) {
         return errno;
     }
     if (iio_channel_attr_read_longlong(ch_in0, "sampling_frequency",
-                                       &curr_cfg.fs_hz) < 0) {
+                                       &(attrs->rx_curr->fs_hz)) < 0) {
         return errno;
     }
     if (iio_channel_attr_read_longlong(ch_altin0, "frequency",
-                                       &curr_cfg.lo_hz) < 0) {
+                                       &(attrs->rx_curr->lo_hz)) < 0) {
         return errno;
     }
 
-    // cJSON_AddStringToObject(curr_cfg_json, "type", "cfg");
-    // cJSON_AddNumberToObject(curr_cfg_json, "bw", (double)curr_cfg.bw_hz);
-    // cJSON_AddNumberToObject(curr_cfg_json, "fs", (double)curr_cfg.fs_hz);
-    // cJSON_AddNumberToObject(curr_cfg_json, "lo", (double)curr_cfg.lo_hz);
-    // char *json_str = cJSON_PrintUnformatted(curr_cfg_json);
-    // // Send collected stream and a delimiter
+    cJSON *json_rx = cJSON_CreateObject();
+    cJSON *json_tx = cJSON_CreateObject();
 
-    // send(*client_fd, json_str, strlen(json_str), 0);
-    // send(*client_fd, "\n", 1, 0);
+    cJSON_AddStringToObject(curr_cfg_json, "type", "cfg");
+
+    cJSON_AddNumberToObject(json_rx, "bw", (double)attrs->rx_curr->bw_hz);
+    cJSON_AddNumberToObject(json_rx, "fs", (double)attrs->rx_curr->fs_hz);
+    cJSON_AddNumberToObject(json_rx, "lo", (double)attrs->rx_curr->lo_hz);
+
+    cJSON_AddNumberToObject(json_tx, "bw", (double)attrs->tx_curr->bw_hz);
+    cJSON_AddNumberToObject(json_tx, "fs", (double)attrs->tx_curr->fs_hz);
+    cJSON_AddNumberToObject(json_tx, "lo", (double)attrs->tx_curr->lo_hz);
+
+    cJSON_AddItemToObject(curr_cfg_json, "rx", json_rx);
+    cJSON_AddItemToObject(curr_cfg_json, "tx", json_tx);
+
+    char *json_str = cJSON_PrintUnformatted(curr_cfg_json);
+    // Send config
+    send_w_delim(*client_fd, json_str);
+
     cJSON_Delete(curr_cfg_json);
 
     return 0;
+}
+
+/* Block until receiving control message.
+ * Returns 0 on success, 1 on error. */
+int wait_for_stream(int fd, const char *wanted) {
+    char buf[256];
+    size_t len = 0;
+
+    while (1) {
+        char c;
+        ssize_t n = recv(fd, &c, 1, 0);
+        if (n <= 0) /* peer closed or error */
+            return 1;
+
+        if (c == '\n') { /* got a full JSON line */
+            buf[len] = '\0';
+            cJSON *root = cJSON_Parse(buf);
+            printf("GOT: %s\n", buf);
+            if (root) {
+                const cJSON *type = cJSON_GetObjectItem(root, "type");
+                const cJSON *cmd = cJSON_GetObjectItem(root, "do");
+                if (cJSON_IsString(type) && cJSON_IsString(cmd) &&
+                    strcmp(type->valuestring, "ctrl") == 0 &&
+                    strcmp(cmd->valuestring, wanted) == 0) {
+                    cJSON_Delete(root);
+                    return 0; /* wanted command received */
+                }
+                cJSON_Delete(root);
+            }
+            len = 0; /* start next packet */
+        } else if (len < sizeof(buf) - 1) {
+            buf[len++] = c;
+        }
+    }
 }
 
 /* Helper for writing a long long to iio channel. Errors if write fails */
@@ -147,9 +181,9 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
         }
     }
 
-    // Read available bandwidths
-    char avail_bw[30];
-    iio_channel_attr_read(ch_0, "rf_bandwidth_available", avail_bw, 30);
+    // Read available bandwidth
+    char avail_bw[128];
+    iio_channel_attr_read(ch_0, "rf_bandwidth_available", avail_bw, 128);
 
     // Write the cfg
 #ifdef SET_RXCFG
@@ -185,35 +219,17 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
 /* Stream I/Q data from RX */
 int stream_rx(struct stream_cfg *rxcfg) {
     double t0_base = time_now();
-    // Sample counter
     size_t sample_count_rx = 0;
     const double sample_period = 1.0 / rxcfg->fs_hz;
 
-    // Buffer to read streaming status from server
-    // char stream_status[30];
-
-    // int is_streaming = 0;
-
     while (true) {
-        // Read streaming status
-        // read(client_fd, stream_status, 30);
-
-        // printf("%s\n", stream_status);
-
-        // cJSON *stat =
-        //     cJSON_GetObjectItem(cJSON_Parse(stream_status), "stream_status");
-        // is_streaming = (int)cJSON_GetNumberValue(stat);
-
         ssize_t nbytes_rx;
 
-        double t0 = time_now() - t0_base;
-        // Refill RXbuffer. Returns # bytes read into the buffer
+        // Refill RX buffer. Returns # bytes read into the buffer
         if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
             perror("refill rx");
             return errno;
         }
-
-        double t_now = time_now();
 
         char *p_end, *p_dat;
         ptrdiff_t p_inc;
@@ -224,6 +240,7 @@ int stream_rx(struct stream_cfg *rxcfg) {
         cJSON *root = cJSON_CreateObject();
         cJSON *i_arr = cJSON_CreateArray();
         cJSON *q_arr = cJSON_CreateArray();
+        cJSON *t_arr = cJSON_CreateArray();
 
         for (p_dat = (char *)iio_buffer_first(buf_rx, ch.rx0_i); p_dat < p_end;
              p_dat += p_inc) {
@@ -231,32 +248,32 @@ int stream_rx(struct stream_cfg *rxcfg) {
             const int16_t i_raw = ((int16_t *)p_dat)[0];
             const int16_t q_raw = ((int16_t *)p_dat)[1];
 
-            double V_i = (double)i_raw * attrs.rx_scale;
-            double V_q = (double)q_raw * attrs.rx_scale;
+            double V_i = (double)i_raw * attrs->rx_scale;
+            double V_q = (double)q_raw * attrs->rx_scale;
             cJSON_AddItemToArray(i_arr, cJSON_CreateNumber(V_i));
             cJSON_AddItemToArray(q_arr, cJSON_CreateNumber(V_q));
+
+            double t0 = time_now() - t0_base;
+
+            cJSON_AddItemToArray(t_arr, cJSON_CreateNumber(t0));
         }
 
-        // number of samples read into buffer (should equal BUF_SAMPS)
-        double nsamples = (double)nbytes_rx / bytes_per_sample;
-        // Log if this is not the case
-        double nsamples_per_refill = nsamples / sample_period;
+        // number of samples read into buffer (should equal 2*BUF_SAMPS)
+        double nsamples = (double)nbytes_rx / sizeof(int16_t);
 
-        // Print # mega samples per refill
-        // printf("\tRX: %8.2f MS/s\n", nsamples_per_refill * (1.0e-6));
+        // Print # samples per refill
+        // printf("\tRX: %8.2f S/s\n", nsamples);
 
-        sample_count_rx += nbytes_rx / bytes_per_sample;
-        // printf("\tRX %8.2f MSmp\n", sample_count_rx * (1.0e-6));
+        sample_count_rx += nbytes_rx / sizeof(int16_t);
 
-        double tf = time_now() - t_now;
         cJSON_AddNumberToObject(root, "fs", rxcfg->fs_hz);
         cJSON_AddItemToObject(root, "V_i", i_arr);
         cJSON_AddItemToObject(root, "V_q", q_arr);
-        cJSON_AddNumberToObject(root, "t0", t0);
-        cJSON_AddNumberToObject(root, "tf", tf);
+        cJSON_AddItemToObject(root, "t0", t_arr);
+        cJSON_AddNumberToObject(root, "length", nsamples / 2);
 
         char *json_str = cJSON_PrintUnformatted(root);
-        // Send collected stream and a delimiter
+        // Send collected stream
         send_w_delim(client_fd, json_str);
 
         cJSON_Delete(root);
@@ -267,18 +284,64 @@ int stream_rx(struct stream_cfg *rxcfg) {
 }
 
 /* Enable loopback mode */
-int stream_tx() {
+int loopback_tx_rx() {
+    int ret = 1;
     double val;
     iio_device_debug_attr_read_double(dev.trans, DBG_LOOPBACK, &val);
     if (val == 0) {
         if (iio_device_debug_attr_write_double(dev.trans, DBG_LOOPBACK, 1) ==
             0) {
-            printf("Turned on loopback\n");
-            return 0;
+            ret = ret & 0b0;
         }
-        return 1;
     }
-    return 0;
+
+    FILE *fp;
+    long file_size;
+    void *buffer_data;
+
+    // Open sample as binary data
+    fp = fopen("../src/signals/sine_wave.bin", "rb");
+    if (fp == NULL) {
+        return EXIT_FAILURE;
+    }
+
+    fseek(fp, 0, SEEK_END);
+    file_size = ftell(fp);
+    rewind(fp);
+
+    if ((buffer_data = malloc(file_size)) == NULL) {
+        perror("malloc buffer_data");
+        fclose(fp);
+        return EXIT_FAILURE;
+    }
+
+    // Read into buffer
+    if (fread(buffer_data, 1, file_size, fp) != file_size) {
+        fclose(fp);
+        free(buffer_data);
+        return EXIT_FAILURE;
+    }
+    fclose(fp);
+
+    buf_tx =
+        iio_device_create_buffer(dev.tx, file_size / sizeof(int16_t), true);
+    if (buf_tx == NULL) {
+        free(buffer_data);
+        return EXIT_FAILURE;
+    }
+
+    // Copy binary to buf_tx.
+    memcpy(iio_buffer_start(buf_tx), buffer_data, file_size);
+
+    if (iio_buffer_push(buf_tx) < 0) {
+        iio_buffer_destroy(buf_tx);
+        free(buffer_data);
+        return EXIT_FAILURE;
+    }
+
+    free(buffer_data);
+    ret = ret | 0b10;
+    return ret;
 }
 
 void destroy(void) {
@@ -330,23 +393,27 @@ int main(int argc, char *argv[]) {
     }
 
     // Example config
-    //
-    // fs måste vara minst 2 gånger så stor som bandbredden
-    rxcfg->bw_hz = MHZ(40.0);
-    rxcfg->fs_hz = MHZ(112.0);
-    rxcfg->lo_hz = MHZ(120.0);
+    // rxcfg->bw_hz = MHZ(30.0);
+    // rxcfg->fs_hz = MHZ(61.0);
+    // rxcfg->lo_hz = GHZ(2.9);
+
+    // P1 Jakobsberg
+    rxcfg->bw_hz = MHZ(2.0);
+    rxcfg->fs_hz = MHZ(2.0);
+    rxcfg->lo_hz = MHZ(92.4);
+
     rxcfg->rfport = "A_BALANCED";
     rxcfg->gain_mode = "manual";
-    rxcfg->gain_db = 70.00;
+    rxcfg->gain_db = 50.00;
 
     txcfg->bw_hz = MHZ(40.0);
-    txcfg->fs_hz = MHZ(112.0);
+    txcfg->fs_hz = MHZ(100.0);
     txcfg->lo_hz = MHZ(120.0);
     txcfg->rfport = "A";
     txcfg->type = tx;
 
     config_streaming_ch(rxcfg);
-    config_streaming_ch(txcfg);
+    // config_streaming_ch(txcfg);
 
     struct sockaddr_in serv_addr;
     // Attempt server connection
@@ -371,68 +438,34 @@ int main(int argc, char *argv[]) {
     iio_channel_enable(ch.tx0_i);
     iio_channel_enable(ch.tx0_q);
 
-    stream_tx();
+    attrs = (struct ch_attrs *)malloc(sizeof(struct ch_attrs));
+    attrs->rx_curr = (struct stream_cfg *)malloc(sizeof(struct stream_cfg));
+    attrs->tx_curr = (struct stream_cfg *)malloc(sizeof(struct stream_cfg));
 
-    FILE *fp;
-    long file_size;
-    void *buffer_data;
+    // send_curr_config(&client_fd);
 
-    // Open sample as binary data (move out of build)
-    fp = fopen("../src/signals/sine_wave.bin", "rb");
-    if (fp == NULL) {
-        return EXIT_FAILURE;
-    }
-
-    fseek(fp, 0, SEEK_END);
-    file_size = ftell(fp);
-    rewind(fp);
-
-    if ((buffer_data = malloc(file_size)) == NULL) {
-        perror("malloc buffer_data");
-        fclose(fp);
-        return EXIT_FAILURE;
-    }
-
-    // Read into buffer
-    if (fread(buffer_data, 1, file_size, fp) != file_size) {
-        fclose(fp);
-        free(buffer_data);
-        return EXIT_FAILURE;
-    }
-    fclose(fp);
-
-    buf_tx = iio_device_create_buffer(dev.tx, file_size / 4, true);
-    if (buf_tx == NULL) {
-        free(buffer_data);
-        return EXIT_FAILURE;
-    }
-
-    // Copy binary to buf_tx.
-    memcpy(iio_buffer_start(buf_tx), buffer_data, file_size);
-
-    if (iio_buffer_push(buf_tx) < 0) {
-        iio_buffer_destroy(buf_tx);
-        free(buffer_data);
-        return EXIT_FAILURE;
-    }
-    printf("Started cyclic transmission\n");
+    // if (loopback_tx_rx() == 1) {
+    //     return EXIT_FAILURE;
+    // }
 
 #ifdef STREAM_RX
     // Read RX scale factor on init
-    if (iio_channel_attr_read_double(ch.vccint, "scale", &attrs.rx_scale) < 0) {
+    if (iio_channel_attr_read_double(ch.vccint, "scale", &(attrs->rx_scale)) <
+        0) {
         return errno;
     }
-    // 4 bytes (I is int16_t, Q is int16_t)
-    bytes_per_sample = iio_device_get_sample_size(dev.rx);
+
     buf_rx = iio_device_create_buffer(dev.rx, BUF_SAMPS, false);
+    if (buf_rx == NULL) {
+        return EXIT_FAILURE;
+    }
+
     stream_rx(rxcfg);
 #endif /* ifdef STREAM_RX */
 
     // Throw away this memory
     free(rxcfg);
     destroy();
-
-    free(buffer_data);
 
     return EXIT_SUCCESS;
 }

@@ -1,201 +1,125 @@
-import numpy as np
-import gi
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from matplotlib.backends.backend_gtk4agg import FigureCanvasGTK4Agg
-from collections import deque
 import json
-import threading
 import socket
+import sys
+import threading
 
-from shared import BUF_SAMPS, pkt_queue, sockets, sema
+import time
 
-gi.require_version("Gtk", "4.0")
-from gi.repository import Gtk, GLib
+import numpy as np
+from collections import deque
 
-Gtk.init()
+from pyqtgraph.Qt import QtWidgets, QtCore
+import pyqtgraph as pg
 
-fs_hz = 112.0e6
-sample_period = 1.0 / fs_hz
-
-# Time to capture data on a plot
-WINDOW_SEC = 0.0
-#int(fs_hz//3.0e3)
-
-i_buf = []
-q_buf = []
-t_buf = []
-phase_buf = []
-
-# Figure
-fig, ((ax_i, ax_q), (ax_iq, ax_phase)) = plt.subplots(2, 2, figsize=(14,10))
-
-line_i, = ax_i.plot([],[], lw="1")
-line_q, = ax_q.plot([],[], color='orange', lw="1")
-line_iq, = ax_iq.plot([],[], color='green', lw="1")
-line_phase, = ax_phase.plot([],[], color='purple', lw="1")
-
-for ax, lbl in zip(
-    (ax_i, ax_q, ax_iq, ax_phase), 
-    ("V_i [mV]", "V_q [mV]", "Q", "Phase angle difference")
-):
-    ax.set_ylabel(lbl)
-    ax.grid(True)
-    if lbl == "Q":
-        ax.set_xlabel("I")
-    else:
-        ax.set_xlabel("Time [s]")
-
-t0_text = ax_q.text(
-    0.02, 0.95,           # x, y in axis-relative coords (2% from left, 95% up)
-    "",                   # start with empty string
-    transform=ax_q.transAxes,
-    va="top",             # vertical alignment
-    ha="left",            # horizontal alignment
-    fontsize="small",
-    bbox=dict(facecolor="white", alpha=0.7, edgecolor="none")
-)
-
-def init_plot():
-    for ln in (line_i, line_q, line_iq):
-        ln.set_data([], [])
-    t0_text.set_text("")
-    return line_i, line_q, line_iq, line_phase
-
-def update(frame, t_buf: list, i_buf: list, q_buf: list, phase_buf: list):
-    if len(sockets.get_sockets()) == 0 or len(pkt_queue) == 0:
-        return line_i, line_q, line_iq, line_phase
-
-    pkts = list(pkt_queue)
-    pkt = pkts[-1]
-
-    # Unpacking
-    V_i = np.array(pkt["V_i"], dtype=np.double)
-    V_q = np.array(pkt["V_q"], dtype=np.double)
-    t0 = pkt["t0"]
-    # Timestamps
-    t = t0 + np.arange(len(V_i)) * sample_period
-    t_buf.extend(t)
-    i_buf.extend(V_i)
-    q_buf.extend(V_q)
-    phase_buf.extend(np.abs(np.arccos(V_i/np.max(V_i)) - np.arccos(V_q/np.max(V_q))))
-    # Downsample for plotting
-    
-    t_buf = t_buf[-BUF_SAMPS:]
-    i_buf = i_buf[-BUF_SAMPS:]
-    q_buf = q_buf[-BUF_SAMPS:]
-    phase_buf = phase_buf[-BUF_SAMPS:]
-    
-    tt = t_buf
-    vi = i_buf
-    vq = q_buf
-
-    line_i.set_data(tt, vi)
-    line_q.set_data(tt, vq)
-    line_iq.set_data(vi, vq)
-    line_phase.set_data(tt, phase_buf)
-    
-    ax_i.relim(); ax_i.autoscale_view(scalex=False, scaley=True)
-    ax_q.relim(); ax_q.autoscale_view(scalex=False, scaley=True)
-    ax_iq.relim(); ax_iq.autoscale_view(True, True, True)
-    ax_phase.relim(); ax_phase.autoscale_view(scalex=False, scaley=True)
-
-    tf = t[-1]
-    ax_i.set_xlim(t0 - WINDOW_SEC, tf)
-    ax_q.set_xlim(t0 - WINDOW_SEC, tf)
-    ax_phase.set_xlim(t0, tf)
-    t0_text.set_text(f"t₀ = {tf:.4f} s")
-
-    ticks = ax_q.get_xticklabels()
-    
-    pkt_queue.clear()
-    i_buf.clear()
-    q_buf.clear()
-    t_buf.clear()
-    phase_buf.clear()
-    
-    #return [line_i, line_q, t0_text] + ticks
-    return line_i, line_q, line_iq, phase_buf
+from shared import BUF_SAMPS, pkt_queue, sockets, sema, send_pkt
 
 
-class App(Gtk.Application):
-    def __init__(self):
-        super().__init__(application_id="com.example.SpecSDRDemo")
-        self.is_streaming = False
+t_buf     = deque(maxlen=BUF_SAMPS)
+i_buf     = deque(maxlen=BUF_SAMPS)
+q_buf     = deque(maxlen=BUF_SAMPS)
+phase_buf = deque(maxlen=BUF_SAMPS)
 
-    def do_activate(self):
-        self.ani = FuncAnimation(
-            fig, update, fargs=(t_buf, i_buf, q_buf, phase_buf), 
-            init_func=init_plot, blit=False, interval=10, 
-            repeat=False, cache_frame_data=False
-        )
-        win = self.props.active_window
-        if not win:
-            win = Gtk.ApplicationWindow(application=self)
-            win.set_title("SpectrumSDR")
-            win.set_default_size(1400, 1000)
-            
-            self.setup_ui(win)
+class App(QtWidgets.QMainWindow):
+    def __init__(self) -> None:
+        # --------------
+        # STATE FLAGS
+        # --------------
+        self.streaming = False  # is streaming?
+        self.capturing = False  # shot in progress?
+        self.packet_shots = 0   # no. packets to capture
+        self.capture_buf = []   # buffer captured packets
 
-        win.present()
+        self.WINDOW_SEC = 1.0
 
-    def setup_ui(self, win):
-        global recv_cfg
+        # Store the client socket
+        self.client_socket = None
 
-        container = Gtk.Box(
-            orientation=Gtk.Orientation.VERTICAL,
-            spacing=5,
-            margin_top=10,
-            margin_bottom=10,
-            margin_start=10,
-            margin_end=10
-        )
-        win.set_child(container)
+        #---------------
+        # UI
+        # --------------
+        super().__init__()
+        self.setWindowTitle("SpectrumSDR")
+        self.resize(1400, 1000)
 
-        lbls = ("Bandwidth [Hz]", "Sampling frequency [Hz]", "Local oscillator frequency [Hz]")
+        # Widget and layouts
+        central = QtWidgets.QWidget()
+        self.setCentralWidget(central)
+        vbox = QtWidgets.QVBoxLayout(central)
 
-        entries = []
+        # Config controls (TBI)
+        hcfg = QtWidgets.QHBoxLayout()
+        self.entry_bw = QtWidgets.QLineEdit(); self.entry_bw.setPlaceholderText("Bandwidth [Hz]")
+        self.entry_fs = QtWidgets.QLineEdit(); self.entry_fs.setPlaceholderText("Sampling freq [Hz]")
+        self.entry_lo = QtWidgets.QLineEdit(); self.entry_lo.setPlaceholderText("LO freq [Hz]")
+        btn_set = QtWidgets.QPushButton("Set")
+        btn_set.clicked.connect(self.on_cfg_send)
+
+        for w in (self.entry_bw, self.entry_fs, self.entry_lo, btn_set):
+            hcfg.addWidget(w)
+        vbox.addLayout(hcfg)
+
+        # Shot-capture controls
+        hshot = QtWidgets.QHBoxLayout()
+        self.entry_shot = QtWidgets.QLineEdit(); self.entry_shot.setFixedWidth(80)
+        self.entry_shot.setPlaceholderText("# pkts")
+        self.btn_capture = QtWidgets.QPushButton("Capture")
+        self.btn_capture.clicked.connect(self.on_capture_shot)
+        hshot.addWidget(self.entry_shot)
+        hshot.addWidget(self.btn_capture)
+        vbox.addLayout(hshot)
+
+
+        # Plot area using GraphicsLayoutWidget
+        pg.setConfigOptions(antialias=True)
+        glw = pg.GraphicsLayoutWidget()
+        vbox.addWidget(glw)
+
+        # Four plots
+        self.plot_i     = glw.addPlot(row=0, col=0, title="V_i [mV]")
+        self.plot_q     = glw.addPlot(row=0, col=1, title="V_q [mV]")
+        self.plot_iq    = glw.addPlot(row=1, col=0, title="I vs Q")
+        self.plot_phase = glw.addPlot(row=1, col=1, title="Phase diff")
         
-        for lbl_txt in lbls:
-            hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-            lbl = Gtk.Label(label=lbl_txt)
-            lbl.set_hexpand(False)
-            lbl.set_halign(Gtk.Align.START)
-            entry = Gtk.Entry()
-            hbox.append(lbl)
-            hbox.append(entry)
+        for plot in (self.plot_i, self.plot_q):
+            plot.setYRange(-400, 400)
 
-            entries.append(entry)
-            container.append(hbox)
-        
-        btn = Gtk.Button(label="Set")
-        btn.connect("clicked", self.on_cfg_send, entries)
-        container.append(btn)
+        self.plot_iq.setYRange(-300, 300)
+        self.plot_iq.setXRange(-300, 300)
 
-        plot_area = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
-        plot_stream_switch_btn = Gtk.Button(label="Start streaming")
-        plot_stream_switch_btn.connect("clicked", self.on_stream_switch, plot_stream_switch_btn)
-        
-        box_wait = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        lbl_wait = Gtk.Label(label="Waiting for a connection")
+        self.plot_i.setLabel("bottom", text="Time", units="s")
+        self.plot_i.setLabel("top", text="V_i", units="mV")
 
-        # Embed the plot figure
-        canvas = FigureCanvasGTK4Agg(fig)
+        self.plot_q.setLabel("bottom", text="Time", units="s")
+        self.plot_q.setLabel("top", text="V_q", units="mV")
 
-        # start background watcher
-        watcher_thread = threading.Thread(
-            target=self._watch_for_connections, 
-            args=(lbl_wait, canvas, container),
-            daemon=True
-        )
-        watcher_thread.start()
+        # Line curves
+        self.curve_i     = self.plot_i.plot(pen='c')
+        self.curve_q     = self.plot_q.plot(pen='y')
+        self.curve_iq    = self.plot_iq.plot(pen=None, symbol='o', symbolBrush='g', symbolSize=5)
+        self.curve_phase = self.plot_phase.plot(pen=None, symbol='o', symbolBrush='m', symbolSize=5)
 
-        box_wait.append(lbl_wait)
-        plot_area.append(plot_stream_switch_btn)
-        plot_area.append(box_wait)
-        container.append(plot_area)
+        # Status and streaming button
+        hstatus = QtWidgets.QHBoxLayout()
+        self.lbl_status = QtWidgets.QLabel("Waiting for connection")
+        self.btn_stream = QtWidgets.QPushButton("Start streaming")
+        self.btn_stream.setCheckable(True)
+        self.btn_stream.toggled.connect(self.on_stream_toggle)
 
-    def _watch_for_connections(self, lbl_wait, canvas, container):
+        hstatus.addWidget(self.btn_stream)
+        hstatus.addWidget(self.lbl_status)
+        vbox.addLayout(hstatus)
+
+         # Start socket watcher thread
+        watcher = threading.Thread(target=self._watch_for_connections, daemon=True)
+        watcher.start()
+
+        # Timer for updating plot (~20 Hz)
+        self.timer = QtCore.QTimer()
+        self.timer.setInterval(50)
+        self.timer.timeout.connect(self.update_plots)
+        self.timer.start()
+
+    def _watch_for_connections(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(("localhost", 8765))
         first = True
@@ -204,51 +128,153 @@ class App(Gtk.Application):
             sema.acquire()
             if first:
                 # The watcher client
-                GLib.idle_add(lbl_wait.set_text, "Watcher client connected")
+                QtCore.QMetaObject.invokeMethod(
+                        self.lbl_status, "setText", QtCore.Qt.QueuedConnection,
+                        QtCore.Q_ARG(str, "Watcher client connected")
+                    )
                 first = False
             else:
                 raw = s.recv(100)
-                # Update UI
                 pkt = json.loads(raw.decode())
-                print(pkt)
-                #
-                # if pkt["type"] == "conn_id":
-                # a subsequent client has joined
-                GLib.idle_add(lbl_wait.set_text, "C client connected")
-                container.append(canvas)
 
+                self.client_socket = s
+                if pkt["type"] == "conn_id":
+                    QtCore.QMetaObject.invokeMethod(
+                        self.lbl_status, "setText", QtCore.Qt.QueuedConnection,
+                        QtCore.Q_ARG(str, "Client connected")
+                    )
+                if pkt["type"] == "cfg":
+                    print("Sent a config")
 
-    def on_cfg_send(self, e, entries):
-        socks = list(sockets.get_sockets())
-        
-        txts = [entry.get_text() for entry in entries]
-        print(txts)
-        
+    def on_param_ctrl(self):
+        bw_text = None
+        lo_text = None
+        fs_text = None
+
         try:
-            socks[1].sendall(json.dumps({
-                "type": "cfg_send",
-                "bw": np.float64(txts[0]),
-                "fs": np.float64(txts[1]),
-                "lo": np.float64(txts[2])
-            }).encode())
-        except:
-            print("something wrong")
+            bw_text = int(self.entry_bw.text())
+            lo_text = int(self.entry_lo.text())
+            fs_text = int(self.entry_fs.text())
+        except ValueError:
+            self.lbl_status.setText("All parameters must be integers.")
+            
+        if not (bw_text and lo_text and fs_text):
+            return
+
+        conf_pkt = {
+            "type": "config",
+            "data": {
+                "bw": bw_text,
+                "lo": lo_text,
+                "fs": fs_text
+            }
+        }
+
+        try:
+            if self.client_socket:
+                send_pkt(self.client_socket, conf_pkt)
+                self.lbl_status.setText("Parameters were sent.")
+
+        except ValueError:
+            print("A client socket has not yet connected - could not send config.")
+        except OSError:
+            print("Something unexpected occured - could not send config.")
+
+
+    def on_stream_toggle(self, checked):
+        """
+        Toggling the button sends a JSON control
+        message to every connected client.
+        """
+        self.streaming = checked
+        self.btn_stream.setText("Pause streaming" if checked else "Start streaming")
+
+        ctrl_pkt = {
+            "type": "ctrl",
+            "do": "start" if checked else "stop"
+        }
+        raw = (json.dumps(ctrl_pkt) + "\n").encode()
+        # 2.  broadcast – the SocketStore in shared.py keeps all live sockets
+        for sock in sockets.get_sockets():
+            try:
+                sock.sendall(raw)
+            except OSError:
+                pass
+
+    def on_capture_shot(self):
+        """Grab packet_shots packets from pkt_queue and dump to JSON."""
+        if self.capturing: # already busy
+            return
+        try:
+            self.packet_shots = int(self.entry_shot.text()) # N packets to capture 
+        except ValueError:
+            self.lbl_status.setText("Enter an integer packet count!")
+            return
+        if self.packet_shots <= 0:
+            self.lbl_status.setText("Enter an integer > 0.")
+            return
+        self.capture_buf.clear()
+        self.capturing = True
+        self.lbl_status.setText(f"Capturing {self.packet_shots} pkts…")
+
+    def on_cfg_send(self):
+        pass
+
+    def update_plots(self):
+        if (not self.streaming) and (not self.capturing):
+            return
         
+        if not pkt_queue:
+            return
 
-    def on_stream_switch(self, e, btn):
-        self.is_streaming = True
+        pkt = pkt_queue.pop()
 
-        socks = list(sockets.get_sockets())
-        socks[0].sendall(json.dumps({
-            "stream_status": 1 if self.is_streaming else 0
-        }).encode())
+        V_i = np.array(pkt["V_i"])
+        V_q = np.array(pkt["V_q"])
+        length = pkt["length"]
 
-        if self.is_streaming:
-            btn.set_label("Stop streaming")
-        else:
-            btn.set_label("Start streaming")
+        if (length != len(V_i) or length != len(V_q)):
+            print("Length mismatch. Some packets were lost.")
 
+        # t0  = pkt["t0"]
+        # t   = t0 + np.arange(length) * 1/pkt["fs"]
         
-    def do_startup(self):
-        Gtk.Application.do_startup(self)
+        t = np.array(pkt["t0"])
+        print(t)
+
+        dot_pr = np.dot(V_i, V_q)
+        norm_I = np.sqrt(np.dot(V_i, V_i))
+        norm_Q = np.sqrt(np.dot(V_q, V_q))
+        cos_theta = dot_pr / (norm_I * norm_Q)
+        phase_diff = np.arccos(cos_theta)
+        
+        phases = phase_diff * np.ones(length)
+
+        t_buf.extend(t)
+        i_buf.extend(V_i)
+        q_buf.extend(V_q)
+        phase_buf.extend(phases)
+
+        tt = np.asarray(t_buf)
+        ii = np.asarray(i_buf)
+        qq = np.asarray(q_buf)
+        ph = np.asarray(phase_buf)
+
+        self.curve_i.setData(tt, ii)
+        self.curve_q.setData(tt, qq)
+        self.curve_iq.setData(ii, qq)
+        self.curve_phase.setData(tt, ph)
+
+        # Capture logic
+        if self.capturing:
+            self.capture_buf.append(pkt)
+            if len(self.capture_buf) >= self.packet_shots:
+                fname = f"shot_{time.strftime("%Y-%m-%d_%H:%M:%S")}.json"
+                with open(fname, "w") as fp:
+                    json.dump(self.capture_buf, fp)
+
+                self.lbl_status.setText(f"Saved {len(self.capture_buf)} pkts → {fname}")
+                # Capture finished
+                self.capturing = False
+                self.streaming = False
 

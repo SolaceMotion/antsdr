@@ -3,15 +3,16 @@ from dotenv import load_dotenv
 import os
 import socket
 import threading
+import json
 # Load local environment variables
 load_dotenv()
 HOST = os.getenv("IP")
 PORT_STR = os.getenv("PORT")
 
-BUF_SAMPS = 1024
+BUF_SAMPS = 4096
 
-# Shared packet
-pkt_queue = deque(maxlen=1)
+# Shared thread-safe circular buffer
+pkt_queue = deque(maxlen=10)
 
 # counting semaphore for event based threading
 sema = threading.Semaphore(0)
@@ -44,3 +45,8 @@ class SocketConnections:
 
 sockets = SocketConnections()
 
+
+def send_pkt(s: socket.socket, payload):
+    raw = (json.dumps(payload) + "\n").encode()
+    # possible cancelation point
+    s.sendall(raw)

@@ -1,7 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
+
 fs = 3_000_000
-f_tone = 100_000_000
+f_tone = 100_000
 num_samples = 1024
 
 t = np.arange(num_samples) / fs

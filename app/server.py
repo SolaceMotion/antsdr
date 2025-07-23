@@ -2,16 +2,12 @@ from collections import deque
 import threading
 import socket
 import json
-import signal
 import sys
 
 from shared import pkt_queue, HOST, PORT_STR, sockets, sema
 from ui import App
 
-# Stream IQ data flag
-IS_STREAMING = False
-
-num_conns = 0
+from pyqtgraph.Qt import QtWidgets
 
 if not HOST or not PORT_STR:
     print("Environment variables did not load correctly.")
@@ -20,33 +16,28 @@ try:
 except:
     pass
 
-# def signal_handler(sig, frame):
-#     print('\nExiting...')
-#     sys.exit(0)
-#
-# signal.signal(signal.SIGINT, signal_handler)
-# signal.pause()
-
 def broadcast(msg, socks, sender=None):
     for sock in socks:
         if sock != sender:
             sock.sendall(msg)
 
-def socket_worker(sock: socket.socket, addr):
-    global sockets
-    
-    print(f"{addr} connected.")
-    
-    sockets.add_connection(addr, sock)
 
-    # Only release on client connection
+def socket_worker(sock: socket.socket, addr):
+    """
+    Socket worker runninng in a separate thread.
+    Accepts incoming packets.
+    """
+    global sockets
+    sockets.add_connection(addr, sock)
+    print(f"{addr} connected.")
+
+    # Continue once client connects
     sema.release()
 
-    sock.sendall(json.dumps({
+    sock.sendall((json.dumps({
         "type": "conn_id",
         "id": addr
-    }).encode())
-
+    }) + "\n").encode())
 
     buf = b""
     try:
@@ -62,18 +53,14 @@ def socket_worker(sock: socket.socket, addr):
                 pkt = json.loads(data_str.decode())
                 # Handle different types of payloads
                 pkt_queue.append(pkt)
-            # Update GUI / store in a db
-            
-            # broadcast(
-            #     json.dumps({"status": "connected"}).encode(), 
-            #     sockets.get_sockets()
-            # )
+
     except IndexError as e:
-        print("append failed", e)
-    finally:
-        sockets.remove_connection(addr)
+        print("Append failed", e)
+    except ConnectionResetError:
         sock.close()
         print(f"{addr} disconnected.")
+    finally:
+        sockets.remove_connection(addr)
 
 
 def setup_server():
@@ -96,8 +83,9 @@ if __name__ == "__main__":
     # Run the socket server in a separate thread
     server_thread = threading.Thread(target=setup_server, daemon=True)
     server_thread.start()
-    # GTK context runs in foreground
-    app = App()
-    app.run(None)
-    
+    # Run PyQTGraph in foreground
+    app = QtWidgets.QApplication(sys.argv)
+    win = App()
+    win.show()
+    sys.exit(app.exec_())
 

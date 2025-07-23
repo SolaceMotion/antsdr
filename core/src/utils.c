@@ -1,12 +1,7 @@
 #include "utils.h"
-#include "cJSON.h"
-#include <arpa/inet.h>
 #include <errno.h>
-#include <netinet/in.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/cdefs.h>
 #include <sys/socket.h>
 #include <time.h>
 #include <unistd.h>
