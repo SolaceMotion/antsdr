@@ -37,7 +37,6 @@
 struct stream_cfg {
     long long bw_hz; // Bandwidth [Hz]
     long long fs_hz; // Baseband sample rate [Hz]. Should be at least twice the
-                     // bandwidth
     long long lo_hz; // Local oscillator [Hz]
     const char *gain_mode; // Gain mode "manual" to modify gain
     double gain_db;        // Gain of antenna [dB]
