@@ -41,8 +41,8 @@ static bool is_streaming = false;
 
 // Threading semaphores
 sem_t mutex;
-sem_t cfg_read_mutex;
-sem_t cfg_write_mutex;
+sem_t mutex_cfg_read;
+sem_t mutex_cfg_write;
 
 // chunk header
 #pragma pack(push, 1)
@@ -54,23 +54,22 @@ typedef struct {
 } hdr_t;
 #pragma pack(pop)
 
-/* Refills the rx buffer */
 int send_refill(int client_fd, size_t nsamp, double fs, double t0) {
     hdr_t head = {
         .magic = MAGIC, .nsamp = (uint32_t)nsamp, .t0 = t0, .fs_hz = fs};
 
-    /* iovec to structure the chunk into header and samples*/
+    /* use iovec to structure the chunk into header and samples*/
     struct iovec buffs[2] = {
         {&head, sizeof(head)},
         {iio_buffer_start(buf_rx), nsamp * 2 * sizeof(int16_t)}};
 
     ssize_t need = sizeof(head) + nsamp * 2 * sizeof(int16_t);
+    // write to server
     ssize_t n = writev(client_fd, buffs, 2);
 
     return n == need ? 0 : 1;
 }
 
-/* Send the server the current RF config on the SDR. Is thread-safe */
 int send_curr_config(int *client_fd) {
     struct iio_channel *ch_in0;
     struct iio_channel *ch_altin0;
@@ -90,7 +89,7 @@ int send_curr_config(int *client_fd) {
     iio_channel_enable(ch_altin0);
 
     // Block multiple reads
-    sem_wait(&cfg_read_mutex);
+    sem_wait(&mutex_cfg_read);
 
     // Read current rx and tx cfg and send to server
     if (iio_channel_attr_read_longlong(ch_in0, "rf_bandwidth",
@@ -111,7 +110,7 @@ int send_curr_config(int *client_fd) {
     }
 
     // End here when done
-    sem_post(&cfg_read_mutex);
+    sem_post(&mutex_cfg_read);
 
     cJSON *json_cfg = cJSON_CreateObject();
     cJSON *json_rx = cJSON_CreateObject();
@@ -143,7 +142,7 @@ int send_curr_config(int *client_fd) {
 
     send_w_delim(*client_fd, json_str);
 
-    sem_post(&cfg_read_mutex);
+    sem_post(&mutex_cfg_read);
 
     cJSON_Delete(json_cfg);
 
@@ -180,7 +179,6 @@ static inline int wr_chn_str(struct iio_channel *chn, const char *attr,
     return 0;
 }
 
-/* Write rxcfg and txcfg to the transceiver. Is thread-safe. */
 int config_streaming_ch(struct stream_cfg *s_cfg) {
     struct iio_channel *ch_0;
     struct iio_channel *ch_alt0;
@@ -208,7 +206,7 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
     }
 
     // Block multiple writes
-    sem_wait(&cfg_write_mutex);
+    sem_wait(&mutex_cfg_write);
 
     strcpy((char *)s_cfg->gain_mode, "manual");
     s_cfg->gain_db = 50;
@@ -244,7 +242,7 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
     iio_channel_disable(ch_alt0);
 
     // End when done
-    sem_post(&cfg_write_mutex);
+    sem_post(&mutex_cfg_write);
 
 #endif /* ifdef SET_RXCFG */
 
@@ -252,50 +250,45 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
 }
 
 // Temp FFT data
-#define FFT_LEN 1024
+// #define FFT_LEN 1024
 // Clock frequency
-#define SAMPLE_RATE_HZ 61440000.0
+// #define SAMPLE_RATE_HZ 61440000.0
+//
+// static double bin2freq(ssize_t k) {
+//     /* signed mapping around DC */
+//     if (k >= FFT_LEN / 2)
+//         k -= FFT_LEN;
+//     return k * SAMPLE_RATE_HZ / FFT_LEN;
+// }
 
-static double bin2freq(ssize_t k) {
-    /* signed mapping around DC */
-    if (k >= FFT_LEN / 2)
-        k -= FFT_LEN;
-    return k * SAMPLE_RATE_HZ / FFT_LEN;
-}
-
-int stream_fft(struct stream_cfg *rxcfg) {
-
-    while (true) {
-
-        ssize_t nbytes_rx;
-
-        // Refill RX buffer. Returns # bytes read into the buffer
-        if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
-            perror("refill rx");
-            return errno;
-        }
-
-        char *p, *p_end;
-        ptrdiff_t step = iio_buffer_step(buf_rx);
-
-        p_end = iio_buffer_end(buf_rx);
-
-        size_t k = 0;
-
-        for (p = (char *)iio_buffer_first(buf_rx, ch.rx0_i);
-             p < p_end && k < FFT_LEN; p += step, k++) {
-
-            int16_t re = ((int16_t *)p)[0];
-            int16_t im = ((int16_t *)p)[1];
-
-            double mag2 = (double)re * re + (double)im * im;
-
-            printf("%zd,%.6f,%.0f\n", k, bin2freq(k), mag2);
-        }
-    }
-
-    return 0;
-}
+// int stream_fft(struct stream_cfg *rxcfg) {
+//     while (true) {
+//         ssize_t nbytes_rx;
+//         // Refill RX buffer. Returns # bytes read into the buffer
+//         if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
+//             perror("refill rx");
+//             return errno;
+//         }
+//         char *p, *p_end;
+//         ptrdiff_t step = iio_buffer_step(buf_rx);
+//
+//         p_end = iio_buffer_end(buf_rx);
+//
+//         size_t k = 0;
+//
+//         for (p = (char *)iio_buffer_first(buf_rx, ch.rx0_i);
+//              p < p_end && k < FFT_LEN; p += step, k++) {
+//
+//             int16_t re = ((int16_t *)p)[0];
+//             int16_t im = ((int16_t *)p)[1];
+//
+//             double mag2 = (double)re * re + (double)im * im;
+//
+//             printf("%zd,%.6f,%.0f\n", k, bin2freq(k), mag2);
+//         }
+//     }
+//     return 0;
+// }
 
 int stream_rx_byte(struct stream_cfg *rxcfg) {
     double t0_base = 0;
@@ -323,7 +316,6 @@ int stream_rx_byte(struct stream_cfg *rxcfg) {
     }
 }
 
-/* Stream I/Q data from RX */
 int stream_rx(struct stream_cfg *rxcfg) {
     double t0_base;
     size_t sample_count_rx = 0;
@@ -376,8 +368,6 @@ int stream_rx(struct stream_cfg *rxcfg) {
 
         sample_count_rx += nbytes_rx / sizeof(int16_t);
 
-        printf("HIT STREAMS\n");
-
         cJSON_AddNumberToObject(root, "fs", rxcfg->fs_hz);
         cJSON_AddItemToObject(root, "V_i", i_arr);
         cJSON_AddItemToObject(root, "V_q", q_arr);
@@ -395,7 +385,6 @@ int stream_rx(struct stream_cfg *rxcfg) {
     return 0;
 }
 
-/* Enable loopback mode */
 int loopback_tx_rx() {
     int ret = 1;
     double val;
@@ -504,7 +493,6 @@ int wait_for_stream(int fd, const char *wanted) {
     }
 }
 
-/* Threaded function that listens for server replies */
 void *recv_thread(void *arg) {
     struct stream_cfg *rx_cfg = (struct stream_cfg *)arg;
 
@@ -525,7 +513,6 @@ void *recv_thread(void *arg) {
         if (c == '\n') {
             buf[len] = '\0';
 
-            printf("GOT: %s\n", buf);
             cJSON *payload = cJSON_Parse(buf);
             if (!payload) {
                 return NULL;
@@ -548,10 +535,6 @@ void *recv_thread(void *arg) {
                 rx_cfg->bw_hz = MHZ(num_bw);
                 rx_cfg->lo_hz = MHZ(num_lo);
                 rx_cfg->fs_hz = MHZ(num_fs);
-
-                printf("bw_hz: %lld\n", rx_cfg->bw_hz);
-                printf("lo_hz: %lld\n", rx_cfg->lo_hz);
-                printf("fs_hz: %lld\n", rx_cfg->fs_hz);
 
                 // Reconfigure with new parameters
                 if (config_streaming_ch(rx_cfg) != 0) {
@@ -597,11 +580,7 @@ void *recv_thread(void *arg) {
     return NULL;
 }
 
-int main(int argc, char *argv[]) {
-    sem_init(&mutex, 0, 0);
-    sem_init(&cfg_read_mutex, 0, 1);
-    sem_init(&cfg_write_mutex, 0, 1);
-    // IIO context
+int main(int argc, char *argv[]) { // IIO context
     if ((ctx = iio_create_context_from_uri(URI)) == NULL) {
         perror("create context");
         return EXIT_FAILURE;
@@ -633,6 +612,12 @@ int main(int argc, char *argv[]) {
         return errno;
     }
 
+    struct sockaddr_in serv_addr;
+    // Attempt server connection
+    if (connect_socket(&client_fd, &serv_addr) != 0) {
+        return EXIT_FAILURE;
+    }
+
     // Example config (to be removed)
     // txcfg->bw_hz = MHZ(40.0);
     // txcfg->fs_hz = MHZ(100.0);
@@ -645,17 +630,14 @@ int main(int argc, char *argv[]) {
     // }
     // config_streaming_ch(txcfg);
 
-    struct sockaddr_in serv_addr;
-    // Attempt server connection
-    if (connect_socket(&client_fd, &serv_addr) != 0) {
-        return EXIT_FAILURE;
-    }
-
-    // Spin up a receiver thread after connecting
+    // Init semaphores
+    sem_init(&mutex, 0, 0);
+    sem_init(&mutex_cfg_read, 0, 1);
+    sem_init(&mutex_cfg_write, 0, 1);
+    // ... and spin up a listener thread after connecting
     pthread_t tid;
-
     if (pthread_create(&tid, NULL, recv_thread, rxcfg) != 0) {
-        perror("Thread creation");
+        perror("Listener thread creation");
         return EXIT_FAILURE;
     }
 
@@ -700,6 +682,10 @@ int main(int argc, char *argv[]) {
 
     stream_rx_byte(rxcfg);
 #endif /* ifdef STREAM_RX */
+
+    sem_close(&mutex);
+    sem_close(&mutex_cfg_write);
+    sem_close(&mutex_cfg_read);
 
     // Throw away this memory
     free(rxcfg);

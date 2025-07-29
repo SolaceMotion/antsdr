@@ -46,11 +46,12 @@ def socket_worker(sock: socket.socket, addr):
             buf += chunk
 
             while True:
-                # ---------- need at least 4 bytes to decide ----------
+                # need at least 4 bytes to decide
                 if len(buf) < 4:
                     break
 
-                if buf[:4] == MAGIC:               # ----- binary frame
+                # magic header
+                if buf[:4] == MAGIC:
                     # header complete?
                     if len(buf) < HDR_SIZE:
                         break
@@ -58,7 +59,8 @@ def socket_worker(sock: socket.socket, addr):
                         HDR_FMT, buf[:HDR_SIZE])
                     needed = HDR_SIZE + nsamp * 4   # I+Q int16 → 4 B / samp
                     if len(buf) < needed:
-                        break                      # wait for rest
+                        # wait for the rest
+                        break
 
                     payload = bytes(buf)[HDR_SIZE:needed]
                     del buf[:needed]
@@ -88,7 +90,6 @@ def socket_worker(sock: socket.socket, addr):
 
                 try:
                     pkt = json.loads(line.decode())
-                    
                     # Forward responses to watcher
                     match pkt["type"]:
                         case "cfg":
@@ -105,57 +106,6 @@ def socket_worker(sock: socket.socket, addr):
         sockets.remove_connection(addr)
         logging.info("%s disconnected", addr)
 
-# def socket_worker(sock: socket.socket, addr):
-#     """
-#     Socket worker runninng in a separate thread.
-#     Accepts and handles incoming packets.
-#     """
-#     sockets.add_connection(addr, sock)
-#
-#     print(f"{addr} connected.")
-#
-#     # Continue once real client connects
-#     sema.release()
-#
-#     if sockets.get_num_connections() > 1:       # First connection is always the watcher
-#         # Broadcast that a client connected
-#         for s in sockets.get_sockets():
-#             try:
-#                 send_pkt(s, {
-#                     "type": "conn", 
-#                     "id": addr
-#                 })
-#             except OSError:
-#                 pass
-#
-#
-#         buf = bytearray()
-#         try:
-#             while True:
-#                 raw = sock.recv(BUF_SAMPS) # 64 kiB per read
-#
-#                 if not raw:
-#                     break
-#
-#                 buf += raw
-
-#                 while b"\n" in buf:
-#                     data_str, buf = buf.split(b"\n", 1)
-#                     pkt = json.loads(data_str.decode())
-#                     # Handle different types of payloads
-#                     pkt_queue.append(pkt)
-#                     print("APPENDED MORE SHIT")
-#
-#
-#         except IndexError as e:
-#             print("Append failed.\n", e)
-#         except ConnectionResetError:
-#             sock.close()
-#             logging.info("Client '%s' disconnected", addr)
-#         finally:
-#             sockets.remove_connection(addr)
-
-
 def setup_server():
     """
     Setup a TCP socket server
@@ -164,7 +114,7 @@ def setup_server():
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server.bind((HOST, PORT))
         server.listen()
-        print(f"Running on {HOST}:{PORT}")
+        print(f"Socket server endpoint on {HOST}:{PORT}")
 
         # Persistent connection
         while True:

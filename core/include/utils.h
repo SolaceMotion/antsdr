@@ -65,13 +65,27 @@ struct devices {
     struct iio_device *tx;    // Antenna transmitter
 };
 
-int config_streaming_ch(struct stream_cfg *rxcfg);
+/* Write rxcfg and txcfg to the transceiver. Is thread-safe. */
+int config_streaming_ch(struct stream_cfg *);
+/* Connect to socket server */
 int connect_socket(int *client_fd, struct sockaddr_in *serv_addr);
+/* Free heap memory */
 void destroy(void);
+/* Enable loopback mode */
 int loopback_tx_rx(void);
+/* Threaded function that listens for server replies */
+void *recv_thread(void *arg);
+/* Send the server the current RF config on the SDR. Is thread-safe. */
 int send_curr_config(int *client_fd);
+/* Send a stringified json object with a line break delimiter. */
 int send_w_delim(int fd, char *data);
+/* Stream I/Q data from RX */
 int stream_rx(struct stream_cfg *rxcfg);
+/* Stream I/Q data from RX with minimal processing */
+int stream_rx_byte(struct stream_cfg *rxcfg);
+/* Refills the rx buffer */
+int send_refill(int client_fd, size_t nsamp, double fs, double t0);
+/* Current unix time in seconds with nanosecond precision. */
 double time_now(void);
 
 int wait_for_stream(int fd, const char *wanted);

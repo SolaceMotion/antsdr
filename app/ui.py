@@ -78,8 +78,6 @@ class CfgAttrs():
         self.fs = None
 
     def set_attrs(self, cfg):
-        print("RECEIVED CFG:")
-        print(cfg)
         self.hardwaregain = 50
         self.bw = cfg["bw"]
         self.lo = cfg["lo"]
@@ -274,8 +272,6 @@ class App(QtWidgets.QMainWindow):
 
                 pkt = json.loads(raw.decode())
                 
-                print("WHAT::", pkt)
-                
                 # Client only ever sends to the server. 
                 # The server must further the client's request.
                 # Only then will this run
@@ -288,7 +284,6 @@ class App(QtWidgets.QMainWindow):
                     case "conn":
                         # The client's socket
                         self.client_socket = sockets.get_socket_by_id(pkt["id"])
-                        print(self.client_socket)
                         logging.info("Client '%d' connected", pkt["id"])
 
                     case "cfg_success":
@@ -503,7 +498,6 @@ class App(QtWidgets.QMainWindow):
         #q_buf.extend(V_q)
         #phase_buf.extend(phases)
 
-        print(pkt)
         # Capture logic
         if self.capturing:
             self.capture_buf.append(pkt)
