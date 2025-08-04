@@ -8,24 +8,28 @@
 
 #define URI "ip:192.168.1.10"
 #define VOLT0 "voltage0"
-#define VOLT1 "voltage1"
-#define ALT_VOLT0 "altvoltage0"
-#define ALT_VOLT1 "altvoltage1"
+
 #define DEV_TRANS "ad9361-phy"
 #define DEV_RX "cf-ad9361-lpc"
 #define DEV_TX "cf-ad9361-dds-core-lpc"
 #define DEV_ADC "xadc"
-#define TX_CHANNEL_I "voltage0"
-#define TX_CHANNEL_Q "voltage1"
+
+#define TRANS_TX_RX "voltage0"
+#define TRANS_LO_RX "altvoltage0"
+#define TRANS_LO_TX "altvoltage1"
+
+#define RX_CH_I "voltage0"
+#define RX_CH_Q "voltage1"
+#define TX_CH_I "voltage0"
+#define TX_CH_Q "voltage1"
 #define DBG_LOOPBACK "loopback"
 
 /* helper macros */
-#define MHZ(x) ((long long)(x * 1000000.0 + .5))
-#define GHZ(x) ((long long)(x * 1000000000.0 + .5))
+#define MHZ(x) ((long long)(x * 1000000))
+#define GHZ(x) ((long long)(x * 1000000000))
 
 /* Config parameters */
-/*
- *  TX
+/*  TX
  *  lo_hz: 46 875 001 Hz to 6.0 GHz
  *  bw_hz: 200 kHz to 56.0 MHz
  *  fs_hz: 2 083 333 Hz to 61 440 000 Hz
@@ -35,9 +39,9 @@
  *  fs_hz: 2 083 333 Hz to 61 440 000 Hz
  */
 struct stream_cfg {
-    long long bw_hz; // Bandwidth [Hz]
-    long long fs_hz; // Baseband sample rate [Hz]. Should be at least twice the
-    long long lo_hz; // Local oscillator [Hz]
+    long long bw_hz;       // Bandwidth [Hz]
+    long long fs_hz;       // Baseband sample rate [Hz]
+    long long lo_hz;       // Local oscillator [Hz]
     const char *gain_mode; // Gain mode "manual" to modify gain
     double gain_db;        // Gain of antenna [dB]
     const char *rfport;    // Port name
@@ -84,7 +88,7 @@ int stream_rx(struct stream_cfg *rxcfg);
 /* Stream I/Q data from RX with minimal processing */
 int stream_rx_byte(struct stream_cfg *rxcfg);
 /* Refills the rx buffer */
-int send_refill(int client_fd, size_t nsamp, double fs, double t0);
+int send_refill(int client_fd, size_t nsamp, double t0);
 /* Current unix time in seconds with nanosecond precision. */
 double time_now(void);
 

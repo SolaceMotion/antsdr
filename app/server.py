@@ -3,22 +3,25 @@ import threading
 import socket
 import json
 import sys
-
 import struct
+import logging
 
+from PyQt5.QtWidgets import QApplication
 import numpy as np
 
 from shared import pkt_queue, HOST, PORT_STR, sockets, sema
 from ui import BUF_SAMPS, App, send_pkt
 
-from pyqtgraph.Qt import QtWidgets
 
-import logging
+SIZE_INT16_T = 2
+NB_WORDS = 4
+SIZE_RECV = BUF_SAMPS * SIZE_INT16_T * NB_WORDS
 
+# stream data format
 MAGIC      = b"0DAR"                    # 0x52414430
-HDR_FMT    = "<IIdd"                    # magic, nsamp, t0-ns, fs-Hz
-HDR_SIZE   = struct.calcsize(HDR_FMT)   # 24 bytes
-
+HDR_FMT    = "<IId"                    # magic, nsamp, t0_ns
+HDR_SIZE   = struct.calcsize(HDR_FMT)   # 16 bytes
+ROW_DTYPE = np.dtype([('fft_i', '<i2'), ('fft_q', '<i2'), ('bin', '<i2'), ('i', '<i2')])
 
 def socket_worker(sock: socket.socket, addr):
     """
@@ -31,16 +34,16 @@ def socket_worker(sock: socket.socket, addr):
 
     # Watcher & real client
     if sockets.get_num_connections() > 1:
-        for s in sockets.get_sockets():
-            try:
-                send_pkt(s, {"type": "conn", "id": addr})
-            except OSError:
-                pass
+        try:
+            sockets.broadcast({"type": "conn", "id": addr}, sock)
+        except OSError:
+            pass
+
 
     buf = bytearray()
     try:
         while True:
-            chunk = sock.recv(BUF_SAMPS) # 64 kB per read
+            chunk = sock.recv(SIZE_RECV)
             if not chunk:
                 break
             buf += chunk
@@ -55,28 +58,28 @@ def socket_worker(sock: socket.socket, addr):
                     # header complete?
                     if len(buf) < HDR_SIZE:
                         break
-                    magic, nsamp, t0_ns, fs = struct.unpack(
+                    magic, nsamp, t0 = struct.unpack(
                         HDR_FMT, buf[:HDR_SIZE])
-                    needed = HDR_SIZE + nsamp * 4   # I+Q int16 → 4 B / samp
+                    needed = HDR_SIZE + nsamp * 8   # 4 words per row
                     if len(buf) < needed:
-                        # wait for the rest
+                        # wait for rest
                         break
 
                     payload = bytes(buf)[HDR_SIZE:needed]
                     del buf[:needed]
-                    #buf[:] = buf[needed:]          # pop frame from buffer
 
-                    # zero-copy NumPy view and float-cast
-                    iq = np.frombuffer(payload, dtype="<i2").reshape(-1, 2)
-                    pkt = {
-                        "i": iq[:, 0].astype(np.float32),
-                        "q": iq[:, 1].astype(np.float32),
-                        "length": nsamp,
-                        "t0":    t0_ns,
-                        "fs":    fs,
-                    }
+                    # copy and set data structure
+                    rows = np.frombuffer(payload, dtype=ROW_DTYPE, count=nsamp)
+
                     # fill the thread-safe buffer with sample pkt
-                    pkt_queue.append(pkt)
+                    pkt_queue.append({
+                        "fft_i": rows['fft_i'],
+                        "fft_q": rows['fft_q'],
+                        "freq_bin": rows['bin'],
+                        "i": rows['i'],
+                        "length": nsamp,
+                        "t0": t0,
+                    })
                     continue # try to parse more
 
                 # otherwise treat as ctrl JSON
@@ -92,19 +95,18 @@ def socket_worker(sock: socket.socket, addr):
                     pkt = json.loads(line.decode())
                     # Forward responses to watcher
                     match pkt["type"]:
-                        case "cfg":
+                        case "cfg" | "cfg_success":
                             send_pkt(sockets.get_watcher_socket(), pkt)
-                        case "cfg_success":
-                            send_pkt(sockets.get_watcher_socket(), pkt)
-                        
                         
                 except json.JSONDecodeError:
-                    logging.warning("Bad JSON: %r", line)
-                # loop again - maybe more packets already buffered
+                    logging.warning("Server: Bad JSON: %r", line)
+    except IndexError:
+        logging.error("Server: Index overflow encountered.")
+
     finally:
         sock.close()
         sockets.remove_connection(addr)
-        logging.info("%s disconnected", addr)
+        sockets.broadcast({"type": "disconn", "id": addr}, sock)
 
 def setup_server():
     """
@@ -122,22 +124,23 @@ def setup_server():
             thread = threading.Thread(target=socket_worker, args=(sock, addr[1]), daemon=True)
             thread.start()
 
-try:
-    if (not HOST) or (not PORT_STR):
-        raise TypeError("Environment variables did not load correctly.")
-    if PORT_STR:
-        PORT = int(PORT_STR)
-except ValueError:
-    print("Port number is NaN.")
-except TypeError as msg:
-    print(msg)
 
 if __name__ == "__main__":
+    try:
+        if not (HOST and PORT_STR):
+            raise TypeError("Environment variables did not load correctly.")
+        if PORT_STR:
+            PORT = int(PORT_STR)
+    except ValueError:
+        print("Port number is NaN.")
+    except TypeError as msg:
+        print(msg)
     # Run the socket server in a separate thread
     server_thread = threading.Thread(target=setup_server, daemon=True)
     server_thread.start()
-    # Run PyQTGraph in foreground
-    app = QtWidgets.QApplication(sys.argv)
+
+    # Run QT in foreground
+    app = QApplication(sys.argv)
     win = App()
     win.show()
     sys.exit(app.exec_())

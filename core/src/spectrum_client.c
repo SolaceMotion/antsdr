@@ -22,7 +22,7 @@
 #include <semaphore.h>
 
 // Number of i,q pair samples
-#define BUF_SAMPS 1 << 16
+#define BUF_SAMPS 2048
 // Magic four bytes to identify header
 #define MAGIC 0x52414430
 
@@ -37,33 +37,32 @@ static struct ch_attrs *attrs = NULL;
 
 static int client_fd = 0;
 
+static double t0_base = 0;
+
 static bool is_streaming = false;
+static bool initial_stream = false;
 
 // Threading semaphores
 sem_t mutex;
-sem_t mutex_cfg_read;
-sem_t mutex_cfg_write;
 
 // chunk header
 #pragma pack(push, 1)
 typedef struct {
     uint32_t magic; // MAGIC (RAD0)
-    uint32_t nsamp; // no. I,Q samples
+    uint32_t nsamp; // no. [FFT I, FFT Q, bin, I] samples
     double t0;      // initial time of chunk
-    double fs_hz;   // (to be removed)
 } hdr_t;
 #pragma pack(pop)
 
-int send_refill(int client_fd, size_t nsamp, double fs, double t0) {
-    hdr_t head = {
-        .magic = MAGIC, .nsamp = (uint32_t)nsamp, .t0 = t0, .fs_hz = fs};
+int send_refill(int client_fd, size_t nsamp, double t0) {
+    hdr_t head = {.magic = MAGIC, .nsamp = (uint32_t)nsamp, .t0 = t0};
 
     /* use iovec to structure the chunk into header and samples*/
     struct iovec buffs[2] = {
         {&head, sizeof(head)},
-        {iio_buffer_start(buf_rx), nsamp * 2 * sizeof(int16_t)}};
+        {iio_buffer_start(buf_rx), nsamp * 4 * sizeof(int16_t)}}; // 4 words
 
-    ssize_t need = sizeof(head) + nsamp * 2 * sizeof(int16_t);
+    ssize_t need = sizeof(head) + nsamp * 4 * sizeof(int16_t);
     // write to server
     ssize_t n = writev(client_fd, buffs, 2);
 
@@ -75,21 +74,17 @@ int send_curr_config(int *client_fd) {
     struct iio_channel *ch_altin0;
 
     // Physical
-    if ((ch_in0 = iio_device_find_channel(dev.trans, VOLT0, false)) == NULL) {
+    if (!(ch_in0 = iio_device_find_channel(dev.trans, TRANS_TX_RX, false))) {
         printf("PHY ERROR\n");
         return -1;
     }
     // LO
-    if ((ch_altin0 = iio_device_find_channel(dev.trans, ALT_VOLT0, true)) ==
-        NULL) {
+    if (!(ch_altin0 = iio_device_find_channel(dev.trans, TRANS_LO_RX, true))) {
         printf("LO ERROR\n");
         return -1;
     }
     iio_channel_enable(ch_in0);
     iio_channel_enable(ch_altin0);
-
-    // Block multiple reads
-    sem_wait(&mutex_cfg_read);
 
     // Read current rx and tx cfg and send to server
     if (iio_channel_attr_read_longlong(ch_in0, "rf_bandwidth",
@@ -108,9 +103,6 @@ int send_curr_config(int *client_fd) {
                                      &(attrs->rx_curr->gain_db)) < 0) {
         return errno;
     }
-
-    // End here when done
-    sem_post(&mutex_cfg_read);
 
     cJSON *json_cfg = cJSON_CreateObject();
     cJSON *json_rx = cJSON_CreateObject();
@@ -141,8 +133,6 @@ int send_curr_config(int *client_fd) {
     char *json_str = cJSON_PrintUnformatted(json_cfg);
 
     send_w_delim(*client_fd, json_str);
-
-    sem_post(&mutex_cfg_read);
 
     cJSON_Delete(json_cfg);
 
@@ -179,37 +169,42 @@ static inline int wr_chn_str(struct iio_channel *chn, const char *attr,
     return 0;
 }
 
+int update_lo(struct stream_cfg *s_cfg) {
+    struct iio_channel *ch_alt0;
+
+    if (!(ch_alt0 = iio_device_find_channel(
+              dev.trans, s_cfg->type == tx ? TRANS_LO_TX : TRANS_LO_RX,
+              true))) {
+        perror("RX LO ERROR\n");
+        return -1;
+    }
+    printf("GOT: %lld\n", s_cfg->lo_hz);
+    iio_channel_enable(ch_alt0);
+    if (wr_chn_lli(ch_alt0, "frequency", s_cfg->lo_hz, "lo freq")) {
+        // return errno;
+    }
+
+    iio_channel_disable(ch_alt0);
+
+    return 0;
+}
+
 int config_streaming_ch(struct stream_cfg *s_cfg) {
     struct iio_channel *ch_0;
     struct iio_channel *ch_alt0;
     // Physical
-    if ((ch_0 = iio_device_find_channel(
-             dev.trans, VOLT0, s_cfg->type == rx ? false : true)) == NULL) {
-        printf("PHY ERROR\n");
+    if (!(ch_0 = iio_device_find_channel(dev.trans, TRANS_TX_RX,
+                                         s_cfg->type == tx))) {
+        perror("PHY ERROR");
         return -1;
     }
 
-    if (s_cfg->type == tx) {
-        // LO TX
-        if ((ch_alt0 = iio_device_find_channel(dev.trans, ALT_VOLT1, true)) ==
-            NULL) {
-            printf("LO ERROR\n");
-            return -1;
-        }
-    } else {
-        // LO RX
-        if ((ch_alt0 = iio_device_find_channel(dev.trans, ALT_VOLT0, true)) ==
-            NULL) {
-            printf("LO ERROR\n");
-            return -1;
-        }
+    if (!(ch_alt0 = iio_device_find_channel(
+              dev.trans, s_cfg->type == tx ? TRANS_LO_TX : TRANS_LO_RX,
+              true))) {
+        perror("LO ERROR");
+        return -1;
     }
-
-    // Block multiple writes
-    sem_wait(&mutex_cfg_write);
-
-    strcpy((char *)s_cfg->gain_mode, "manual");
-    s_cfg->gain_db = 50;
 
     char avail_bw[128];
     iio_channel_attr_read(ch_0, "rf_bandwidth_available", avail_bw, 128);
@@ -219,9 +214,15 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
     iio_channel_enable(ch_0);
     iio_channel_enable(ch_alt0);
 
-    if (wr_chn_str(ch_0, "gain_control_mode", s_cfg->gain_mode, "gain mode")) {
-        // return errno;
+    if (s_cfg->type == rx) {
+        strcpy((char *)s_cfg->gain_mode, "manual");
+
+        if (wr_chn_str(ch_0, "gain_control_mode", s_cfg->gain_mode,
+                       "gain mode")) {
+            // return errno;
+        }
     }
+
     if (wr_chn_f(ch_0, "hardwaregain", s_cfg->gain_db, "gain")) {
         // return errno;
     }
@@ -240,17 +241,12 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
 
     iio_channel_disable(ch_0);
     iio_channel_disable(ch_alt0);
-
-    // End when done
-    sem_post(&mutex_cfg_write);
-
 #endif /* ifdef SET_RXCFG */
 
     return 0;
 }
 
 // Temp FFT data
-// #define FFT_LEN 1024
 // Clock frequency
 // #define SAMPLE_RATE_HZ 61440000.0
 //
@@ -291,27 +287,24 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
 // }
 
 int stream_rx_byte(struct stream_cfg *rxcfg) {
-    double t0_base = 0;
-    t0_base = time_now();
     while (true) {
-        // if (!is_streaming) {
-        //     sem_wait(&mutex);
-        //     t0_base = time_now(); // Check this behaviour
-        // }
+        if (!is_streaming) {
+            sem_wait(&mutex);
+        } else {
+            ssize_t nbytes_rx;
+            // Refill RX buffer. Returns # bytes read into the buffer
+            if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
+                perror("refill rx");
+                return errno;
+            }
+            double t0 = time_now() - t0_base;
+            // 4 words per sample [fft_i, fft_q, freq_bin, rx_i]
+            size_t nsamples = nbytes_rx / (4 * sizeof(int16_t));
 
-        ssize_t nbytes_rx;
-        // Refill RX buffer. Returns # bytes read into the buffer
-        if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
-            perror("refill rx");
-            return errno;
-        }
-
-        double t0 = time_now() - t0_base;
-
-        size_t nsamples = nbytes_rx / (2 * sizeof(int16_t));
-
-        if (send_refill(client_fd, nsamples, rxcfg->fs_hz, t0) != 0) {
-            return errno;
+            if (send_refill(client_fd, nsamples, t0) != 0) {
+                perror("refill rx with data");
+                return errno;
+            }
         }
     }
 }
@@ -368,7 +361,6 @@ int stream_rx(struct stream_cfg *rxcfg) {
 
         sample_count_rx += nbytes_rx / sizeof(int16_t);
 
-        cJSON_AddNumberToObject(root, "fs", rxcfg->fs_hz);
         cJSON_AddItemToObject(root, "V_i", i_arr);
         cJSON_AddItemToObject(root, "V_q", q_arr);
         cJSON_AddItemToObject(root, "times", t_arr);
@@ -381,7 +373,6 @@ int stream_rx(struct stream_cfg *rxcfg) {
         cJSON_Delete(root);
         free(json_str);
     }
-
     return 0;
 }
 
@@ -389,8 +380,8 @@ int loopback_tx_rx() {
     int ret = 1;
     double val;
     iio_device_debug_attr_read_double(dev.trans, DBG_LOOPBACK, &val);
-    if (val == 0) {
-        if (iio_device_debug_attr_write_double(dev.trans, DBG_LOOPBACK, 1) ==
+    if (val == 1) {
+        if (iio_device_debug_attr_write_double(dev.trans, DBG_LOOPBACK, 0) ==
             0) {
             ret = ret & 0b0;
         }
@@ -401,8 +392,7 @@ int loopback_tx_rx() {
     void *buffer_data;
 
     // Open sample as binary data
-    fp = fopen("../src/signals/sine_wave.bin", "rb");
-    if (fp == NULL) {
+    if (!(fp = fopen("../src/signals/sine_wave.bin", "rb"))) {
         return EXIT_FAILURE;
     }
 
@@ -527,19 +517,22 @@ void *recv_thread(void *arg) {
                 const cJSON *json_bw = cJSON_GetObjectItem(cmd, "bw");
                 const cJSON *json_lo = cJSON_GetObjectItem(cmd, "lo");
                 const cJSON *json_fs = cJSON_GetObjectItem(cmd, "fs");
+                const cJSON *json_gain =
+                    cJSON_GetObjectItem(cmd, "hardwaregain");
 
                 double num_bw = cJSON_GetNumberValue(json_bw);
                 double num_lo = cJSON_GetNumberValue(json_lo);
                 double num_fs = cJSON_GetNumberValue(json_fs);
+                double num_gain = cJSON_GetNumberValue(json_gain);
 
                 rx_cfg->bw_hz = MHZ(num_bw);
                 rx_cfg->lo_hz = MHZ(num_lo);
                 rx_cfg->fs_hz = MHZ(num_fs);
+                rx_cfg->gain_db = num_gain;
 
                 // Reconfigure with new parameters
                 if (config_streaming_ch(rx_cfg) != 0) {
-                    printf(
-                        "Error in listener thread: could not configure rx.\n");
+                    perror("Error in listener thread: could not configure rx.");
                     return NULL;
                 }
 
@@ -548,20 +541,43 @@ void *recv_thread(void *arg) {
                 cJSON_AddStringToObject(reply, "type", "cfg_success");
                 char *json_str = cJSON_PrintUnformatted(reply);
                 send_w_delim(client_fd, json_str);
+                cJSON_Delete(reply);
+            }
 
+            if (0 == strcmp(type->valuestring, "lo")) {
+                const cJSON *cmd = cJSON_GetObjectItem(payload, "rx");
+                const cJSON *json_lo = cJSON_GetObjectItem(cmd, "lo");
+                double num_lo = cJSON_GetNumberValue(json_lo);
+
+                rx_cfg->lo_hz = MHZ(num_lo);
+
+                if (update_lo(rx_cfg) != 0) {
+                    perror("Error in listener thread: could not update lo.");
+                    // return NULL;
+                }
+
+                // Reaching here means LO was updated
+                cJSON *reply = cJSON_CreateObject();
+                cJSON_AddStringToObject(reply, "type", "cfg_success");
+                char *json_str = cJSON_PrintUnformatted(reply);
+                send_w_delim(client_fd, json_str);
                 cJSON_Delete(reply);
             }
 
             if (0 == strcmp(type->valuestring, "ctrl")) {
                 const cJSON *cmd = cJSON_GetObjectItem(payload, "do");
                 const char *str_cmd = cJSON_GetStringValue(cmd);
-
-                // if (0 == strcmp("start", str_cmd)) {
-                //     is_streaming = true;
-                //     sem_post(&mutex);
-                // } else {
-                //     is_streaming = false;
-                // }
+                printf("GOT %s\n", str_cmd);
+                if (0 == strcmp("start", str_cmd)) {
+                    is_streaming = true;
+                    sem_post(&mutex);
+                    if (!initial_stream) {
+                        initial_stream = true;
+                        t0_base = time_now();
+                    }
+                } else {
+                    is_streaming = false;
+                }
             }
 
             cJSON_Delete(payload);
@@ -572,16 +588,12 @@ void *recv_thread(void *arg) {
         } else if (len < sizeof(buf) - 1) {
             buf[len++] = c;
         }
-
-        // fwrite(buf, 1, n, stdout);
-        // fflush(stdout);
-        // memset(arr, '\0', sizeof(arr));
     }
     return NULL;
 }
 
 int main(int argc, char *argv[]) { // IIO context
-    if ((ctx = iio_create_context_from_uri(URI)) == NULL) {
+    if (!(ctx = iio_create_context_from_uri(URI))) {
         perror("create context");
         return EXIT_FAILURE;
     }
@@ -591,8 +603,7 @@ int main(int argc, char *argv[]) { // IIO context
     dev.tx = iio_context_find_device(ctx, DEV_TX);
     dev.adc = iio_context_find_device(ctx, DEV_ADC);
 
-    if (dev.trans == NULL || dev.rx == NULL || dev.adc == NULL ||
-        dev.tx == NULL) {
+    if (!(dev.trans && dev.rx && dev.adc && dev.tx)) {
         perror("device not found");
         return EXIT_FAILURE;
     }
@@ -600,14 +611,12 @@ int main(int argc, char *argv[]) { // IIO context
     struct stream_cfg *rxcfg;
     struct stream_cfg *txcfg;
 
-    if ((rxcfg = (struct stream_cfg *)malloc(sizeof(struct stream_cfg))) ==
-        NULL) {
+    if (!(rxcfg = (struct stream_cfg *)malloc(sizeof(struct stream_cfg)))) {
         perror("block allocation");
         return errno;
     }
 
-    if ((txcfg = (struct stream_cfg *)malloc(sizeof(struct stream_cfg))) ==
-        NULL) {
+    if (!(txcfg = (struct stream_cfg *)malloc(sizeof(struct stream_cfg)))) {
         perror("block allocation");
         return errno;
     }
@@ -619,21 +628,16 @@ int main(int argc, char *argv[]) { // IIO context
     }
 
     // Example config (to be removed)
-    // txcfg->bw_hz = MHZ(40.0);
-    // txcfg->fs_hz = MHZ(100.0);
-    // txcfg->lo_hz = MHZ(120.0);
-    // txcfg->rfport = "A";
-    // txcfg->type = tx;
+    txcfg->bw_hz = MHZ(0.2);
+    txcfg->fs_hz = MHZ(2.0);
+    txcfg->lo_hz = MHZ(92.4);
+    txcfg->rfport = "A";
+    txcfg->type = tx;
 
-    // if (config_streaming_ch(rxcfg) != 0) {
-    //     return EXIT_FAILURE;
-    // }
-    // config_streaming_ch(txcfg);
+    config_streaming_ch(txcfg);
 
     // Init semaphores
     sem_init(&mutex, 0, 0);
-    sem_init(&mutex_cfg_read, 0, 1);
-    sem_init(&mutex_cfg_write, 0, 1);
     // ... and spin up a listener thread after connecting
     pthread_t tid;
     if (pthread_create(&tid, NULL, recv_thread, rxcfg) != 0) {
@@ -641,13 +645,13 @@ int main(int argc, char *argv[]) { // IIO context
         return EXIT_FAILURE;
     }
 
-    if ((ch.rx0_i = iio_device_find_channel(dev.rx, VOLT0, false)) == NULL ||
-        (ch.rx0_q = iio_device_find_channel(dev.rx, VOLT1, false)) == NULL ||
-        (ch.vccint = iio_device_find_channel(dev.adc, VOLT0, false)) == NULL ||
-        (ch.tx0_i = iio_device_find_channel(dev.tx, TX_CHANNEL_I, true)) ==
-            NULL ||
-        (ch.tx0_q = iio_device_find_channel(dev.tx, TX_CHANNEL_Q, true)) ==
-            NULL) {
+    ch.rx0_i = iio_device_find_channel(dev.rx, RX_CH_I, false);
+    ch.rx0_q = iio_device_find_channel(dev.rx, RX_CH_Q, false);
+    ch.vccint = iio_device_find_channel(dev.adc, VOLT0, false);
+    ch.tx0_i = iio_device_find_channel(dev.tx, TX_CH_I, true);
+    ch.tx0_q = iio_device_find_channel(dev.tx, TX_CH_Q, true);
+
+    if (!(ch.rx0_i && ch.rx0_q && ch.vccint && ch.tx0_i && ch.tx0_q)) {
         return EXIT_FAILURE;
     }
 
@@ -658,9 +662,13 @@ int main(int argc, char *argv[]) { // IIO context
     iio_channel_enable(ch.tx0_i);
     iio_channel_enable(ch.tx0_q);
 
+    // To handle all attributes
     attrs = (struct ch_attrs *)malloc(sizeof(struct ch_attrs));
-    attrs->rx_curr = (struct stream_cfg *)malloc(sizeof(struct stream_cfg));
-    attrs->tx_curr = (struct stream_cfg *)malloc(sizeof(struct stream_cfg));
+    if (!attrs) {
+        return EXIT_FAILURE;
+    }
+    attrs->rx_curr = rxcfg;
+    attrs->tx_curr = txcfg;
 
     send_curr_config(&client_fd);
 
@@ -679,19 +687,16 @@ int main(int argc, char *argv[]) { // IIO context
     if (buf_rx == NULL) {
         return EXIT_FAILURE;
     }
-
     stream_rx_byte(rxcfg);
+
 #endif /* ifdef STREAM_RX */
 
     sem_close(&mutex);
-    sem_close(&mutex_cfg_write);
-    sem_close(&mutex_cfg_read);
 
-    // Throw away this memory
     free(rxcfg);
-    // free(attrs->rx_curr);
-    // free(attrs->tx_curr);
-    // free(attrs);
+    free(txcfg);
+    free(attrs);
+
     destroy();
 
     return EXIT_SUCCESS;

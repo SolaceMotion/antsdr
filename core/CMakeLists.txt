@@ -52,10 +52,27 @@ add_executable(dummy_client
 target_include_directories(${CLIENT} PRIVATE include)
 target_include_directories(dummy_client PRIVATE include)
 
-
 target_link_libraries(${CLIENT} PRIVATE
 	${LIBIIO_LIBRARIES}
 )
+
+add_compile_options(
+      -Wall            # sensible basic warnings
+      -Wextra          # lots of extra checks (includes -Wunused-variable)
+      -Wpedantic       # ISO-C and extra implementation warnings
+      -Wshadow         # warn if a local variable hides another
+      -Wconversion     # implicit-conversion warnings
+      -Wsign-conversion
+      -Wdouble-promotion
+      -Wformat=2       # stricter printf/scanf checking
+      -Wmissing-include-dirs
+      -Wnull-dereference
+      -fdiagnostics-color=always   # nicely coloured diagnostics
+      $<$<BOOL:${WARN_AS_ERROR}>:-Werror>      # make warnings errors if opted-in
+)
+
+option(WARN_AS_ERROR "Treat warnings as errors" OFF)
+
 # Compiler flags
 # target_compile_definitions(${CLIENT} PRIVATE 
 #   SET_RXCFG

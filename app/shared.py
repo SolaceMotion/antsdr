@@ -5,7 +5,6 @@ import socket
 import threading
 import json
 
-# A structure to store connected sockets
 class SocketConnections:
     """
     Store socket objects
@@ -42,6 +41,11 @@ class SocketConnections:
     def get_num_connections(self):
         return self.num_conns
 
+    def broadcast(self, msg, sender: socket.socket | None=None):
+        for sock in self.get_sockets():
+            if sock != sender:
+                send_pkt(sock, msg)
+
 # -------------------------
 # Helpers
 # -------------------------
@@ -49,11 +53,6 @@ def send_pkt(s: socket.socket, payload):
     raw = (json.dumps(payload) + "\n").encode()
     # possible cancelation point
     s.sendall(raw)
-
-def broadcast(msg, socks, sender=None):
-    for sock in socks:
-        if sock != sender:
-            sock.sendall(msg)
 
 # -------------------------
 # Initialise things
@@ -64,12 +63,14 @@ load_dotenv()
 HOST = os.getenv("IP")
 PORT_STR = os.getenv("PORT")
 
+# Global socket object
 sockets = SocketConnections()
 
 # no. I,Q samples to buffer
-BUF_SAMPS = 1 << 16
+BUF_SAMPS = 2048
 PKT_QUEUE_LEN = 100
 
+FFT_SIZE = 1024
 # Shared thread-safe circular buffer across clients
 pkt_queue = deque(maxlen=PKT_QUEUE_LEN)
 
