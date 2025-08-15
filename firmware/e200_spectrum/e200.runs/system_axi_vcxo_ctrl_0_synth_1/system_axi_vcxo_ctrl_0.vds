@@ -1,0 +1,355 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Jul  9 15:25:38 2025
+# Process ID: 330765
+# Current directory: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_vcxo_ctrl_0_synth_1
+# Command line: vivado -log system_axi_vcxo_ctrl_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axi_vcxo_ctrl_0.tcl
+# Log file: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_vcxo_ctrl_0_synth_1/system_axi_vcxo_ctrl_0.vds
+# Journal file: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_vcxo_ctrl_0_synth_1/vivado.jou
+# Running On: dator2-Latitude-5430, OS: Linux, CPU Frequency: 4273.028 MHz, CPU Physical cores: 4, Host memory: 16125 MB
+#-----------------------------------------------------------
+source system_axi_vcxo_ctrl_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1278.750 ; gain = 5.965 ; free physical = 211 ; free virtual = 9521
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/library'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: system_axi_vcxo_ctrl_0
+Command: synth_design -top system_axi_vcxo_ctrl_0 -part xc7z020clg400-2 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 331039
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2066.535 ; gain = 403.629 ; free physical = 244 ; free virtual = 5296
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'system_axi_vcxo_ctrl_0' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_axi_vcxo_ctrl_0/synth/system_axi_vcxo_ctrl_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'axi_vcxo_ctrl' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:4]
+INFO: [Synth 8-6157] synthesizing module 'axi_vcxo_ctrl_v1_0_S00_AXI' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0_S00_AXI.v:4]
+INFO: [Synth 8-226] default block is never used [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0_S00_AXI.v:244]
+INFO: [Synth 8-226] default block is never used [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0_S00_AXI.v:417]
+INFO: [Synth 8-6155] done synthesizing module 'axi_vcxo_ctrl_v1_0_S00_AXI' (0#1) [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0_S00_AXI.v:4]
+INFO: [Synth 8-6157] synthesizing module 'PLLE2_ADV' [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:111351]
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_ADV' (0#1) [/tools/Xilinx/Vivado/2023.2/scripts/rt/data/unisim_comp.v:111351]
+WARNING: [Synth 8-7071] port 'CLKFBOUT' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKOUT2' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKOUT3' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKOUT4' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKOUT5' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DO' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DRDY' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKFBIN' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKIN2' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'CLKINSEL' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DADDR' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DCLK' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DEN' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DI' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7071] port 'DWE' of module 'PLLE2_ADV' is unconnected for instance 'clkgen' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+WARNING: [Synth 8-7023] instance 'clkgen' of module 'PLLE2_ADV' has 21 connections declared, but only 6 given [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:126]
+INFO: [Synth 8-6157] synthesizing module 'b205_ref_pll' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/b205_ref_pll.v:7]
+INFO: [Synth 8-6157] synthesizing module 'ltc2630_spi' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/ltc2630_spi.v:1]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/ltc2630_spi.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'ltc2630_spi' (0#1) [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/ltc2630_spi.v:1]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/b205_ref_pll.v:232]
+INFO: [Synth 8-6155] done synthesizing module 'b205_ref_pll' (0#1) [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/b205_ref_pll.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'axi_vcxo_ctrl' (0#1) [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'system_axi_vcxo_ctrl_0' (0#1) [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_axi_vcxo_ctrl_0/synth/system_axi_vcxo_ctrl_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element slv_reg2_reg was removed.  [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0_S00_AXI.v:234]
+WARNING: [Synth 8-6014] Unused sequential element slv_reg4_reg was removed.  [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/da9c/src/axi_vcxo_ctrl_v1_0_S00_AXI.v:236]
+WARNING: [Synth 8-7129] Port S_AXI_AWPROT[2] in module axi_vcxo_ctrl_v1_0_S00_AXI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_AWPROT[1] in module axi_vcxo_ctrl_v1_0_S00_AXI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_AWPROT[0] in module axi_vcxo_ctrl_v1_0_S00_AXI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARPROT[2] in module axi_vcxo_ctrl_v1_0_S00_AXI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARPROT[1] in module axi_vcxo_ctrl_v1_0_S00_AXI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARPROT[0] in module axi_vcxo_ctrl_v1_0_S00_AXI is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2149.473 ; gain = 486.566 ; free physical = 219 ; free virtual = 4905
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2161.348 ; gain = 498.441 ; free physical = 274 ; free virtual = 4928
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2161.348 ; gain = 498.441 ; free physical = 276 ; free virtual = 4928
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2167.285 ; gain = 0.000 ; free physical = 401 ; free virtual = 4910
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2303.098 ; gain = 0.000 ; free physical = 234 ; free virtual = 4758
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2303.133 ; gain = 0.000 ; free physical = 233 ; free virtual = 4757
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 340 ; free virtual = 4704
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 340 ; free virtual = 4704
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 340 ; free virtual = 4704
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ltc2630_spi'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'b205_ref_pll'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                             0001 |                             0001
+                SYNC_PRE |                             0010 |                             0010
+                    DATA |                             0100 |                             0100
+                SYNC_END |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'ltc2630_spi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 MEASURE |                             0000 |                             0000
+                 CAPTURE |                             0001 |                             0001
+             CAPTURE_LAG |                             0010 |                             0010
+            CAPTURE_LEAD |                             0011 |                             0011
+         CALCULATE_ERROR |                             0100 |                             0100
+      CALCULATE_10M_GAIN |                             0101 |                             0101
+    CALCULATE_ADJUSTMENT |                             0110 |                             0110
+  CALCULATE_OUTPUT_VALUE |                             0111 |                             0111
+      APPLY_OUTPUT_VALUE |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'b205_ref_pll'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 360 ; free virtual = 4727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input   29 Bit       Adders := 6     
+	   3 Input   29 Bit       Adders := 1     
+	   2 Input   26 Bit       Adders := 1     
+	   2 Input   24 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 8     
+	               29 Bit    Registers := 8     
+	               26 Bit    Registers := 1     
+	               24 Bit    Registers := 2     
+	               16 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 3     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 16    
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 9     
+	   8 Input   32 Bit        Muxes := 6     
+	   5 Input   32 Bit        Muxes := 1     
+	   2 Input   29 Bit        Muxes := 3     
+	   4 Input   29 Bit        Muxes := 1     
+	   9 Input   29 Bit        Muxes := 1     
+	   3 Input   29 Bit        Muxes := 1     
+	   4 Input   26 Bit        Muxes := 1     
+	   2 Input   25 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 2     
+	   4 Input   24 Bit        Muxes := 1     
+	   2 Input   20 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 4     
+	   2 Input    9 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 3     
+	   9 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   9 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 18    
+	   5 Input    1 Bit        Muxes := 1     
+	   9 Input    1 Bit        Muxes := 8     
+	   4 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port s00_axi_awprot[2] in module system_axi_vcxo_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s00_axi_awprot[1] in module system_axi_vcxo_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s00_axi_awprot[0] in module system_axi_vcxo_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s00_axi_arprot[2] in module system_axi_vcxo_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s00_axi_arprot[1] in module system_axi_vcxo_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s00_axi_arprot[0] in module system_axi_vcxo_ctrl_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 374 ; free virtual = 4750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 278 ; free virtual = 4664
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 278 ; free virtual = 4664
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 278 ; free virtual = 4664
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++-----------------------+--------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name            | RTL Name                             | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++-----------------------+--------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|system_axi_vcxo_ctrl_0 | inst/u_b205_ref_pll/refsmp_reg[2]    | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|system_axi_vcxo_ctrl_0 | inst/u_b205_ref_pll/refclksmp_reg[2] | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
++-----------------------+--------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |CARRY4    |   124|
+|2     |LUT1      |   139|
+|3     |LUT2      |   200|
+|4     |LUT3      |   123|
+|5     |LUT4      |    90|
+|6     |LUT5      |   134|
+|7     |LUT6      |   150|
+|8     |MUXF7     |    32|
+|9     |PLLE2_ADV |     1|
+|10    |SRL16E    |     2|
+|11    |FDRE      |   662|
+|12    |FDSE      |    10|
++------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2303.133 ; gain = 498.441 ; free physical = 1098 ; free virtual = 5483
+Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.133 ; gain = 640.227 ; free physical = 1098 ; free virtual = 5483
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2303.133 ; gain = 0.000 ; free physical = 1247 ; free virtual = 5632
+INFO: [Netlist 29-17] Analyzing 157 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2303.133 ; gain = 0.000 ; free physical = 1364 ; free virtual = 5760
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 60dc15e5
+INFO: [Common 17-83] Releasing license: Synthesis
+41 Infos, 31 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:35 . Memory (MB): peak = 2303.133 ; gain = 992.633 ; free physical = 1362 ; free virtual = 5759
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1685.145; main = 1365.507; forked = 327.833
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3314.027; main = 2303.102; forked = 1042.941
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2327.109 ; gain = 0.000 ; free physical = 1359 ; free virtual = 5755
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_vcxo_ctrl_0_synth_1/system_axi_vcxo_ctrl_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP system_axi_vcxo_ctrl_0, cache-ID = 66c998decc378008
+INFO: [Coretcl 2-1174] Renamed 4 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2327.109 ; gain = 0.000 ; free physical = 1351 ; free virtual = 5748
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_vcxo_ctrl_0_synth_1/system_axi_vcxo_ctrl_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_axi_vcxo_ctrl_0_utilization_synth.rpt -pb system_axi_vcxo_ctrl_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 15:26:25 2025...

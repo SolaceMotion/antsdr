@@ -1,0 +1,26 @@
+
+*** Running vivado
+    with args -log system_out_mux_0_1.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_out_mux_0_1.tcl
+
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source system_out_mux_0_1.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1335.828 ; gain = 0.027 ; free physical = 2910 ; free virtual = 7128
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/library'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: system_out_mux_0_1
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 065f0b33cac2a4d5 to dir: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/ipcache/0/6/065f0b33cac2a4d5/system_out_mux_0_0_stub.vhdl to /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1/system_out_mux_0_1_stub.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/ipcache/0/6/065f0b33cac2a4d5/system_out_mux_0_0_stub.v to /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1/system_out_mux_0_1_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/ipcache/0/6/065f0b33cac2a4d5/system_out_mux_0_0.dcp to /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1/system_out_mux_0_1.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/ipcache/0/6/065f0b33cac2a4d5/system_out_mux_0_0_sim_netlist.v to /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1/system_out_mux_0_1_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/ipcache/0/6/065f0b33cac2a4d5/system_out_mux_0_0_sim_netlist.vhdl to /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1/system_out_mux_0_1_sim_netlist.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_out_mux_0_1, cache-ID = 065f0b33cac2a4d5.
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 15:29:19 2025...

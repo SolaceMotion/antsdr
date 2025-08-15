@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="system_sys_ps7_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_sys_ps7_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_sys_rstgen_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_sys_rstgen_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_sys_rgmii_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_sys_rgmii_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_vcxo_ctrl_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_vcxo_ctrl_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_ad9361_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_dac_dma_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_ad9361_dac_dma_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_cdc_sync_active_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_cdc_sync_active_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_rate_gen_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_rate_gen_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_fir_interpolation_0_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_logic_and_0_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_logic_and_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_out_mux_0_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_fir_interpolation_1_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="system_fir_interpolation_0_0_synth_1"/>
+	</Run>
+	<Run Id="system_logic_and_1_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_logic_and_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="system_logic_and_0_0_synth_1"/>
+	</Run>
+	<Run Id="system_out_mux_1_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_tx_upack_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_tx_upack_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_ad9361_adc_dma_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_ad9361_adc_dma_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_cdc_sync_active_1_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_cdc_sync_active_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_fir_decimation_0_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_decimation_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_out_mux_0_1_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_0_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_fir_decimation_1_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_decimation_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="system_fir_decimation_0_0_synth_1"/>
+	</Run>
+	<Run Id="system_out_mux_1_1_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_out_mux_1_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_cpack_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_cpack_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_logic_or_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_logic_or_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_tdd_core_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_tdd_core_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_logic_inv_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_logic_inv_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_logic_or_1_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_logic_or_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="system_logic_or_0_synth_1"/>
+	</Run>
+	<Run Id="system_xbar_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_pc_0_synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_auto_pc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="system_sys_ps7_0_synth_1"/>
+		<Parent Id="system_sys_rstgen_0_synth_1"/>
+		<Parent Id="system_sys_rgmii_0_synth_1"/>
+		<Parent Id="system_axi_vcxo_ctrl_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_dac_dma_0_synth_1"/>
+		<Parent Id="system_cdc_sync_active_0_synth_1"/>
+		<Parent Id="system_rate_gen_0_synth_1"/>
+		<Parent Id="system_fir_interpolation_0_0_synth_1"/>
+		<Parent Id="system_logic_and_0_0_synth_1"/>
+		<Parent Id="system_out_mux_0_0_synth_1"/>
+		<Parent Id="system_fir_interpolation_1_0_synth_1"/>
+		<Parent Id="system_logic_and_1_0_synth_1"/>
+		<Parent Id="system_out_mux_1_0_synth_1"/>
+		<Parent Id="system_tx_upack_0_synth_1"/>
+		<Parent Id="system_axi_ad9361_adc_dma_0_synth_1"/>
+		<Parent Id="system_cdc_sync_active_1_synth_1"/>
+		<Parent Id="system_fir_decimation_0_0_synth_1"/>
+		<Parent Id="system_out_mux_0_1_synth_1"/>
+		<Parent Id="system_fir_decimation_1_0_synth_1"/>
+		<Parent Id="system_out_mux_1_1_synth_1"/>
+		<Parent Id="system_cpack_0_synth_1"/>
+		<Parent Id="system_logic_or_0_synth_1"/>
+		<Parent Id="system_tdd_core_0_synth_1"/>
+		<Parent Id="system_logic_inv_0_synth_1"/>
+		<Parent Id="system_logic_or_1_0_synth_1"/>
+		<Parent Id="system_xbar_0_synth_1"/>
+		<Parent Id="system_auto_pc_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+		<Parameter Name="general.ignorePathLengthChecks" Val="true" Type="bool"/>
+		<Parameter Name="general.shortenLongPath" Val="true" Type="bool"/>
+	</Parameters>
+	<ProductInfo Name="vivado"/>
+</Runs>
+

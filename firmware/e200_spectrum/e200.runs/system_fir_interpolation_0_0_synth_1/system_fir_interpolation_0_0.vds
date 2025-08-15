@@ -1,0 +1,1282 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Jul  9 15:27:27 2025
+# Process ID: 333369
+# Current directory: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1
+# Command line: vivado -log system_fir_interpolation_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_fir_interpolation_0_0.tcl
+# Log file: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/system_fir_interpolation_0_0.vds
+# Journal file: /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/vivado.jou
+# Running On: dator2-Latitude-5430, OS: Linux, CPU Frequency: 3400.000 MHz, CPU Physical cores: 4, Host memory: 16125 MB
+#-----------------------------------------------------------
+source system_fir_interpolation_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 1279.961 ; gain = 5.965 ; free physical = 4068 ; free virtual = 8385
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/library'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: system_fir_interpolation_0_0
+Command: synth_design -top system_fir_interpolation_0_0 -part xc7z020clg400-2 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 333583
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2053.957 ; gain = 405.684 ; free physical = 2273 ; free virtual = 6595
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'system_fir_interpolation_0_0' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/synth/system_fir_interpolation_0_0.vhd:70]
+	Parameter C_XDEVICEFAMILY bound to: zynq - type: string 
+	Parameter C_ELABORATION_DIR bound to: ./ - type: string 
+	Parameter C_COMPONENT_NAME bound to: system_fir_interpolation_0_0 - type: string 
+	Parameter C_COEF_FILE bound to: system_fir_interpolation_0_0.mif - type: string 
+	Parameter C_COEF_FILE_LINES bound to: 72 - type: integer 
+	Parameter C_FILTER_TYPE bound to: 2 - type: integer 
+	Parameter C_INTERP_RATE bound to: 8 - type: integer 
+	Parameter C_DECIM_RATE bound to: 1 - type: integer 
+	Parameter C_ZERO_PACKING_FACTOR bound to: 1 - type: integer 
+	Parameter C_SYMMETRY bound to: 1 - type: integer 
+	Parameter C_NUM_FILTS bound to: 1 - type: integer 
+	Parameter C_NUM_TAPS bound to: 129 - type: integer 
+	Parameter C_NUM_CHANNELS bound to: 1 - type: integer 
+	Parameter C_CHANNEL_PATTERN bound to: fixed - type: string 
+	Parameter C_ROUND_MODE bound to: 2 - type: integer 
+	Parameter C_COEF_RELOAD bound to: 0 - type: integer 
+	Parameter C_NUM_RELOAD_SLOTS bound to: 1 - type: integer 
+	Parameter C_COL_MODE bound to: 1 - type: integer 
+	Parameter C_COL_PIPE_LEN bound to: 4 - type: integer 
+	Parameter C_COL_CONFIG bound to: 9 - type: string 
+	Parameter C_OPTIMIZATION bound to: 0 - type: integer 
+	Parameter C_DATA_PATH_WIDTHS bound to: 16 - type: string 
+	Parameter C_DATA_IP_PATH_WIDTHS bound to: 16 - type: string 
+	Parameter C_DATA_PX_PATH_WIDTHS bound to: 16 - type: string 
+	Parameter C_DATA_WIDTH bound to: 16 - type: integer 
+	Parameter C_COEF_PATH_WIDTHS bound to: 17 - type: string 
+	Parameter C_COEF_WIDTH bound to: 16 - type: integer 
+	Parameter C_DATA_PATH_SRC bound to: 0 - type: string 
+	Parameter C_COEF_PATH_SRC bound to: 0 - type: string 
+	Parameter C_PX_PATH_SRC bound to: 0 - type: string 
+	Parameter C_DATA_PATH_SIGN bound to: 0 - type: string 
+	Parameter C_COEF_PATH_SIGN bound to: 0 - type: string 
+	Parameter C_ACCUM_PATH_WIDTHS bound to: 32 - type: string 
+	Parameter C_OUTPUT_WIDTH bound to: 16 - type: integer 
+	Parameter C_OUTPUT_PATH_WIDTHS bound to: 16 - type: string 
+	Parameter C_ACCUM_OP_PATH_WIDTHS bound to: 31 - type: string 
+	Parameter C_EXT_MULT_CNFG bound to: none - type: string 
+	Parameter C_DATA_PATH_PSAMP_SRC bound to: 0 - type: string 
+	Parameter C_OP_PATH_PSAMP_SRC bound to: 0 - type: string 
+	Parameter C_NUM_MADDS bound to: 9 - type: integer 
+	Parameter C_OPT_MADDS bound to: none - type: string 
+	Parameter C_OVERSAMPLING_RATE bound to: 1 - type: integer 
+	Parameter C_INPUT_RATE bound to: 8 - type: integer 
+	Parameter C_OUTPUT_RATE bound to: 1 - type: integer 
+	Parameter C_DATA_MEMTYPE bound to: 0 - type: integer 
+	Parameter C_COEF_MEMTYPE bound to: 2 - type: integer 
+	Parameter C_IPBUFF_MEMTYPE bound to: 0 - type: integer 
+	Parameter C_OPBUFF_MEMTYPE bound to: 2 - type: integer 
+	Parameter C_DATAPATH_MEMTYPE bound to: 0 - type: integer 
+	Parameter C_MEM_ARRANGEMENT bound to: 1 - type: integer 
+	Parameter C_DATA_MEM_PACKING bound to: 0 - type: integer 
+	Parameter C_COEF_MEM_PACKING bound to: 0 - type: integer 
+	Parameter C_FILTS_PACKED bound to: 0 - type: integer 
+	Parameter C_LATENCY bound to: 20 - type: integer 
+	Parameter C_HAS_ARESETn bound to: 0 - type: integer 
+	Parameter C_HAS_ACLKEN bound to: 0 - type: integer 
+	Parameter C_DATA_HAS_TLAST bound to: 0 - type: integer 
+	Parameter C_S_DATA_HAS_FIFO bound to: 1 - type: integer 
+	Parameter C_S_DATA_HAS_TUSER bound to: 0 - type: integer 
+	Parameter C_S_DATA_TDATA_WIDTH bound to: 16 - type: integer 
+	Parameter C_S_DATA_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_M_DATA_HAS_TREADY bound to: 0 - type: integer 
+	Parameter C_M_DATA_HAS_TUSER bound to: 0 - type: integer 
+	Parameter C_M_DATA_TDATA_WIDTH bound to: 16 - type: integer 
+	Parameter C_M_DATA_TUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_HAS_CONFIG_CHANNEL bound to: 0 - type: integer 
+	Parameter C_CONFIG_SYNC_MODE bound to: 0 - type: integer 
+	Parameter C_CONFIG_PACKET_SIZE bound to: 0 - type: integer 
+	Parameter C_CONFIG_TDATA_WIDTH bound to: 1 - type: integer 
+	Parameter C_RELOAD_TDATA_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'fir_compiler_v7_2_20' declared at '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ipshared/1055/hdl/fir_compiler_v7_2_vh_rfs.vhd:67059' bound to instance 'U0' of component 'fir_compiler_v7_2_20' [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/synth/system_fir_interpolation_0_0.vhd:206]
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-3919] null assignment ignored
+INFO: [Synth 8-256] done synthesizing module 'system_fir_interpolation_0_0' (0#1) [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/synth/system_fir_interpolation_0_0.vhd:70]
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized29 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE_B in module dpr_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module dpr_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module dpr_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized28 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized28 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized27 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized27 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized26 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized26 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized23 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized23 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized25 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized25 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized24 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized24 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized22 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized22 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized22 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized22 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized22 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized21 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PRE_ADDSUB in module calc__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PRE_ADD_BYPASS in module calc__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CED in module calc__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][57] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][56] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][55] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][54] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][53] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][52] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][51] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][50] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][49] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][48] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][62] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][61] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][60] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][59] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][58] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][57] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][56] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][55] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][54] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][53] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][52] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][51] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][50] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][49] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][48] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][57] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][56] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][55] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][54] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][53] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][52] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][51] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][50] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][49] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][48] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][47] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][46] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][45] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][44] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][43] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][42] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][41] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][40] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][39] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][38] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][37] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][36] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][35] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][34] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][33] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][32] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][31] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][30] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][29] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][28] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][27] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][26] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][25] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][24] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][23] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][22] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][21] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][20] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][19] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][18] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][17] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][16] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][15] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][14] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][13] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][12] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][11] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][10] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][9] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][8] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][7] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][6] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][5] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][4] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][3] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][2] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][1] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][0] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][62] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][61] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][60] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][59] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][58] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][57] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][56] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][55] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][54] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][53] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][52] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][51] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][50] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][49] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][48] in module rounder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PRE_ADDSUB in module calc__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PRE_ADD_BYPASS in module calc__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CED in module calc__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized20 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized20 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized20 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized20 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized20 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized19 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized19 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized19 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized19 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized19 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][57] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][56] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][55] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][54] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][53] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][52] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][51] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][50] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][49] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][48] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][62] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][61] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][60] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][59] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][58] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][57] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][56] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][55] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][54] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][53] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][52] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][51] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][50] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][49] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][48] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][57] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][56] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][55] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][54] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][53] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][52] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][51] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][50] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][49] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][48] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][47] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][46] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][45] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][44] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][43] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][42] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][41] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][40] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][39] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][38] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][37] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][36] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][35] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][34] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][33] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][32] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][31] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][30] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][29] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][28] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][27] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][26] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][25] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][24] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][23] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][22] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][21] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][20] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][19] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][18] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][17] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][16] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][15] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][14] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][13] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][12] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][11] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][10] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][9] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][8] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][7] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][6] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][5] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][4] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][3] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][2] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][1] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][0] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][62] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][61] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][60] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][59] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][58] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][57] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][56] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][55] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][54] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][53] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][52] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][51] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][50] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][49] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][48] in module add_accum is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized17 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized17 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized17 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized17 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized17 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CED in module calc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized18 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized18 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized18 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized18 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized18 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][57] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][56] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][55] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][54] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][53] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][52] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][51] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][50] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][49] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][48] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][62] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][61] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][60] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][59] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][58] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][57] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][56] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][55] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][54] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][53] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][52] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][51] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][50] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][49] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][48] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port P_EN in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[9] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[8] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[7] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[6] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[5] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[4] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[3] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[2] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[1] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[0] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[31] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[30] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[29] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[28] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[27] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[26] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[25] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[24] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[23] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[22] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[21] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[20] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[19] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[18] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[17] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[16] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[15] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[14] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[13] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[12] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[11] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[10] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[9] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[8] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[7] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[6] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[5] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[4] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[3] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[2] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[1] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CIN[0] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][57] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][56] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][55] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][54] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][53] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][52] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][51] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][50] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][49] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][48] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][62] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][61] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][60] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][59] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][58] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][57] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][56] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][55] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][54] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][53] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][52] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][51] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][50] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][49] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][48] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][47] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][46] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][45] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][44] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][43] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][42] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][41] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][40] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][39] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][38] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][37] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][36] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][35] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][34] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][33] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][32] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][31] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][30] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][29] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][28] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][27] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][26] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][25] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][24] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][23] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][22] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][21] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][20] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][19] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][18] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][17] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][16] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][15] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][14] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][13] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][12] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][11] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][10] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][9] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][8] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][7] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][6] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][5] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][4] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][3] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][2] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][1] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][0] in module addsub_mult_add__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][57] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][56] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][55] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][54] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][53] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][52] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][51] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][50] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][49] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[fab][48] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][62] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][61] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][60] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][59] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][58] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][57] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][56] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][55] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][54] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][53] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][52] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][51] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][50] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][49] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port POUT[casc][48] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port P_EN in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[9] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[8] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[7] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[6] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[5] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[4] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[3] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[2] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[1] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port OPCODE[0] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][57] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][56] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][55] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][54] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][53] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][52] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][51] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][50] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][49] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][48] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][47] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][46] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][45] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][44] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][43] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][42] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][41] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][40] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][39] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][38] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][37] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][36] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][35] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][34] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][33] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][32] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][31] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][30] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][29] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][28] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][27] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][26] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][25] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][24] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][23] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][22] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][21] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][20] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][19] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][18] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][17] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][16] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][15] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][14] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][13] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][12] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][11] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][10] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][9] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][8] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][7] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][6] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][5] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][4] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][3] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][2] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][1] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[fab][0] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][62] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][61] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][60] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][59] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][58] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][57] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][56] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][55] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][54] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][53] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][52] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][51] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][50] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][49] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PIN[casc][48] in module addsub_mult_add is either unconnected or has no load
+WARNING: [Synth 8-7129] Port READ_ADDR[0] in module buff__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module buff__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port READ_ADDR[0] in module buff__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module buff__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized14 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized14 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized14 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized14 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized14 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RE in module buff is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module buff is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized12 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized12 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized11 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized11 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized9 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[2] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[1] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[0] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[16] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[15] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[14] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[13] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[12] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[11] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[10] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[9] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[8] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[7] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[6] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[5] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[4] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[3] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[2] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[1] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[0] in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WEB in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE_B in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module filt_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE_B in module filt_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module filt_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module filt_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE_B in module filt_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module filt_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module filt_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE_B in module filt_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module filt_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module filt_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE_B in module filt_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module filt_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module filt_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module delay__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module delay__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module delay__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module delay__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CE in module cntrl_delay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module cntrl_delay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module cntrl_delay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_ALT in module delay__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aresetn in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aclken in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_data_tlast in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_data_tuser[0] in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_config_tvalid in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_config_tlast in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_config_tdata[0] in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_reload_tvalid in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_reload_tlast in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_reload_tdata[0] in module polyphase_interpolation is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axis_data_tready in module polyphase_interpolation is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2289.926 ; gain = 641.652 ; free physical = 273 ; free virtual = 4588
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2301.801 ; gain = 653.527 ; free physical = 273 ; free virtual = 4588
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2301.801 ; gain = 653.527 ; free physical = 273 ; free virtual = 4588
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2304.770 ; gain = 0.000 ; free physical = 257 ; free virtual = 4573
+INFO: [Netlist 29-17] Analyzing 11 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/system_fir_interpolation_0_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/system_fir_interpolation_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/constraints/fir_compiler_v7_2.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.gen/sources_1/bd/system/ip/system_fir_interpolation_0_0/constraints/fir_compiler_v7_2.xdc] for cell 'U0'
+Parsing XDC File [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2408.582 ; gain = 0.000 ; free physical = 238 ; free virtual = 4553
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2408.617 ; gain = 0.000 ; free physical = 238 ; free virtual = 4553
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 227 ; free virtual = 4546
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 227 ; free virtual = 4546
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  /home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 227 ; free virtual = 4546
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 439 ; free virtual = 4577
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port CE_B in module dpr_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_A in module dpr_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR_B in module dpr_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized1 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR[2] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR[1] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR[0] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[16] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[15] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[14] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[13] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[12] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[11] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[10] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[9] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[8] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[7] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[6] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[5] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[4] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[3] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[2] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[1] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IN[0] in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WE in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SCLR in module sp_mem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aresetn in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aclken in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_data_tlast in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_data_tuser[0] in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_config_tvalid in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_config_tlast in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_config_tdata[0] in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_reload_tvalid in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_reload_tlast in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_reload_tdata[0] in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axis_data_tready in module fir_compiler_v7_2_20_viv is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 528 ; free virtual = 4676
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 940 ; free virtual = 5131
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 935 ; free virtual = 5127
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 937 ; free virtual = 5123
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1166 ; free virtual = 5352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1166 ; free virtual = 5352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1162 ; free virtual = 5353
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1162 ; free virtual = 5353
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1162 ; free virtual = 5353
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1162 ; free virtual = 5353
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++---------------------+------------------------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name          | DSP Mapping                                    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++---------------------+------------------------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|calc__parameterized1 | (PCIN+C'+PCIN[47])'                            | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 1    | 1    | 
+|calc__parameterized0 | Dynamic                                        | -      | -      | -      | -      | 48     | -    | -    | -    | -    | -     | 0    | 1    | 
+|calc_30              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_29              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_28              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_27              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_26              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_25              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_24              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc_23              | (PCIN+((Dynamically Configured Multiplier))')' | -      | -      | -      | -      | 48     | -    | -    | -    | -    | 1     | 1    | 1    | 
+|calc                 | (C'+((Dynamically Configured Multiplier))')'   | -      | -      | 0      | -      | 48     | -    | -    | 1    | -    | 1     | 1    | 1    | 
++---------------------+------------------------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |DSP48E1  |    11|
+|4     |LUT1     |    12|
+|5     |LUT2     |    15|
+|6     |LUT3     |   220|
+|7     |LUT4     |    19|
+|8     |LUT5     |    17|
+|9     |LUT6     |     8|
+|10    |RAM16X1D |    16|
+|11    |SRL16E   |   153|
+|12    |FDRE     |   945|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1162 ; free virtual = 5353
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 189 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 2408.617 ; gain = 653.527 ; free physical = 1170 ; free virtual = 5361
+Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2408.617 ; gain = 760.344 ; free physical = 1170 ; free virtual = 5361
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2408.617 ; gain = 0.000 ; free physical = 1466 ; free virtual = 5659
+INFO: [Netlist 29-17] Analyzing 27 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2408.617 ; gain = 0.000 ; free physical = 1446 ; free virtual = 5655
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 16 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 16 instances
+
+Synth Design complete | Checksum: 954b46c7
+INFO: [Common 17-83] Releasing license: Synthesis
+32 Infos, 956 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:00:42 . Memory (MB): peak = 2408.617 ; gain = 1109.844 ; free physical = 1445 ; free virtual = 5655
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1803.007; main = 1496.592; forked = 320.744
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3392.438; main = 2408.586; forked = 1015.867
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2432.594 ; gain = 0.000 ; free physical = 1444 ; free virtual = 5655
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/system_fir_interpolation_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP system_fir_interpolation_0_0, cache-ID = e464e45f643241ee
+INFO: [Coretcl 2-1174] Renamed 88 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2432.594 ; gain = 0.000 ; free physical = 1450 ; free virtual = 5658
+INFO: [Common 17-1381] The checkpoint '/home/dator2/Documents/clean_fw_folder/antsdr-fw-patch/plutosdr-fw/hdl/projects/e200/e200.runs/system_fir_interpolation_0_0_synth_1/system_fir_interpolation_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_fir_interpolation_0_0_utilization_synth.rpt -pb system_fir_interpolation_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jul  9 15:28:20 2025...

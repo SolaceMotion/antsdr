@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Aug  5 08:44:30 2025
+# Process ID: 166533
+# Current directory: /home/dator2/Documents/fw-antsdr-version-10/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_dmac_0_0_synth_1
+# Command line: vivado -log system_axi_dmac_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axi_dmac_0_0.tcl
+# Log file: /home/dator2/Documents/fw-antsdr-version-10/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_dmac_0_0_synth_1/system_axi_dmac_0_0.vds
+# Journal file: /home/dator2/Documents/fw-antsdr-version-10/plutosdr-fw/hdl/projects/e200/e200.runs/system_axi_dmac_0_0_synth_1/vivado.jou
+# Running On: dator2-Latitude-5430, OS: Linux, CPU Frequency: 2175.105 MHz, CPU Physical cores: 4, Host memory: 16126 MB
+#-----------------------------------------------------------
+source system_axi_dmac_0_0.tcl -notrace

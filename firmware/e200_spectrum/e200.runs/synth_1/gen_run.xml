@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1755181969" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/system_top.dcp">
+  <File Type="VDS-TIMINGSUMMARY" Name="system_top_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="system_top.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="system_top_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="system_top_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="system_top_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="system_top.vds"/>
+  <File Type="REPORTS-TCL" Name="system_top_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="system_top_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="system_top.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../library/util_cdc/sync_bits.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../library/common/util_pulse_gen.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../library/common/ad_bus_mux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fft_buffer_v2.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fft_bin_counter_v2.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fft_raw_merger.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/system/system.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../library/common/ad_iobuf.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/hdl/system_wrapper.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PGENDIR/sources_1/bd/system/hdl/system_wrapper.v"/>
+        <Attr Name="ImportTime" Val="1752067520"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/system_top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../../../Own_ip_for_antsdr/IP_blocks/burst_controler.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../../../../Own_ip_for_antsdr/IP_blocks/Timing_Bus_Buffer.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../library/util_fir_int/coefile_int.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/testing.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="system_top"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../common/xilinx/adi_fir_filter_constr.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/system_constr.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/system_top.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="system_fft_bin_counter_v2_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_fft_buffer_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_logic_or_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_tdd_core_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fir_decimation_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_cdc_sync_active_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_tx_upack_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_out_mux_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_logic_and_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_out_mux_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_logic_and_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_logic_or_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_out_mux_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fir_interpolation_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_dmac_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_rate_gen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fifo_generator_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_cdc_sync_active_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_ad9361_dac_dma_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_ad9361_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_vcxo_ctrl_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_sys_rgmii_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_sys_rstgen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_logic_inv_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_out_mux_1_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fir_decimation_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fir_interpolation_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_sys_ps7_0"/>
+</GenRun>
