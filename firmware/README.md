@@ -159,14 +159,32 @@ drwxrwxr-x 6 jcc 4.0K 12月 26 11:06 sdk
 ## Update project 
 when the first make has been created the project e200 will be created. This project file will be needed to be changed with the one on the git repositorys e200
 
+replace:
 ```txt
 antsdr-fw-patch/plutosdr-fw/hdl/projects/e200 shoudl be replace with folder e200_spectrum found on this repository
+```
+with 
+```txt
+antsdr/firmware/e200_spectrum
 ```
 
 In similar ways the device tree is needed to be uppdated
 
+replace:
 ```txt
 antsdr-fw-patch/plutosdr-fw/linux/arch/arm/boot/dts/zynq-e200.dtsi shoudl be replace with file zynq-e200.dtsi found on this repository
+```
+with 
+```txt
+antsdr/firmware/zynq-e200.dtsi
+```
+
+## Rebuild the updated firmware
+
+Now the updates should be built into the firmware 
+run in antsdr-fw-patch/plutosdr-fw
+```sh
+make
 ```
 
 ## Make SD card boot image
