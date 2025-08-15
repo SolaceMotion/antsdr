@@ -67,8 +67,8 @@ PORT_STR = os.getenv("PORT")
 sockets = SocketConnections()
 
 # no. I,Q samples to buffer
-BUF_SAMPS = 2048
-PKT_QUEUE_LEN = 100
+BUF_SAMPS = 1024
+PKT_QUEUE_LEN = 500
 
 FFT_SIZE = 1024
 # Shared thread-safe circular buffer across clients

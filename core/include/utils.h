@@ -24,6 +24,11 @@
 #define TX_CH_Q "voltage1"
 #define DBG_LOOPBACK "loopback"
 
+// Total number of samples
+#define BUF_SAMPS 1024
+// Amount of words in a sample
+#define NB_WORDS 8
+
 /* helper macros */
 #define MHZ(x) ((long long)(x * 1000000))
 #define GHZ(x) ((long long)(x * 1000000000))
@@ -71,27 +76,54 @@ struct devices {
 
 /* Write rxcfg and txcfg to the transceiver. Is thread-safe. */
 int config_streaming_ch(struct stream_cfg *);
+
 /* Connect to socket server */
 int connect_socket(int *client_fd, struct sockaddr_in *serv_addr);
+
 /* Free heap memory */
 void destroy(void);
+
 /* Enable loopback mode */
-int loopback_tx_rx(void);
+int enable_loopback_tx_rx(int mode);
+
+/* Enable loopback mode */
+int set_tx(const char *filename);
+
 /* Threaded function that listens for server replies */
 void *recv_thread(void *arg);
+
 /* Send the server the current RF config on the SDR. Is thread-safe. */
 int send_curr_config(int *client_fd);
+
+/* Send LO only */
+int update_lo(struct stream_cfg *s_cfg);
+
 /* Send a stringified json object with a line break delimiter. */
 int send_w_delim(int fd, char *data);
-/* Stream I/Q data from RX */
-int stream_rx(struct stream_cfg *rxcfg);
+
+/* Stream I/Q data from RX in JSON format (slow)*/
+[[maybe_unused]]
+int stream_rx(struct stream_cfg *rxcfg, struct iio_buffer *buf_rx);
+
 /* Stream I/Q data from RX with minimal processing */
-int stream_rx_byte(struct stream_cfg *rxcfg);
+int stream_rx_byte(void);
+
+/* Stream I/Q data with IIO buffer*/
+[[maybe_unused]]
+int stream_rx_byte_iio(struct iio_buffer *buf_rx);
+
+/* Refills the rx buffer (no iio_buffer api) */
+int send_refill(int client_fd, int16_t *buf, size_t nsamp, double t0);
+
 /* Refills the rx buffer */
-int send_refill(int client_fd, size_t nsamp, double t0);
+[[maybe_unused]]
+int send_refill_iio(int client_fd, struct iio_buffer *buf_rx, size_t nsamp,
+                    double t0);
+
+/* readdev but without the iio_buffer api */
+int readdev(void *buf, int client_fd, double t0_base);
+
 /* Current unix time in seconds with nanosecond precision. */
 double time_now(void);
-
-int wait_for_stream(int fd, const char *wanted);
 
 #endif // !UTILS_H

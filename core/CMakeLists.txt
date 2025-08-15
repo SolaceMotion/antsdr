@@ -38,6 +38,8 @@ set(COMMON_SRCS
   src/cJSON_Utils.c
 )
 
+set(CMAKE_C_STANDARD 23)
+
 # Build "real" client executable
 add_executable(${CLIENT} 
   src/${CLIENT}.c
@@ -74,11 +76,6 @@ add_compile_options(
 option(WARN_AS_ERROR "Treat warnings as errors" OFF)
 
 # Compiler flags
-# target_compile_definitions(${CLIENT} PRIVATE 
-#   SET_RXCFG
-#   STREAM_RX
-# )
-
 if(SET_RXCFG)
   target_compile_definitions(${CLIENT} PRIVATE SET_RXCFG)
 endif()

@@ -2,16 +2,13 @@ import json
 import logging
 import os
 import socket
-import sys
 import threading
-import time
-
-import numpy as np
+from time import sleep, strftime
 from collections import deque
+import numpy as np
 
-from PyQt5.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout, QWidget
-import pyqtgraph as pg
 from PyQt5 import QtWidgets, QtCore
+import pyqtgraph as pg
 
 from shared import BUF_SAMPS, FFT_SIZE, pkt_queue, sockets, sema, send_pkt
 
@@ -23,7 +20,6 @@ phase_buf = deque(maxlen=BUF_SAMPS)
 
 # P = V^2 / R [mW]
 POWER_FS = (0.25**2 / 50) * 1e3
-# In dBm:
 # (dBm represents an absolute power level relative to 1 mW) 
 POWER_FS_dBM = 10*np.log(POWER_FS)
 
@@ -90,15 +86,12 @@ class CfgAttrs():
         self.bw = None
         self.lo = None
         self.fs = None
-        self.freq_all = None
 
     def set_attrs(self, cfg):
         self.hardwaregain = cfg["hardwaregain"]
         self.bw = cfg["bw"]
         self.lo = cfg["lo"]
         self.fs = cfg["fs"]
-        # 16 384-point FFT (≈ 14 ms at 1 MS/s)
-        self.freq_all = np.fft.fftshift(np.fft.fftfreq(FFT_SIZE, d=1.0/self.fs))                 # gives −fs/2 … +fs/2 (monotonic order)
 
     def populate_entries(self, entry_bw, entry_lo, entry_fs, entry_gain):
         entry_bw.setText(str(self.bw))
@@ -110,15 +103,23 @@ class CfgAttrs():
         return not (self.hardwaregain or self.bw or self.lo or self.fs) 
 
     def get_hardwaregain(self):
+        if not self.hardwaregain:
+            return 0
         return self.hardwaregain
 
     def get_bw(self):
+        if not self.bw:
+            return 0
         return self.bw
 
     def get_lo(self):
+        if not self.lo:
+            return 0
         return self.lo
 
     def get_fs(self):
+        if not self.fs:
+            return 0
         return self.fs
 
 class App(QtWidgets.QMainWindow):
@@ -129,31 +130,32 @@ class App(QtWidgets.QMainWindow):
         self.streaming = False  # is streaming?
         self.capturing = False  # is capturing?
         self.sweeping  = False  # is sweeping?
+        self.loopback_on = False # is loopback on?
+
+        # capture
         self.packet_shots = 0   # no. packets to capture
         self.capture_buf = []   # buffer captured packets
+        
+        # maximum hardware gain
+        # self.GAIN_MAX = 73
 
-        self.WINDOW_SEC = 1.0
+        self.GAIN_MAX = 50
+        # for avoiding 0 in log scale
+        self.EPS = 1.0e-6
         # How many points in each plot
-        self.MAX_PTS = 500
+        self.MAX_PTS = 1000
         # Store the client sockets
         self.client_sockets = []
 
+        # convenient for accessing parameters
         self.attrs = CfgAttrs()
 
-        # could get away with bufering only 1024 at a time for fft
-        self.fft_buf_i = deque(maxlen=FFT_SIZE)
-        self.fft_buf_q = deque(maxlen=FFT_SIZE)
-        self.fft_freqs = deque(maxlen=FFT_SIZE)
-
-        # WATERFALL
-        self.WF_ROWS = 600 # no. waterfall slices to keep on screen
-        self.wf_data = np.full((FFT_SIZE, self.WF_ROWS), -100.0, np.float64)  # dB
-        self.wf_ptr  = self.WF_ROWS - 1               # write index (0…WF_ROWS-1)
-
+        # Spectrogram
+        self.WF_ROWS = 600 # no. waterfall slices to keep at a time
+        self.wf_data = np.full((FFT_SIZE, self.WF_ROWS), -self.GAIN_MAX, np.float32) # In dBm
+        self.wf_ptr  = self.WF_ROWS - 1               # write index (WF_ROWS-1...0)
         # Downsample step. Store once on packet arrival
         self.step = 1
-
-        self.sweep_ptr = 0
 
         #---------------
         # UI
@@ -180,8 +182,8 @@ class App(QtWidgets.QMainWindow):
 
         # connection status
         conn_box = QtWidgets.QHBoxLayout()
-        self.conn_status_lbl = QLabel("Connection status: ")
-        self.status_led = QLabel("0")
+        self.conn_status_lbl = QtWidgets.QLabel("Connection status: ")
+        self.status_led = QtWidgets.QLabel("0")
         self.status_led.setFixedSize(20, 20)
         self.status_led.setAlignment(QtCore.Qt.AlignCenter)
         self.status_led.setStyleSheet(
@@ -206,8 +208,8 @@ class App(QtWidgets.QMainWindow):
         self.entry_fs   = QtWidgets.QLineEdit()
         self.entry_lo   = QtWidgets.QLineEdit()
         self.entry_gain = QtWidgets.QLineEdit()
-        form_cfg.addRow("Bandwidth [MHz]",  self.entry_bw)
-        form_cfg.addRow("Sampling rate [MHz]", self.entry_fs)
+        form_cfg.addRow("Filter Bandwidth [MHz]",  self.entry_bw)
+        form_cfg.addRow("Sample Rate [MHz]", self.entry_fs)
         form_cfg.addRow("Center Freq (LO) [MHz]", self.entry_lo)
         form_cfg.addRow("Hardware gain [dB]", self.entry_gain)
         btn_set = QtWidgets.QPushButton("Set config")
@@ -232,15 +234,12 @@ class App(QtWidgets.QMainWindow):
         hshot.addStretch(1)
         vbox.addLayout(hshot)
 
-
         # Sweep controls
         form_sweep = QtWidgets.QFormLayout()
         self.entry_f_start = QtWidgets.QLineEdit()
         self.entry_f_stop  = QtWidgets.QLineEdit()
-        self.entry_cf_step = QtWidgets.QLineEdit()
         form_sweep.addRow("Start Freq [MHz]",  self.entry_f_start)
         form_sweep.addRow("Stop Freq [MHz]",  self.entry_f_stop)
-        form_sweep.addRow("CF Step [MHz]",  self.entry_cf_step)
 
         btn_sweep = QtWidgets.QPushButton("Start sweep")
         btn_sweep.clicked.connect(self.on_sweep)
@@ -252,12 +251,19 @@ class App(QtWidgets.QMainWindow):
         
         # Status and streaming button
         hstatus = QtWidgets.QHBoxLayout()
-        self.btn_stream = QtWidgets.QPushButton("Start streaming")
+        self.btn_stream = QtWidgets.QPushButton("Start stream")
         self.btn_stream.setCheckable(True)
         self.btn_stream.toggled.connect(self.on_stream_toggle)
 
         hstatus.addWidget(self.btn_stream)
         vbox.addLayout(hstatus)
+
+        loopback_box = QtWidgets.QHBoxLayout()
+        self.btn_loopback = QtWidgets.QPushButton("Enable loopback")
+        self.btn_loopback.setCheckable(True)
+        self.btn_loopback.clicked.connect(self.on_loopback)
+        loopback_box.addWidget(self.btn_loopback)
+        vbox.addLayout(loopback_box)
         
         # Plot area using GraphicsLayoutWidget
         pg.setConfigOptions(antialias=True)
@@ -265,23 +271,19 @@ class App(QtWidgets.QMainWindow):
         pg.setConfigOption('foreground',  '#d0d0d0')   # ticks, labels, grid
 
         glw = pg.GraphicsLayoutWidget()
-        vbox.addWidget(glw)
-
-        # Tell the grid: 2 columns, 2 rows, give each the same weight
-        for i in (0, 1):
-            glw.ci.layout.setColumnStretchFactor(i, 1)
-            glw.ci.layout.setRowStretchFactor(i, 1)
+        glw.setMinimumHeight(1800)
 
         # Plots
-        #self.plot_i     = glw.addPlot(row=0, col=0, title="I")
-        #self.plot_q     = glw.addPlot(row=0, col=1, title="Q")
-        #self.plot_iq    = glw.addPlot(row=1, col=0, title="I vs Q")
-        #self.plot_phase = glw.addPlot(row=1, col=1, title="Phase diff")
-        self.plot_spectrum = glw.addPlot(row=0, col=0, colspan=2, title="Spectrum")
-        self.plot_wfall = glw.addPlot(row=1, col=0, colspan=2, title="Spectrogram")
+        self.plot_i         = glw.addPlot(row=0, col=0, title="I")
+        self.plot_q         = glw.addPlot(row=0, col=1, title="Q")
+        #self.plot_iq        = glw.addPlot(row=1, col=0, title="I vs Q")
+        #self.plot_phase     = glw.addPlot(row=1, col=1, title="Instantaneous Phase diff")
+        self.plot_spectrum  = glw.addPlot(row=2, col=0, colspan=2, title="Spectrum")
+        self.plot_wfall     = glw.addPlot(row=3, col=0, colspan=2, title="Spectrogram")
+        self.plot_sweep     = glw.addPlot(row=4, col=0, colspan=2, title="Sweep")
 
-        self.plot_sweep = glw.addPlot(row=2, col=0, colspan=2, title="Sweep")
-
+        glw.ci.layout.setColumnStretchFactor(0, 1)
+        glw.ci.layout.setColumnStretchFactor(1, 1)
         self.plot_wfall.setXLink(self.plot_spectrum) # share same x-axis (zoom on either plot controls the other)
 
         # Hide the duplicate left axis on the right-hand column
@@ -289,80 +291,96 @@ class App(QtWidgets.QMainWindow):
         #     plot.showAxis('left', False)            # removes that extra 35-40 px
         #     plot.getViewBox().setAutoVisible(y=True) # let right axis show if needed
 
-        # self.plot_spectrum.showAxis('bottom', False)
+        self.plot_wfall.showAxis('bottom', False)
 
-        #for plot in (self.plot_i, self.plot_q):
-        #    plot.setYRange(-250, 250) # 0.25 VRMS max
-
-        for p in (self.plot_spectrum, self.plot_wfall, self.plot_sweep):
+        for p in (self.plot_spectrum, self.plot_i, self.plot_q, self.plot_wfall, self.plot_sweep):
             p.getAxis('left').setPen('#d0d0d0')
             p.getAxis('bottom').setPen('#d0d0d0')
             p.getAxis('left').setTextPen('#d0d0d0')
             p.getAxis('bottom').setTextPen('#d0d0d0')
             p.showGrid(x=True, y=True, alpha=0.50)
-
         self.plot_wfall.showGrid(x=False, y=False)
 
-        # self.plot_iq.setYRange(-300, 300)
-        # self.plot_iq.setXRange(-300, 300)
-        #
-        # self.plot_i.setLabel("bottom", text="Time [s]")
-        # self.plot_i.setLabel("left", text="V_i", units="mV")
-        #
-        # self.plot_q.setLabel("bottom", text="Time", units="s")
-        # self.plot_q.setLabel("left", text="V_q", units="mV")
+        #self.plot_iq.setYRange(-600, 600)
+        #self.plot_iq.setXRange(-600, 600)
 
-        self.plot_spectrum.setLabel('left',   'Power',     units='dBM')
+        self.plot_i.setYRange(-700, 700)
+        self.plot_q.setYRange(-700, 700)
+        #
+        self.plot_i.setLabel("bottom", text="Time [s]")
+        self.plot_i.setLabel("left", text="I")
+        #
+        self.plot_q.setLabel("bottom", text="Time [s]")
+        self.plot_q.setLabel("left", text="Q")
 
-        self.plot_wfall.setLabel('bottom', 'Normalized Frequency', units='Hz')
+        self.plot_spectrum.setLabel('left', 'Power [dBM]')
+        self.plot_spectrum.setLabel('bottom', 'Frequency', units='Hz')
+
+        #self.plot_wfall.setLabel('bottom', 'Frequency', units='MHz')
         self.plot_wfall.setLabel('left', 'Time', units='s')
 
-        # self.plot_phase.setLabel('bottom', 'Normalized Frequency', units='Hz')
-        # self.plot_phase.setLabel('left', 'Phase', units='rad')
+        #self.plot_iq.setLabel("left", text="Q")
+        #self.plot_iq.setLabel("bottom", text="I")
 
-        self.plot_sweep.setLabel('left', 'Amp')
-        self.plot_sweep.setLabel('bottom', 'lo', units='Hz')
+        #self.plot_phase.setLabel('bottom', text="Time [s]")
+        #self.plot_phase.setLabel('left', 'Phase', units='rad')
+
+        self.plot_sweep.setLabel('left', 'Power [dBM]')
+        self.plot_sweep.setLabel('bottom', 'Frequency', units='Hz')
+
+        fixed_axis_width = 60   # pixels – adjust as needed
+
+        for p in (self.plot_i, self.plot_q):
+            p.getAxis('left').setWidth(fixed_axis_width)
 
         # Line curves
-        # self.curve_i     = self.plot_i.plot(pen='c')
-        # self.curve_q     = self.plot_q.plot(pen='y')
-        # self.curve_iq    = self.plot_iq.plot(pen=None, symbol='o', symbolBrush='g', symbolSize=5)
-        #self.curve_phase = self.plot_phase.plot(pen=None, symbol='o', symbolBrush='m', symbolSize=5)
-        # self.curve_phase = self.plot_phase.plot(pen='g')
+        self.curve_i        = self.plot_i.plot(pen='c')
+        self.curve_q        = self.plot_q.plot(pen='y')
+        #self.curve_iq       = self.plot_iq.plot(pen=None, symbol='o', symbolBrush='g', symbolSize=5)
+        #self.curve_phase    = self.plot_phase.plot(pen=None, symbol='o', symbolBrush='m', symbolSize=5)
         self.curve_spectrum = self.plot_spectrum.plot(pen='#347deb')
+        self.curve_sweep    = self.plot_sweep.plot(pen='#347deb')
 
-        self.curve_spectrum.setFillLevel(0)
-        self.curve_spectrum.setBrush(pg.mkBrush(52, 125, 235, 60))
-
-        self.curve_sweep = self.plot_sweep.plot(pen='#347deb')
-        self.curve_spectrum.setFillLevel(0)
-        self.curve_spectrum.setBrush(pg.mkBrush(52, 125, 235, 60))
-
-        # keep same stretch factor → all three rows equal height
-        glw.ci.layout.setRowStretchFactor(2, 1)
+        # FILL UNDER THE FFT SPECTRUM
+        #self.curve_spectrum.setFillLevel(-self.GAIN_MAX)
+        #self.curve_spectrum.setBrush(pg.mkBrush(52, 125, 235, 60))
 
         # ImageItem for colour map
         self.wfall_img = pg.ImageItem()
         self.plot_wfall.addItem(self.wfall_img)
 
-        # ----- colour-map: blue → green → red -----------------------------
-        cmap = pg.ColorMap(
-            [0.0, 0.5, 0.75],
-            [(  0,   0,  50),   # deep navy
-             (  0, 180,  80),   # teal-green
-             (255,   0,   0)]   # bright red
-        )
-        self.wfall_img.setLookupTable(cmap.getLookupTable(0.0, 1.0, 256))
-        #self.wfall_img.setLevels([-90, 0])           # dBFS range to color
-        self.wfall_img.setLevels([0, 50])           # dBFS range to color
-        
+        # dBFS color map
+        cmap = pg.colormap.get("inferno")
 
+        #self.wfall_img.setLookupTable(cmap.getLookupTable(0.0, 1.0, 256))
+        self.wfall_img.setLookupTable(cmap.getLookupTable(alpha=False))
+        self.wfall_img.setLevels([-self.GAIN_MAX, 0]) # dBM range to color
+
+        cbar = pg.ColorBarItem(
+            values = (-self.GAIN_MAX, 0),   # same numeric range as the image
+            colorMap = cmap,
+            interactive = False,            # turn handles off – make it a legend
+            width = 18,                     # bar thickness in pixels
+            label = 'dBm',                 # axis label
+        )
+
+        glw.addItem(cbar, row=3, col=2)
+        glw.ci.layout.setColumnStretchFactor(2, 0)
+
+        # Scrollable plots
+        scroll = QtWidgets.QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        scroll.setWidget(glw)
+
+        vbox.addWidget(scroll, 1) 
+        
         # ------------- LOG PANE -----------------------------------------
         # self.log_view = QtWidgets.QPlainTextEdit()
         self.log_view = LogViewer()
         #self.log_view.setMaximumBlockCount(1000)   # keep last 1 000 lines
         self.log_view.setFixedHeight(140)          # adjust to taste
-        vbox.addWidget(self.log_view)
+        vbox.addWidget(self.log_view, 0)
     
         # Route every logging.* call to the text box
         log_handler = QtLogHandler(self.log_view)
@@ -383,23 +401,14 @@ class App(QtWidgets.QMainWindow):
         self.flash_timer.timeout.connect(self.flash_led)
         self.flash_timer.start()
 
+        # Plot handles
         # Timer for updating plot (~50 Hz)
         self.pack_ms = int(1 / 0.050)
         self.timer = QtCore.QTimer(self, timerType=QtCore.Qt.PreciseTimer)
         self.timer.setInterval(self.pack_ms) 
-        self.timer.timeout.connect(self.update_plots2)
+        self.timer.timeout.connect(self.update_plots)
         self.timer.timeout.connect(self.update_sweep)
-        #self.timer.timeout.connect(self.maybe_finish_sweep)
         self.timer.start()
-
-        self.sweeper = None
-        
-    # def maybe_finish_sweep(self):
-    #     if not self.streaming and self.sweeper is not None:
-    #         self.sweeper.join()        # blocks only a few ms at end of sweep
-    #         self.sweeper = None
-    #
-    #         print("Sweep finished")
 
     def flash_led(self):
         alpha = 255*np.abs(np.sin(2*np.pi*self.status_led_alpha))
@@ -415,11 +424,11 @@ class App(QtWidgets.QMainWindow):
     def upd_status_led(self, inc):
         self.status_led_clr = (0, 255, 0)
         
-        te = int(self.status_led.text())
-        if te + inc == 0:
+        no_conns = int(self.status_led.text())
+        if no_conns + inc == 0:
             self.status_led_clr = (255, 0, 0)
 
-        self.status_led.setText(str(te + inc))
+        self.status_led.setText(str(no_conns + inc))
 
     def _watch_for_connections(self):
         """
@@ -447,7 +456,6 @@ class App(QtWidgets.QMainWindow):
                     break
 
                 pkt = json.loads(raw.decode())
-                print(pkt)
                 # Client only ever sends to the server. 
                 # The server must further the client's request.
                 # Only then will this run
@@ -464,8 +472,7 @@ class App(QtWidgets.QMainWindow):
                         self.upd_status_led(1)
 
                     case "cfg_success":
-                        #logging.info("New config was set on SDR.")
-                        pass
+                        logging.info("New config was set on SDR.")
 
                     case "disconn":
                         logging.info("%s disconnected", pkt["id"])
@@ -479,6 +486,58 @@ class App(QtWidgets.QMainWindow):
         """Raise if no client is connected."""
         if sockets.get_num_connections() <= 1:
             raise RuntimeError(event_type)
+
+
+    def on_loopback(self, checked):
+        try:
+            self.require_client_connected("loopback")
+
+            cmd = "start" if checked else "stop"
+            
+            self.loopback_on = checked
+
+            if checked:
+                self.btn_loopback.setText("Disable loopback")
+
+                path, _ = QtWidgets.QFileDialog.getOpenFileName(
+                    self,
+                    "Open signal data",
+                    "/home/dator1/realantsdr/core/src/signals/",
+                    "bin files (*.bin);;All files (*)"
+                )
+                if not path:
+                    return
+
+                # Send the config packet to the client
+                if self.client_sockets:
+                    for cl_socket in self.client_sockets:
+                        send_pkt(cl_socket, 
+                        {
+                            "type": "loopback",
+                            "do": cmd,
+                            "file": path,
+                        })
+                        logging.info("Loopback %s Config was sent to a client SDR.", cmd)
+            else:
+                self.btn_loopback.setText("Enable loopback")
+
+                # Send the config packet to the client
+                if self.client_sockets:
+                    for cl_socket in self.client_sockets:
+                        send_pkt(cl_socket, 
+                        {
+                            "type": "loopback",
+                            "do": cmd,
+                        })
+                        logging.info("Loopback %s Config was sent to a client SDR.", cmd)
+
+
+        except RuntimeError as event_type:
+            self.handle_connected_abort(event_type)
+        except ValueError:
+            logging.error("All parameters must be floating point.")
+        except OSError:
+            logging.error("Something unexpected occured; configure aborted.")
 
     def on_send_conf(self):
         try: 
@@ -566,31 +625,15 @@ class App(QtWidgets.QMainWindow):
                 send_pkt(cl_socket, lo_pkt)
                 logging.info("LO was sent to a client SDR.")
 
-    
-    # def sweep_worker(self, f_start, f_stop, cf_step):
-    #     # For all cf in the interval [f_start, f_stop] at step cf_step
-    #     #
-    #     self.last_idx = 0
-    #     for f_lo in np.arange(f_start, f_stop + cf_step, cf_step):
-    #         # Set new cf
-    #         self.send_lo(f_lo)
-    #
-    #         for i in range(0, FFT_SIZE):
-    #             self.inner_idx += 1
-    #             self.sweep_idx = self.inner_idx + self.last_idx
-    #
-    #         # settle time until tuning LO again
-    #         time.sleep(0.5)
-    #         # move to next idx
-    #
-    #         self.last_idx = self.sweep_idx
-    #
-    #     self.streaming = False
 
-    def sweep_worker(self, f_start, f_stop, cf_step, settle=0.5):
-        for f_lo in np.arange(f_start, f_stop + cf_step, cf_step):
-            self.send_lo(f_lo)        # just hop
-            time.sleep(settle)        # let the PLL settle
+    def sweep_worker(self, los, bin_rel, settle=0.2):
+        self.sweep_ptr = 0
+        for f_lo in los:
+            if not self.sweeping:
+                break
+            print("LO:", f_lo)
+            self.send_lo(f_lo)  # send lo
+            sleep(settle)       # settle
 
             pkt = pkt_queue.pop()
             fft_i = pkt["fft_i"].astype(np.int16)
@@ -600,14 +643,12 @@ class App(QtWidgets.QMainWindow):
 
             idx0 = self.sweep_ptr
             idx1 = idx0 + FFT_SIZE
-
             if idx1 > len(self.sweep_amp_flat):
                 continue
 
+            self.sweep_freq_flat[idx0 : idx1] = f_lo + bin_rel
             self.sweep_amp_flat[idx0 : idx1] = fft_mag
             self.sweep_ptr = idx1   # advance by one row
-
-            #self.sweep_ptr += 1
             
         self.sweeping = False        # finished
 
@@ -622,29 +663,33 @@ class App(QtWidgets.QMainWindow):
                 logging.warning("Stream in progress - could not also sweep.")
                 return
 
-            f_start = np.float64(self.entry_f_start.text())
-            f_stop = np.float64(self.entry_f_stop.text())
-            cf_step = np.float64(self.entry_cf_step.text())
+            f_start = np.float64(self.entry_f_start.text())*1.0e6
+            f_stop = np.float64(self.entry_f_stop.text())*1.0e6
 
-            if not (f_start and f_stop and cf_step):
+            if not (f_start and f_stop):
                 logging.error("One or more sweep parameters are empty.")
                 return
 
-            fs = self.attrs.get_fs()
+            self.plot_sweep.setLimits(xMin=f_start, xMax=f_stop)
+            self.plot_sweep.setXRange(f_start, f_stop, padding=0)
 
-            n_los = int(np.ceil((f_stop - f_start) / cf_step)) + 1   # 11 if cf_step = 1
-            N = n_los * FFT_SIZE
+            fs_hz = self.attrs.get_fs() * 1.0e6
 
-            los = f_start + np.arange(n_los) * cf_step
-            bins = np.linspace(-fs/2, fs/2, FFT_SIZE, endpoint=False)
+            lo_start = f_start + fs_hz/2
+            n_los = int(np.ceil((f_stop - f_start) / fs_hz + 1))
+            los = lo_start + np.arange(n_los) * fs_hz
+
+            # --- baseband FFT bin centres (-BW/2 … +BW/2)
+            bin_rel = np.fft.fftshift(np.fft.fftfreq(FFT_SIZE, d=1.0/fs_hz)).astype(np.float32)
 
             #self.sweep_freq = los + bins
             
-            self.sweep_freq_flat = np.empty(N, dtype=np.float32)
-            for r, lo in enumerate(los):
-                self.sweep_freq_flat[r*FFT_SIZE : (r+1)*FFT_SIZE] = lo + bins
-
-            self.sweep_amp_flat = np.empty(N, dtype=np.float32)
+            # 1-d sweep buffers
+            self.sweep_freq_flat = np.empty(FFT_SIZE * n_los, dtype=np.float32)
+            #for r, lo in enumerate(los):
+            #    self.sweep_freq_flat[r*FFT_SIZE : (r+1)*FFT_SIZE] = lo + bins
+            # There are n_los different lo:s. Plot an FFT with FFT_SIZE points for each lo.
+            self.sweep_amp_flat = np.full(FFT_SIZE * n_los, np.nan, dtype=np.float32)
 
             # self.sweep_freq = np.linspace(f_start - fs/2, f_stop+fs/2, n_pts * FFT_SIZE, dtype=np.float64).reshape(n_pts, 1024)
             #self.sweep_freq = np.arange(f_start, f_stop + cf_step, cf_step, dtype=np.float64)
@@ -654,8 +699,6 @@ class App(QtWidgets.QMainWindow):
             # There are n_pts different cf:s. Each cf will plot an FFT with FFT_SIZE points.
             self.sweep_amp = np.empty((n_los, FFT_SIZE), dtype=np.float32)
             self.inner_idx = 0
-
-            RBW = self.attrs.get_fs() / FFT_SIZE
 
             # enable sweep
             self.sweeping = True
@@ -669,17 +712,15 @@ class App(QtWidgets.QMainWindow):
                 for cl_socket in self.client_sockets:
                     send_pkt(cl_socket, ctrl_pkt)
 
-            # Start socket watcher thread
-            self.sweeper = threading.Thread(target=self.sweep_worker, args=(f_start, f_stop, cf_step), daemon=True)
-            self.sweeper.start()
+            # Start socket sweeper thread
+            sweeper = threading.Thread(target=self.sweep_worker, args=(los, bin_rel), daemon=True)
+            sweeper.start()
 
         except RuntimeError as event_type:
             self.handle_connected_abort(event_type)
         except ValueError:
             logging.error("All sweep parameters must be floating point.")
         
-        # t_acq - duration of IQ capture used to form each FFT
-
 
     def on_capture_shot(self):
         """Grab packet_shots packets from pkt_queue and dump to JSON."""
@@ -696,7 +737,7 @@ class App(QtWidgets.QMainWindow):
                 logging.error("Enter an integer > 0")
                 return
             
-            fname = f"shot_{time.strftime("%Y-%m-%d_%H:%M:%S")}.json"
+            fname = f"shot_{strftime("%Y-%m-%d_%H:%M:%S")}.json"
             path, _ = QtWidgets.QFileDialog.getSaveFileName(
                 self,
                 "Save captured packets",
@@ -705,9 +746,9 @@ class App(QtWidgets.QMainWindow):
             )
             if not path:
                 return
-
+            
+            # Store the path. Used in plotting function
             self.capture_path = path
-
             # Clear before new capture
             self.capture_buf.clear()
             self.capturing = True
@@ -721,62 +762,59 @@ class App(QtWidgets.QMainWindow):
             self.handle_connected_abort(event_type)
 
 
-    def update_spectrum(self):
-        fs = self.attrs.get_fs()*1e6
-        # zero-copy
-        vi = np.asarray(self.fft_buf_i)
-        vq = np.asarray(self.fft_buf_q)
-        
-        fft_i = np.asarray(self.fft_buf_i)
-        fft_q = np.asarray(self.fft_buf_q)
-
-        mag_db = 20 * np.log10(np.hypot(fft_i, fft_q) + 1e-3)
-        freqs = np.asarray(self.fft_freqs)
-
-        # the reconstructed signal is
-        signal = vi + 1j * vq
-        # signal_fft = fft_i + 1j * fft_q
-        # FFT on PL, then
-        #signal_fft = vi + 1j * vq
-        
-        self.curve_spectrum.setData(freqs, mag_db)
-
-        # Create a 1024 size fft
-        window = np.hamming(FFT_SIZE)
-        # Window → FFT → shift zero Hz to centre → magnitude → dB
-        signal_fft = np.fft.fftshift(np.fft.fft(signal * window))
-
-        signal_mag = np.abs(signal_fft)
-        signal_phase = np.angle(signal_fft)
-        
-        psd_dbfs = 20 * np.log10(signal_mag + 1e-12)   # dBFS
-        freqs = np.fft.fftshift(np.fft.fftfreq(n=FFT_SIZE, d=1.0 / fs))
-        # keep the positive-frequency half only
-        slice_db = psd_dbfs[FFT_SIZE // 2 :]          # shape = (FFT_N/2,), NBINS elements (0 … +fs/2)
-
-        # roll buffer if full
-        self.wf_data[self.wf_ptr, :] = slice_db
-        self.wf_ptr -= 1
-
-        if self.wf_ptr == 0:
-            self.wf_ptr = self.WF_ROWS - 1
-
-        # flip vertically so the newest slice is at the bottom
-        img = np.flipud(self.wf_data)
-
-        # update the image
-        self.wfall_img.setImage(img, autoLevels=False)
-
-        # (optional) keep x-axis in Hz
-        self.wfall_img.setRect(
-            QtCore.QRectF(freqs[0],         # left  (-fs/2 if you kept both halves)
-                        0,                # top   (row 0 after flip)
-                        freqs[-1]-freqs[0],  # width
-                        self.WF_ROWS)          # height in “rows”
-        )
-
-        # self.curve_spectrum.setData(freqs, psd_dbfs)
-        self.plot_spectrum.setYRange(psd_dbfs.max() - 80, psd_dbfs.max())  # 80-dB span
+    # def update_spectrum(self):
+    #     fs = self.attrs.get_fs()*1e6
+    #     # zero-copy
+    #     vi = np.asarray(self.fft_buf_i)
+    #     vq = np.asarray(self.fft_buf_q)
+    #
+    #     fft_i = np.asarray(self.fft_buf_i)
+    #     fft_q = np.asarray(self.fft_buf_q)
+    #
+    #     mag_db = 20 * np.log10(np.hypot(fft_i, fft_q) + 1e-3)
+    #     freqs = np.asarray(self.fft_freqs)
+    #
+    #     # the reconstructed signal is
+    #     signal = vi + 1j * vq
+    #
+    #     self.curve_spectrum.setData(freqs, mag_db)
+    #
+    #     # Create a 1024 size fft
+    #     window = np.hamming(FFT_SIZE)
+    #     # Window → FFT → shift zero Hz to centre → magnitude → dB
+    #     signal_fft = np.fft.fftshift(np.fft.fft(signal * window))
+    #
+    #     signal_mag = np.abs(signal_fft)
+    #     signal_phase = np.angle(signal_fft)
+    #
+    #     psd_dbfs = 20 * np.log10(signal_mag + 1e-12)   # dBFS
+    #     freqs = np.fft.fftshift(np.fft.fftfreq(n=FFT_SIZE, d=1.0 / fs))
+    #     # keep the positive-frequency half only
+    #     slice_db = psd_dbfs[FFT_SIZE // 2 :]          # shape = (FFT_N/2,), NBINS elements (0 … +fs/2)
+    #
+    #     # roll buffer if full
+    #     self.wf_data[self.wf_ptr, :] = slice_db
+    #     self.wf_ptr -= 1
+    #
+    #     if self.wf_ptr == 0:
+    #         self.wf_ptr = self.WF_ROWS - 1
+    #
+    #     # flip vertically so the newest slice is at the bottom
+    #     img = np.flipud(self.wf_data)
+    #
+    #     # update the image
+    #     self.wfall_img.setImage(img, autoLevels=False)
+    #
+    #     # (optional) keep x-axis in Hz
+    #     self.wfall_img.setRect(
+    #         QtCore.QRectF(freqs[0],         # left  (-fs/2 if you kept both halves)
+    #                     0,                # top   (row 0 after flip)
+    #                     freqs[-1]-freqs[0],  # width
+    #                     self.WF_ROWS)          # height in “rows”
+    #     )
+    #
+    #     self.curve_spectrum.setData(freqs, psd_dbfs)
+    #     self.plot_spectrum.setYRange(psd_dbfs.max() - 80, psd_dbfs.max())  # 80-dB span
 
 
     # def update_sweep(self):
@@ -830,21 +868,41 @@ class App(QtWidgets.QMainWindow):
     #         self.sweep_amp_flat[:idx1]
     #     )
 
+    def compute_power_spectrum(self, magnitudes):
+        PSD = np.abs(magnitudes)**2 / (FFT_SIZE**2)
+        PSD_log = 10.0 * np.log10(PSD + self.EPS)
+        return PSD_log
+
     def update_sweep(self):
+        """Sweep or do nothing."""
         if not self.sweeping or not pkt_queue:
             return
+        
+        PSD_log = self.compute_power_spectrum(self.sweep_amp_flat)
+
+        mag_dbfs = 20.0 * np.log10(self.sweep_amp_flat + self.EPS)
+         # 4. convert dBFS → dBm  (subtract analog gain !) ------------------
+        GAIN_dB = float(self.attrs.get_hardwaregain())
+
+        #mag_dbfs = np.fft.fftshift(mag_dbfs)
+
+        # Convert to dbm using hardwaregain as reference
+        mag_dBm = mag_dbfs - GAIN_dB
+        mag_dBm[mag_dBm < -GAIN_dB] = -GAIN_dB
 
         self.curve_sweep.setData(
-            self.sweep_freq_flat, 
-            self.sweep_amp_flat
+            self.sweep_freq_flat[:self.sweep_ptr], 
+            PSD_log[:self.sweep_ptr]
         )
 
-    def update_plots2(self):
+        self.plot_sweep.setYRange(-GAIN_dB+1.5, 0)
+
+
+    def update_plots(self):
+        """Plot or do nothing."""
         if (not self.streaming) and (not self.capturing):
             return
-        
-        # Causes plot to not update. If this happens at regular intervals, 
-        # it causes what looks like lag
+
         if not pkt_queue:
             logging.warning("Packet queue is empty")
             return
@@ -853,96 +911,95 @@ class App(QtWidgets.QMainWindow):
         if self.attrs.is_empty():
             return
 
-        fs_hz = self.attrs.get_fs() * 1e6
+        fs_hz = self.attrs.get_fs() * 1.0e6
+        f_lo = self.attrs.get_lo() * 1.0e6
+        # gives −fs/2 … +fs/2 (monotonic order)
+        freq_all = np.fft.fftshift(np.fft.fftfreq(FFT_SIZE, d=1.0/fs_hz))
+        # add back the center frequency
+        if not self.loopback_on:
+            freq_all += f_lo
 
         # Fetch a waiting packet
         pkt = pkt_queue.pop()
 
         length = pkt["length"]
-        fft_i = pkt["fft_i"].astype(np.int16)
-        fft_q = pkt["fft_q"].astype(np.int16)
+        fft_i = pkt["fft_i"]
+        fft_q = pkt["fft_q"]
+        bins = pkt["freq_bin"]
+        v_i = pkt["i"]
+        v_q = pkt["q"]
 
-        fft_out = fft_i + 1j*fft_q
-        fft_mag = np.abs(fft_out).astype(np.float64)
-        fft_phase = np.angle(fft_out).astype(np.float64)
+        signal = v_i + 1j * v_q
+
+        phase_diff = np.angle(signal)
+        #phase_diff = np.unwrap(phase_diff)
+
+        fft_signal = fft_i + 1j*fft_q
+        fft_mag = np.abs(fft_signal)
 
         if (length != len(fft_i) or length != len(fft_q)):
             logging.warning("Packet length mismatch - some packets were dropped.")
         
-        # scale in m Volts/count
-        scale = 250 / (2047 * 10**(self.attrs.get_hardwaregain() / 20)) #TODO: This is very small, is it correct?
-
-        v_i = pkt["i"].astype(np.float64)
-        v_q = pkt["i"].astype(np.float64)
-
-        # 1.  Wrap bin numbers into 0 … FFT_N-1   (so -1 -> 1023)
-        bins = (pkt["freq_bin"].astype(np.int16) + FFT_SIZE) % FFT_SIZE
-        # temp fix first indices
-        bins[1] = bins[0] + 1
-        bins[2] = bins[1] + 1
-        bins[3] = bins[2] + 1
-        
-        # 2. Empty array of magnitudes for one FFT of size 1024
-        mag = np.full(FFT_SIZE, np.nan, np.float64)
-
-        try:
-            # 3. Vectorised assignment: put each magnitude in its bin
-            mag[bins] = fft_mag
-        except IndexError:
-            print("-1 was not an index in bin")
-        
-        # 4. Convert to dBFS and fftshift so it is monotonic
-        #mag[mag == 0] = 10            # avoid -inf spikes
-        #  Plot the power gain in db with reference 2047 which is the max magnitude per sample when digital gain = 0
-        #mag_dbfs = 20*np.log10(mag/2047)
-        #mag_dbfs = np.fft.fftshift(mag_dbfs)
-
-        mag = np.fft.fftshift(mag)
+        # Set this just once
         if self.step == 1:
             self.step = max(1, length // self.MAX_PTS)
-
-        freq_all = np.fft.fftshift(np.fft.fftfreq(FFT_SIZE, d=1.0/fs_hz))                 # gives −fs/2 … +fs/2 (monotonic)
-
-        # wrap to signed range
-        # bins_signed = np.where(bins >= FFT_SIZE // 2, bins - FFT_SIZE, bins)
-        # freqs_hz = bins_signed * fs_hz / FFT_SIZE
-        # 5.  Plot
-        self.curve_spectrum.setData(freq_all, mag, downsample=self.step, downsampleMethod='subsample')
-        self.plot_spectrum.setYRange(0, 100)
-
-        power_RF_FS_dBm = POWER_FS_dBM - self.attrs.get_hardwaregain()
-
-        #mag_dBm = mag_dBFS + power_RF_FS_dBm
-
-        # --- FPGA FFT magnitude ------------------------------------
         
-        # roll buffer if full
-        self.wf_data[:, self.wf_ptr] = mag
+        # wrap to signed range
+        bins_signed = np.where(bins >= FFT_SIZE // 2, bins - FFT_SIZE, bins)
+        freqs_hz = bins_signed * fs_hz / FFT_SIZE
+       
+        # Empty array for one whole FFT
+        mag = np.full(FFT_SIZE, np.nan, np.float32)
+        # Vectorised assignment: put each magnitude in its bin
+        mag[bins] = fft_mag
 
+        # Convert to dBFS and fftshift so it is monotonic
+        PSD_log = self.compute_power_spectrum(mag)
+        PSD_shifted = np.fft.fftshift(PSD_log)
+
+        mag_dbfs = 20.0 * np.log10(mag + self.EPS)
+         # 4. convert dBFS → dBm  (subtract analog gain !) ------------------
+        GAIN_dB = float(self.attrs.get_hardwaregain())
+
+        mag_dbfs = np.fft.fftshift(mag_dbfs)
+
+        #self.curve_spectrum.setFillLevel(-GAIN_dB)
+
+        # Convert to dbm using hardwaregain as reference
+        mag_dBm = mag_dbfs - GAIN_dB
+        mag_dBm[mag_dBm < -GAIN_dB] = -GAIN_dB
+
+        # Plot spectrum and spectrogram
+        self.curve_spectrum.setData(freq_all, PSD_shifted, downsample=self.step, downsampleMethod='subsample', connect='finite')
+        #self.plot_spectrum.setYRange(-GAIN_dB+1.5, 0)
+        self.plot_spectrum.setYRange(-50.0, 0)
+        self.plot_spectrum.setXRange(freq_all[0], freq_all[-1])
+        self.wfall_img.setLevels([-50.0, 0])
+
+        # roll buffer if full
+        self.wf_data[:, self.wf_ptr] = mag_dBm
         if self.wf_ptr == 0:
             self.wf_ptr = self.WF_ROWS - 1
-
         self.wf_ptr -= 1
 
         # flip vertically so the newest slice is at the bottom
         # update the image
         self.wfall_img.setImage(self.wf_data, autoLevels=False)
-
         # keep x-axis in Hz
         self.wfall_img.setRect(
-            QtCore.QRectF(freq_all[0],         # left  (-fs/2 if you kept both halves)
-                        0,                     # top   (row 0 after flip)
-                        freq_all[-1]-freq_all[0],  # width
+            QtCore.QRectF(freq_all[0],         # left
+                        0,                     # top
+                        freq_all[-1] - freq_all[0],  # width
                         self.WF_ROWS)          # height in “rows”
         )
 
         t0  = pkt["t0"]
-        t   = (t0 + np.arange(length) * 1 / fs_hz)
+        t   = t0 + np.arange(length) * 1 / fs_hz
 
-        #self.curve_i.setData(t, V_i, downsample=self.step, downsampleMethod='subsample')
-        #self.curve_q.setData(t, V_q, downsample=self.step, downsampleMethod='subsample')
-        #self.curve_iq.setData(V_i, V_q, downsample=step, downsampleMethod='subsample')
-        #self.curve_phase.setData(freq_all, fft_phase, downsample=self.step, downsampleMethod='subsample')
+        self.curve_i.setData(t, v_i, downsample=self.step, downsampleMethod='subsample')
+        self.curve_q.setData(t, v_q, downsample=self.step, downsampleMethod='subsample')
+        #self.curve_iq.setData(v_i, v_q, downsample=self.step, downsampleMethod='subsample')
+        #self.curve_phase.setData(t, phase_diff, downsample=self.step, downsampleMethod='subsample')
 
         # Capture logic
         if self.capturing:
@@ -960,98 +1017,84 @@ class App(QtWidgets.QMainWindow):
                 logging.info(f"Captured {len(self.capture_buf)} pkts → {os.path.basename(self.capture_path)}")
                 
 
-
-    def update_plots(self):
-        if (not self.streaming) and (not self.capturing):
-            return
-        
-        # Causes plot to not update. If this happens at regular intervals, 
-        # it causes what looks like lag
-        if not pkt_queue:
-            logging.warning("Packet queue is empty")
-            return
-
-        # No attributes sent yet
-        if self.attrs.is_empty():
-            return
-
-        pkt = pkt_queue.pop()
-
-        # i and q are twos compliment 12 bits each internally, 2^11 - 1 = 2047 is max value.
-        # 250 mV = the AD9361 differential RMS full-scale at the ADC input.
-        G_db = float(self.attrs.get_hardwaregain())
-        # scale in m Volts/count
-        #scale = 250 / (2047 * 10**(G_db / 20)) #TODO: This is very small, is it correct?
-        scale = 1
-
-        V_i = pkt["i"].astype(np.float32) * scale
-        V_q = pkt["q"].astype(np.float32) * scale
-        
-        fft_i = pkt["fft_i"].astype(np.int16)
-        fft_q = pkt["fft_q"].astype(np.int16)
-
-        length = pkt["length"]
-
-        # bin number to frequency
-        bin_hz = pkt["freq_bin"].astype(np.float32) * self.attrs.get_fs() / FFT_SIZE
-
-        step = max(1, length // self.MAX_PTS)
-        
-        # if length != BUF_SAMPS:
-        #     logging.warning("ERROR")
-        
-        if (length != len(V_i) or length != len(V_q)):
-            logging.warning("Packet length mismatch - some packets were dropped.")
-
-        # full rate samples
-        self.fft_buf_i.extend(V_i)
-        self.fft_buf_q.extend(V_q)
-        self.fft_freqs.extend(bin_hz)
-
-        t0  = pkt["t0"]
-        t   = (t0 + np.arange(length) * 1 / (self.attrs.get_fs()*1e6))
-        
-        # Complex baseband
-        z = V_i + 1j * V_q
-        phase = np.angle(z)
-        phase = np.unwrap(phase)
-
-        #t = np.array(pkt["t0"])
-
-        # dot_pr = np.dot(V_i, V_q)
-        # norm_I = np.sqrt(np.dot(V_i, V_i))
-        # norm_Q = np.sqrt(np.dot(V_q, V_q))
-        # cos_theta = dot_pr / (norm_I * norm_Q)
-        # phase_diff = np.arccos(cos_theta)
-        #
-        # phases = phase_diff * np.ones(length)
-
-        # Need a full frame of FFT_SIZE samples
-        if len(self.fft_buf_i) >= FFT_SIZE and len(self.fft_buf_q) >= FFT_SIZE:
-            self.update_spectrum()
-
-
-        self.curve_i.setData(t, V_i, downsample=step, downsampleMethod='subsample')
-        self.curve_q.setData(t, V_q, downsample=step, downsampleMethod='subsample')
-        self.curve_iq.setData(V_i, V_q, downsample=step, downsampleMethod='subsample')
-        self.curve_phase.setData(t, phase, downsample=step, downsampleMethod='subsample')
-
-        #t_buf.extend(t)
-        #i_buf.extend(V_i)
-        #q_buf.extend(V_q)
-        #phase_buf.extend(phases)
-
-        # Capture logic
-        if self.capturing:
-            self.capture_buf.append(pkt)
-            if len(self.capture_buf) >= self.packet_shots:
-                fname = f"shot_{time.strftime("%Y-%m-%d_%H:%M:%S")}.json"
-                with open(fname, "w") as fp:
-                    json.dump(self.capture_buf, fp, default=self.ndarray_to_list, separators=(",", ":"))
-                    
-                logging.info(f"Saved {len(self.capture_buf)} pkts → {fname}")
-                # Capture finished
-                self.capturing = self.streaming = False
+    # def update_plots(self):
+    #     if (not self.streaming) and (not self.capturing):
+    #         return
+    #
+    #     # Causes plot to not update. If this happens at regular intervals, 
+    #     # it causes what looks like lag
+    #     if not pkt_queue:
+    #         logging.warning("Packet queue is empty")
+    #         return
+    #
+    #     # No attributes sent yet
+    #     if self.attrs.is_empty():
+    #         return
+    #
+    #     pkt = pkt_queue.pop()
+    #
+    #     # i and q are twos compliment 12 bits each internally, 2^11 - 1 = 2047 is max value.
+    #     # 250 mV = the AD9361 differential RMS full-scale at the ADC input.
+    #     G_db = float(self.attrs.get_hardwaregain())
+    #     # scale in m Volts/count
+    #
+    #     V_i = pkt["i"].astype(np.float32) * scale
+    #     V_q = pkt["q"].astype(np.float32) * scale
+    #
+    #     fft_i = pkt["fft_i"].astype(np.int16)
+    #     fft_q = pkt["fft_q"].astype(np.int16)
+    #
+    #     length = pkt["length"]
+    #
+    #     # bin number to frequency
+    #     bin_hz = pkt["freq_bin"].astype(np.float32) * self.attrs.get_fs() / FFT_SIZE
+    #
+    #     step = max(1, length // self.MAX_PTS)
+    #
+    #     # if length != BUF_SAMPS:
+    #     #     logging.warning("ERROR")
+    #
+    #     if (length != len(V_i) or length != len(V_q)):
+    #         logging.warning("Packet length mismatch - some packets were dropped.")
+    #
+    #     # full rate samples
+    #     self.fft_buf_i.extend(V_i)
+    #     self.fft_buf_q.extend(V_q)
+    #     self.fft_freqs.extend(bin_hz)
+    #
+    #     t0  = pkt["t0"]
+    #     t   = (t0 + np.arange(length) * 1 / (self.attrs.get_fs()*1e6))
+    #
+    #     # Complex baseband
+    #     z = V_i + 1j * V_q
+    #     phase = np.angle(z)
+    #     phase = np.unwrap(phase)
+    #
+    #     #t = np.array(pkt["t0"])
+    #
+    #     # dot_pr = np.dot(V_i, V_q)
+    #     # norm_I = np.sqrt(np.dot(V_i, V_i))
+    #     # norm_Q = np.sqrt(np.dot(V_q, V_q))
+    #     # cos_theta = dot_pr / (norm_I * norm_Q)
+    #     # phase_diff = np.arccos(cos_theta)
+    #     #
+    #     # phases = phase_diff * np.ones(length)
+    #
+    #     # Need a full frame of FFT_SIZE samples
+    #     if len(self.fft_buf_i) >= FFT_SIZE and len(self.fft_buf_q) >= FFT_SIZE:
+    #         self.update_spectrum()
+    #
+    #
+    #     self.curve_i.setData(t, V_i, downsample=step, downsampleMethod='subsample')
+    #     self.curve_q.setData(t, V_q, downsample=step, downsampleMethod='subsample')
+    #     self.curve_iq.setData(V_i, V_q, downsample=step, downsampleMethod='subsample')
+    #     self.curve_phase.setData(t, phase, downsample=step, downsampleMethod='subsample')
+    #
+    #     #t_buf.extend(t)
+    #     #i_buf.extend(V_i)
+    #     #q_buf.extend(V_q)
+    #     #phase_buf.extend(phases)
+    #
 
     def ndarray_to_list(self, obj):
         if isinstance(obj, np.ndarray):

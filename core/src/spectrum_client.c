@@ -7,6 +7,7 @@
 #include <iio.h>
 #include <netinet/in.h>
 #include <pthread.h>
+#include <semaphore.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -19,21 +20,19 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <semaphore.h>
-
-// Number of i,q pair samples
-#define BUF_SAMPS 2048
 // Magic four bytes to identify header
 #define MAGIC 0x52414430
 
 /* IIO structs for streaming */
 static struct iio_context *ctx = NULL;
-static struct iio_buffer *buf_rx = NULL;
+// static struct iio_buffer *buf_rx = NULL;
 static struct iio_buffer *buf_tx = NULL;
+static struct ch_attrs *attrs = NULL;
+// receiver buffer
+static int16_t *buf_rx;
 
 static struct channels ch;
 static struct devices dev;
-static struct ch_attrs *attrs = NULL;
 
 static int client_fd = 0;
 
@@ -42,28 +41,110 @@ static double t0_base = 0;
 static bool is_streaming = false;
 static bool initial_stream = false;
 
-// Threading semaphores
-sem_t mutex;
-
 // chunk header
 #pragma pack(push, 1)
 typedef struct {
-    uint32_t magic; // MAGIC (RAD0)
-    uint32_t nsamp; // no. [FFT I, FFT Q, bin, I] samples
+    uint32_t magic; // MAGIC "RAD0"
+    uint32_t nsamp; // no. [FFT I, FFT Q, bin, bin, I, Q, pad, pad] samples
     double t0;      // initial time of chunk
 } hdr_t;
 #pragma pack(pop)
 
-int send_refill(int client_fd, size_t nsamp, double t0) {
+// Semaphore for streaming
+sem_t sema_stream;
+
+int send_refill_iio(int client_fd, struct iio_buffer *buf_rx, size_t nsamp,
+                    double t0) {
     hdr_t head = {.magic = MAGIC, .nsamp = (uint32_t)nsamp, .t0 = t0};
+    /* use iovec to structure the chunk into header and samples*/
+    struct iovec buffs[2] = {{&head, sizeof(head)},     // header
+                             {iio_buffer_start(buf_rx), // buffer ptr
+                              nsamp * NB_WORDS * sizeof(int16_t)}};
+
+    ssize_t need = sizeof(head) + nsamp * NB_WORDS * sizeof(int16_t);
+    // send to server
+    ssize_t n = writev(client_fd, buffs, 2);
+
+    return n == need ? 0 : 1;
+}
+
+static int send_all(int fd, struct iovec *v, int nvec) {
+    ssize_t want = 0;
+    for (int i = 0; i < nvec; ++i)
+        want += v[i].iov_len;
+
+    while (want > 0) {
+        ssize_t n = writev(fd, v, nvec);
+        if (n < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK)
+                continue;
+            return -1;
+        }
+        want -= n;
+        while (n && nvec) {
+            if (n < (ssize_t)v[0].iov_len) {
+                v[0].iov_base = (char *)v[0].iov_base + n;
+                v[0].iov_len -= n;
+                n = 0;
+            } else {
+                n -= v[0].iov_len;
+                ++v;
+                --nvec;
+            }
+        }
+    }
+    return 0;
+}
+
+int readdev(void *buf, int client_fd, double t0_base) {
+    const size_t frame_bytes = BUF_SAMPS * NB_WORDS * sizeof(int16_t);
+    ssize_t nbytes_rx = 0;
+    // stores the command
+    char cmd[512];
+    snprintf(cmd, sizeof cmd, "iio_readdev -u %s -b %d %s 2>/dev/null", URI,
+             4096, DEV_RX);
+
+    // execute readdev
+    FILE *fp = popen(cmd, "r");
+    if (!fp) {
+        perror("popen");
+        return 1;
+    }
+
+    while (1) {
+        /* fread() blocks until an entire frame is available */
+        size_t nbytes_rx = fread((int16_t *)buf, 1, frame_bytes, fp);
+        if (nbytes_rx <= 0) { /* EOF */
+            fprintf(stderr, "samples could not be read.\n");
+            // return 1;
+        }
+        if (nbytes_rx != frame_bytes) {
+            fprintf(stderr, "short read (%zu B) – device stalled?\n",
+                    nbytes_rx);
+            continue;
+        }
+
+        double t0 = time_now() - t0_base;
+
+        int ret = send_refill(client_fd, (int16_t *)buf, (size_t)BUF_SAMPS, t0);
+
+        if (ret == 1) {
+            fprintf(stderr, "not all samples were sent.\n");
+        }
+    }
+    return 0;
+}
+
+int send_refill(int client_fd, int16_t *buf, size_t nsamp, double t0) {
+    hdr_t head = {.magic = (uint32_t)MAGIC, .nsamp = (uint32_t)nsamp, .t0 = t0};
 
     /* use iovec to structure the chunk into header and samples*/
-    struct iovec buffs[2] = {
-        {&head, sizeof(head)},
-        {iio_buffer_start(buf_rx), nsamp * 4 * sizeof(int16_t)}}; // 4 words
+    struct iovec buffs[2] = {{&head, sizeof head}, // header
+                             {buf_rx,              // buffer ptr
+                              nsamp * NB_WORDS * sizeof(int16_t)}}; // 8 words
 
-    ssize_t need = sizeof(head) + nsamp * 4 * sizeof(int16_t);
-    // write to server
+    ssize_t need = sizeof(head) + nsamp * NB_WORDS * sizeof(int16_t);
+    // send to server
     ssize_t n = writev(client_fd, buffs, 2);
 
     return n == need ? 0 : 1;
@@ -178,11 +259,9 @@ int update_lo(struct stream_cfg *s_cfg) {
         perror("RX LO ERROR\n");
         return -1;
     }
-    printf("GOT: %lld\n", s_cfg->lo_hz);
     iio_channel_enable(ch_alt0);
-    if (wr_chn_lli(ch_alt0, "frequency", s_cfg->lo_hz, "lo freq")) {
-        // return errno;
-    }
+
+    wr_chn_lli(ch_alt0, "frequency", s_cfg->lo_hz, "lo freq");
 
     iio_channel_disable(ch_alt0);
 
@@ -206,9 +285,6 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
         return -1;
     }
 
-    char avail_bw[128];
-    iio_channel_attr_read(ch_0, "rf_bandwidth_available", avail_bw, 128);
-
     // Write the cfg
 #ifdef SET_RXCFG
     iio_channel_enable(ch_0);
@@ -217,27 +293,14 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
     if (s_cfg->type == rx) {
         strcpy((char *)s_cfg->gain_mode, "manual");
 
-        if (wr_chn_str(ch_0, "gain_control_mode", s_cfg->gain_mode,
-                       "gain mode")) {
-            // return errno;
-        }
+        wr_chn_str(ch_0, "gain_control_mode", s_cfg->gain_mode, "gain mode");
     }
 
-    if (wr_chn_f(ch_0, "hardwaregain", s_cfg->gain_db, "gain")) {
-        // return errno;
-    }
-    if (wr_chn_str(ch_0, "rf_port_select", s_cfg->rfport, "port")) {
-        // return errno;
-    }
-    if (wr_chn_lli(ch_0, "rf_bandwidth", s_cfg->bw_hz, "bandwidth")) {
-        // return errno;
-    }
-    if (wr_chn_lli(ch_0, "sampling_frequency", s_cfg->fs_hz, "sampling freq")) {
-        // return errno;
-    }
-    if (wr_chn_lli(ch_alt0, "frequency", s_cfg->lo_hz, "lo freq")) {
-        // return errno;
-    }
+    wr_chn_f(ch_0, "hardwaregain", s_cfg->gain_db, "gain");
+    wr_chn_str(ch_0, "rf_port_select", s_cfg->rfport, "port");
+    wr_chn_lli(ch_0, "rf_bandwidth", s_cfg->bw_hz, "bandwidth");
+    wr_chn_lli(ch_0, "sampling_frequency", s_cfg->fs_hz, "sampling freq");
+    wr_chn_lli(ch_alt0, "frequency", s_cfg->lo_hz, "lo freq");
 
     iio_channel_disable(ch_0);
     iio_channel_disable(ch_alt0);
@@ -286,40 +349,50 @@ int config_streaming_ch(struct stream_cfg *s_cfg) {
 //     return 0;
 // }
 
-int stream_rx_byte(struct stream_cfg *rxcfg) {
+int stream_rx_byte() {
     while (true) {
         if (!is_streaming) {
-            sem_wait(&mutex);
+            sem_wait(&sema_stream);
         } else {
-            ssize_t nbytes_rx;
-            // Refill RX buffer. Returns # bytes read into the buffer
-            if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
-                perror("refill rx");
-                return errno;
-            }
-            double t0 = time_now() - t0_base;
-            // 4 words per sample [fft_i, fft_q, freq_bin, rx_i]
-            size_t nsamples = nbytes_rx / (4 * sizeof(int16_t));
-
-            if (send_refill(client_fd, nsamples, t0) != 0) {
-                perror("refill rx with data");
-                return errno;
+            if (readdev(buf_rx, client_fd, t0_base) == 1) {
+                return 1;
             }
         }
     }
+    return 0;
 }
 
-int stream_rx(struct stream_cfg *rxcfg) {
-    double t0_base;
-    size_t sample_count_rx = 0;
-    const double sample_period = 1.0 / rxcfg->fs_hz;
+// int stream_rx_byte_iio(struct iio_buffer *buf_rx) {
+//     while (true) {
+//         if (!is_streaming) {
+//             sem_wait(&sema_stream);
+//         } else {
+//             ssize_t nbytes_rx;
+//             // Refill RX buffer. Returns # bytes read into the buffer
+//             if ((nbytes_rx = iio_buffer_refill(buf_rx)) < 0) {
+//                 perror("refill rx");
+//                 return errno;
+//             }
+//             printf("Bytes read: %ld\n", nbytes_rx);
+//
+//             double t0 = time_now() - t0_base;
+//             size_t nsamples = nbytes_rx / (NB_WORDS * sizeof(int16_t));
+//
+//             if (send_refill(client_fd, nsamples, t0) != 0) {
+//                 perror("refill rx with data");
+//                 return errno;
+//             }
+//         }
+//     }
+// }
 
-    t0_base = time_now();
+int stream_rx(struct stream_cfg *rxcfg, struct iio_buffer *buf_rx) {
+    size_t sample_count_rx = 0;
+
     while (true) {
-        // if (!is_streaming) {
-        //     sem_wait(&mutex);
-        //     t0_base = time_now(); // Check this behaviour
-        // }
+        if (!is_streaming) {
+            sem_wait(&sema_stream);
+        }
         ssize_t nbytes_rx;
 
         // Refill RX buffer. Returns # bytes read into the buffer
@@ -356,8 +429,8 @@ int stream_rx(struct stream_cfg *rxcfg) {
         // number of samples read into buffer (should equal 2*BUF_SAMPS)
         double nsamples = (double)nbytes_rx / sizeof(int16_t);
 
-        // Print # samples per refill
-        // printf("\tRX: %8.2f S/s\n", nsamples);
+        // print # samples per refill
+        printf("\tRX: %8.2f S/s\n", nsamples);
 
         sample_count_rx += nbytes_rx / sizeof(int16_t);
 
@@ -376,23 +449,26 @@ int stream_rx(struct stream_cfg *rxcfg) {
     return 0;
 }
 
-int loopback_tx_rx() {
-    int ret = 1;
+int enable_loopback_tx_rx(int mode) {
     double val;
     iio_device_debug_attr_read_double(dev.trans, DBG_LOOPBACK, &val);
-    if (val == 1) {
-        if (iio_device_debug_attr_write_double(dev.trans, DBG_LOOPBACK, 0) ==
-            0) {
-            ret = ret & 0b0;
-        }
+
+    if (iio_device_debug_attr_write_double(dev.trans, DBG_LOOPBACK, mode) ==
+        0) {
+        return 0;
     }
+    return 1;
+}
+
+int set_tx(const char *filename) {
+    printf("%s\n", filename);
 
     FILE *fp;
     long file_size;
     void *buffer_data;
 
     // Open sample as binary data
-    if (!(fp = fopen("../src/signals/sine_wave.bin", "rb"))) {
+    if (!(fp = fopen(filename, "rb"))) {
         return EXIT_FAILURE;
     }
 
@@ -416,12 +492,12 @@ int loopback_tx_rx() {
 
     buf_tx =
         iio_device_create_buffer(dev.tx, file_size / sizeof(int16_t), true);
+
     if (buf_tx == NULL) {
         free(buffer_data);
         return EXIT_FAILURE;
     }
-
-    // Copy binary to buf_tx.
+    // Copy binary to tx buffer
     memcpy(iio_buffer_start(buf_tx), buffer_data, file_size);
 
     if (iio_buffer_push(buf_tx) < 0) {
@@ -431,13 +507,13 @@ int loopback_tx_rx() {
     }
 
     free(buffer_data);
-    ret = ret | 0b10;
-    return ret;
+
+    return 0;
 }
 
 void destroy(void) {
     if (buf_rx)
-        iio_buffer_destroy(buf_rx);
+        free(buf_rx);
     if (buf_tx)
         iio_buffer_destroy(buf_tx);
     if (ch.rx0_i)
@@ -450,47 +526,11 @@ void destroy(void) {
         iio_context_destroy(ctx);
 }
 
-/* Block until receiving control message.
- * Returns 0 on success, 1 on error. */
-int wait_for_stream(int fd, const char *wanted) {
-    char buf[256];
-    size_t len = 0;
-
-    while (1) {
-        char c;
-        ssize_t n = recv(fd, &c, 1, 0);
-        if (n <= 0) /* peer closed or error */
-            return 1;
-
-        if (c == '\n') { /* got a full JSON line */
-            buf[len] = '\0';
-            cJSON *root = cJSON_Parse(buf);
-            if (root) {
-                const cJSON *type = cJSON_GetObjectItem(root, "type");
-                const cJSON *cmd = cJSON_GetObjectItem(root, "do");
-                if (cJSON_IsString(type) && cJSON_IsString(cmd) &&
-                    strcmp(type->valuestring, "ctrl") == 0 &&
-                    strcmp(cmd->valuestring, wanted) == 0) {
-                    cJSON_Delete(root);
-                    return 0; /* wanted command received */
-                }
-                cJSON_Delete(root);
-            }
-            len = 0; /* start next packet */
-        } else if (len < sizeof(buf) - 1) {
-            buf[len++] = c;
-        }
-    }
-}
-
 void *recv_thread(void *arg) {
     struct stream_cfg *rx_cfg = (struct stream_cfg *)arg;
-
-    char buf[256];
+    // buffer for receiving in bulk
+    char buf[BUF_SAMPS];
     size_t len = 0;
-
-    // temp buffer for receiving in bulk
-    char chunk[128];
 
     while (true) {
         char c;
@@ -505,6 +545,8 @@ void *recv_thread(void *arg) {
 
             cJSON *payload = cJSON_Parse(buf);
             if (!payload) {
+                fprintf(stderr, "Error in receiver thread: payload empty. \
+                                 Terminating...\n");
                 return NULL;
             }
 
@@ -549,11 +591,10 @@ void *recv_thread(void *arg) {
                 const cJSON *json_lo = cJSON_GetObjectItem(cmd, "lo");
                 double num_lo = cJSON_GetNumberValue(json_lo);
 
-                rx_cfg->lo_hz = MHZ(num_lo);
+                rx_cfg->lo_hz = num_lo;
 
                 if (update_lo(rx_cfg) != 0) {
                     perror("Error in listener thread: could not update lo.");
-                    // return NULL;
                 }
 
                 // Reaching here means LO was updated
@@ -567,16 +608,33 @@ void *recv_thread(void *arg) {
             if (0 == strcmp(type->valuestring, "ctrl")) {
                 const cJSON *cmd = cJSON_GetObjectItem(payload, "do");
                 const char *str_cmd = cJSON_GetStringValue(cmd);
-                printf("GOT %s\n", str_cmd);
+                printf("recv: %s\n", str_cmd);
                 if (0 == strcmp("start", str_cmd)) {
                     is_streaming = true;
-                    sem_post(&mutex);
+                    sem_post(&sema_stream);
                     if (!initial_stream) {
                         initial_stream = true;
                         t0_base = time_now();
                     }
                 } else {
                     is_streaming = false;
+                }
+            }
+
+            if (0 == strcmp(type->valuestring, "loopback")) {
+                const cJSON *cmd = cJSON_GetObjectItem(payload, "do");
+                const char *str_cmd = cJSON_GetStringValue(cmd);
+
+                printf("Received: %s\n", str_cmd);
+                if (0 == strcmp("start", str_cmd)) {
+                    const cJSON *filename =
+                        cJSON_GetObjectItem(payload, "file");
+                    const char *str_filename = cJSON_GetStringValue(filename);
+                    enable_loopback_tx_rx(1); // on
+                    set_tx(str_filename);
+                } else {
+                    enable_loopback_tx_rx(0); // off
+                    iio_buffer_destroy(buf_tx);
                 }
             }
 
@@ -637,7 +695,7 @@ int main(int argc, char *argv[]) { // IIO context
     config_streaming_ch(txcfg);
 
     // Init semaphores
-    sem_init(&mutex, 0, 0);
+    sem_init(&sema_stream, 0, 0);
     // ... and spin up a listener thread after connecting
     pthread_t tid;
     if (pthread_create(&tid, NULL, recv_thread, rxcfg) != 0) {
@@ -672,10 +730,6 @@ int main(int argc, char *argv[]) { // IIO context
 
     send_curr_config(&client_fd);
 
-    // if (loopback_tx_rx() == 1) {
-    //     return EXIT_FAILURE;
-    // }
-
 #ifdef STREAM_RX
     // Read RX scale factor on init
     if (iio_channel_attr_read_double(ch.vccint, "scale", &(attrs->rx_scale)) <
@@ -683,20 +737,21 @@ int main(int argc, char *argv[]) { // IIO context
         return errno;
     }
 
-    buf_rx = iio_device_create_buffer(dev.rx, BUF_SAMPS, false);
-    if (buf_rx == NULL) {
+    buf_rx = (int16_t *)malloc(sizeof(int16_t) * NB_WORDS * BUF_SAMPS);
+    if (!buf_rx) {
         return EXIT_FAILURE;
     }
-    stream_rx_byte(rxcfg);
+
+    stream_rx_byte();
 
 #endif /* ifdef STREAM_RX */
 
-    sem_close(&mutex);
+    // cleanup
+    sem_close(&sema_stream);
 
     free(rxcfg);
     free(txcfg);
     free(attrs);
-
     destroy();
 
     return EXIT_SUCCESS;

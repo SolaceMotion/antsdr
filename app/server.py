@@ -12,26 +12,24 @@ import numpy as np
 from shared import pkt_queue, HOST, PORT_STR, sockets, sema
 from ui import BUF_SAMPS, App, send_pkt
 
-
-SIZE_INT16_T = 2
-NB_WORDS = 4
-SIZE_RECV = BUF_SAMPS * SIZE_INT16_T * NB_WORDS
-
 # stream data format
 MAGIC      = b"0DAR"                    # 0x52414430
-HDR_FMT    = "<IId"                    # magic, nsamp, t0_ns
-HDR_SIZE   = struct.calcsize(HDR_FMT)   # 16 bytes
-ROW_DTYPE = np.dtype([('fft_i', '<i2'), ('fft_q', '<i2'), ('bin', '<i2'), ('i', '<i2')])
+HDR_FMT    = "<IId"                     # magic, nsamp, t0
+HDR_SIZE   = struct.calcsize(HDR_FMT)   # in bytes
+ROW_DTYPE  = np.dtype([('fft_i', '<i2'), ('fft_q', '<i2'), ('bin', '<i2'), ('bin2', '<i2'), ('i', '<i2'), ('q', '<i2'), ('pad1', '<i2'), ('pad2', '<i2')])
+
+# Other constants
+SIZE_WORD = 2
+NB_WORDS = 8    # 8 words per row
+SIZE_RECV = BUF_SAMPS * SIZE_WORD * NB_WORDS + HDR_SIZE
 
 def socket_worker(sock: socket.socket, addr):
     """
     Runs in its own thread – handles control JSON & IQ frames.
     """
     sockets.add_connection(addr, sock)
-
     # Continue in UI once real client connects
     sema.release()
-
     # Watcher & real client
     if sockets.get_num_connections() > 1:
         try:
@@ -58,9 +56,10 @@ def socket_worker(sock: socket.socket, addr):
                     # header complete?
                     if len(buf) < HDR_SIZE:
                         break
-                    magic, nsamp, t0 = struct.unpack(
-                        HDR_FMT, buf[:HDR_SIZE])
-                    needed = HDR_SIZE + nsamp * 8   # 4 words per row
+
+                    magic, nsamp, t0 = struct.unpack(HDR_FMT, buf[:HDR_SIZE])
+                    needed = HDR_SIZE + nsamp * NB_WORDS * SIZE_WORD
+
                     if len(buf) < needed:
                         # wait for rest
                         break
@@ -77,6 +76,7 @@ def socket_worker(sock: socket.socket, addr):
                         "fft_q": rows['fft_q'],
                         "freq_bin": rows['bin'],
                         "i": rows['i'],
+                        "q": rows['q'],
                         "length": nsamp,
                         "t0": t0,
                     })
