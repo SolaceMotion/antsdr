@@ -161,7 +161,7 @@ when the first make has been created the project e200 will be created. This proj
 
 replace:
 ```txt
-antsdr-fw-patch/plutosdr-fw/hdl/projects/e200 shoudl be replace with folder e200_spectrum found on this repository
+antsdr-fw-patch/plutosdr-fw/hdl/projects/e200
 ```
 with 
 ```txt
@@ -172,7 +172,7 @@ In similar ways the device tree is needed to be uppdated
 
 replace:
 ```txt
-antsdr-fw-patch/plutosdr-fw/linux/arch/arm/boot/dts/zynq-e200.dtsi shoudl be replace with file zynq-e200.dtsi found on this repository
+antsdr-fw-patch/plutosdr-fw/linux/arch/arm/boot/dts/zynq-e200.dtsi
 ```
 with 
 ```txt
