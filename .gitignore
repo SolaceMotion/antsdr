@@ -5,11 +5,11 @@
 core/.cache/
 
 # Ignore CMake build artifacts
-**/CMakeCache.txt
-**/CMakeFiles/
-**/Makefile
-**/cmake_install.cmake
-**/compile_commands.json
+core/build/CMakeCache.txt
+core/build/CMakeFiles/
+core/build/Makefile
+core/build/cmake_install.cmake
+core/build/compile_commands.json
 
 uhd/
 libiio/build/
