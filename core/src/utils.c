@@ -1,23 +1,18 @@
 #include "utils.h"
-#include "cJSON.h"
-#include <arpa/inet.h>
 #include <errno.h>
-#include <netinet/in.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/cdefs.h>
 #include <sys/socket.h>
 #include <time.h>
 #include <unistd.h>
 
-/* Connect to socket server */
 int connect_socket(int *client_fd, struct sockaddr_in *serv_addr) {
     // Create client socket
     if ((*client_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("socket creation");
         return errno;
     }
+    // Set the address nand port of server (localhost)
     serv_addr->sin_family = AF_INET;
     serv_addr->sin_port = htons(8765);
     if (inet_pton(AF_INET, "127.0.0.1", &serv_addr->sin_addr) <= 0) {
@@ -39,7 +34,6 @@ int connect_socket(int *client_fd, struct sockaddr_in *serv_addr) {
 
 double time_now(void) {
     struct timespec ts;
-    // Time since boot.
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return ts.tv_sec + ts.tv_nsec * 1e-9;
 }

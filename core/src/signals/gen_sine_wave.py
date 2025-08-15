@@ -1,15 +1,15 @@
 import numpy as np
-import matplotlib.pyplot as plt
-fs = 3_000_000
-f_tone = 100_000_000
+
+fs = 30_000_000
+tone_0 = 7_000_000
+tone_1 = 12_000_000
 num_samples = 1024
 
 t = np.arange(num_samples) / fs
-ampl = 32767
-signal = 0.5 * np.exp(2j * np.pi * f_tone * t)
+signal = 10000 * np.exp(2j*np.pi*tone_0*t) + 1000 * np.exp(2j*np.pi*tone_1*t)
 
-i_samples = np.int16(ampl * np.real(signal))
-q_samples = np.int16(ampl * np.imag(signal))
+i_samples = np.int16(np.real(signal))
+q_samples = np.int16(np.imag(signal))
 
 interleaved = np.empty((num_samples * 2,), dtype=np.int16)
 interleaved[0::2] = i_samples

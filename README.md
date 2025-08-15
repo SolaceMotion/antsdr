@@ -5,6 +5,7 @@ For now, this repo houses the software portion of the application.
 
 > [!IMPORTANT]
 > This project is WIP - changes will be made.
+> This project is a proof of concept - it should not be used for any real tasks in its current state.
 
 ## Table of Contents
 - [Overview](#overview)  

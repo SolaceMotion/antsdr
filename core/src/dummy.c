@@ -1,6 +1,5 @@
 #include "cJSON.h"
 #include "utils.h"
-#include <errno.h>
 #include <netinet/in.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -72,6 +71,7 @@ int main(int argc, char *argv[]) {
 
         double tf = time_now() - t_now;
         cJSON_AddNumberToObject(root, "fs", (long long)2e5);
+        cJSON_AddNumberToObject(root, "length", n_frames);
         cJSON_AddItemToObject(root, "V_i", i_arr);
         cJSON_AddItemToObject(root, "V_q", q_arr);
         cJSON_AddNumberToObject(root, "t0", t0);
