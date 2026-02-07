@@ -1,11 +1,10 @@
 # SpectrumSDR
 
 A Software-Controlled Communication Interface for the ANTSDR E200 SoC.
-For now, this repo houses the software portion of the application.  
+This repo houses the software of the application and a custom ANTSDR E200 hardware design, used of the application.  
 
 > [!IMPORTANT]
-> This project is WIP - changes will be made.
-> This project is a proof of concept - it should not be used for any real tasks in its current state.
+> This project is a proof of concept - use with caution.
 
 ## Table of Contents
 - [Overview](#overview)  
@@ -15,7 +14,7 @@ For now, this repo houses the software portion of the application.
 - [Building SpectrumSDR](#building-spectrumsdr)  
 - [Additional Reading](#useful-links)  
 ## Overview
-SpectrumSDR provides a simple to use interface for communication with an ANTSDR E200. The interface allows for monitoring incoming signals at the receiver, applying filters, as well as viewing frequencies present in the signal in a real-time spectrum analyzer. For interfacing with the device, the [libiio](https://github.com/analogdevicesinc/libiio) library maintained by [Analog Devices](https://github.com/analogdevicesinc) is utilized.
+SpectrumSDR provides a simple to use interface for communication with the ANTSDR E200. The interface allows for monitoring incoming signals at the receiver, applying filters, as well as viewing frequencies present in the signal in a real-time spectrum analyzer. For interfacing with the device, the [libiio](https://github.com/analogdevicesinc/libiio) library maintained by [Analog Devices](https://github.com/analogdevicesinc) is utilized.
 
 The project is intended for use with an ANTSDR E200, comprising of
 - Hardware
